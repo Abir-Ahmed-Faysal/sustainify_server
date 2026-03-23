@@ -1,0 +1,227 @@
+model Access {
+  id     String @id @default(uuid())
+  userId String
+  ideaId String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  idea Idea @relation(fields: [ideaId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@unique([userId, ideaId])
+  @@index([userId], name: "idx_access_userId")
+  @@index([ideaId], name: "idx_access_ideaId")
+}
+
+enum Role {
+  ADMIN
+  MEMBER
+}
+
+model User {
+  id       String  @id @default(uuid())
+  name     String
+  email    String  @unique
+  password String
+  role     Role    @default(MEMBER)
+  isActive Boolean @default(true)
+
+  profile    Profile?
+  ideas      Idea[]
+  votes      Vote[]
+  comments   Comment[]
+  payments   Payment[]
+  favorites  Favorite[]
+  accessList Access[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  isDeleted Boolean   @default(false)
+  deletedAt DateTime?
+  sessions  Session[]
+}
+
+model Profile {
+  id      String  @id @default(uuid())
+  userId  String  @unique
+  avatar  String?
+  bio     String?
+  address String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@index([userId], name: "idx_profile_userId")
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  userId       String
+  refreshToken String
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@index([userId], name: "idx_session_userId")
+}
+
+model Category {
+  id    String  @id @default(uuid())
+  image String?
+  name  String  @unique
+
+  ideas Idea[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  isDeleted Boolean   @default(false)
+  deletedAt DateTime?
+
+  @@index([id], name: "idx_category_id")
+  @@index([name], name: "idx_category_name")
+  @@map("categories")
+}
+
+model Comment {
+  id      String @id @default(uuid())
+  content String
+
+  userId   String
+  ideaId   String
+  parentId String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  idea Idea @relation(fields: [ideaId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  parent  Comment?  @relation("CommentToComment", fields: [parentId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  replies Comment[] @relation("CommentToComment")
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  isDeleted Boolean   @default(false)
+  deletedAt DateTime?
+
+  @@index([id], name: "idx_comment_id")
+  @@index([userId], name: "idx_comment_userId")
+  @@index([ideaId], name: "idx_comment_ideaId")
+  @@index([parentId], name: "idx_comment_parentId")
+  @@map("comments")
+}
+
+model Favorite {
+  id     String @id @default(uuid())
+  userId String
+  ideaId String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  idea Idea @relation(fields: [ideaId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@unique([userId, ideaId])
+  @@index([userId], name: "idx_favorite_userId")
+  @@index([ideaId], name: "idx_favorite_ideaId")
+}
+
+enum IdeaStatus {
+  DRAFT
+  UNDER_REVIEW
+  APPROVED
+  REJECTED
+}
+
+model Idea {
+  id               String  @id @default(uuid())
+  title            String
+  problemStatement String
+  solution         String
+  description      String
+  image            String?
+  totalVotes       Int     @default(0)
+
+  isPaid Boolean @default(false)
+  price  Float?
+
+  status     IdeaStatus @default(DRAFT)
+  feedback   String?
+  isFeatured Boolean    @default(false)
+
+  authorId   String
+  categoryId String
+
+  author   User     @relation(fields: [authorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  votes      Vote[]
+  comments   Comment[]
+  payments   Payment[]
+  favorites  Favorite[]
+  accessList Access[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  isDeleted Boolean   @default(false)
+  deletedAt DateTime?
+
+  @@index([authorId], name: "idx_idea_authorId")
+  @@index([categoryId], name: "idx_idea_categoryId")
+}
+
+enum PaymentStatus {
+  SUCCESS
+  FAILED
+  PENDING
+}
+
+model Payment {
+  id                 String        @id @default(uuid())
+  userId             String
+  ideaId             String
+  amount             Float
+  status             PaymentStatus @default(PENDING)
+  transactionId      String?
+  stripeEventId      String?
+  invoiceUrl         String?
+  paymentGatewayData Json?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  idea Idea @relation(fields: [ideaId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  isDeleted Boolean   @default(false)
+  deletedAt DateTime?
+
+  @@index([userId], name: "idx_payment_userId")
+  @@index([ideaId], name: "idx_payment_ideaId")
+  @@map("payments")
+}
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum VoteType {
+  UP
+  DOWN
+}
+
+model Vote {
+  id     String   @id @default(uuid())
+  userId String
+  ideaId String
+  type   VoteType
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  idea Idea @relation(fields: [ideaId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@unique([userId, ideaId])
+  @@index([userId], name: "idx_vote_userId")
+  @@index([ideaId], name: "idx_vote_ideaId")
+}
