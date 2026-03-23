@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextFunction, Request, Response } from "express";
-import { envVars } from "../config";
+import { envVars } from "../config/env";
 import z from "zod";
 import { TErrorResponse, TErrorSources } from "../interfaces/error.interfaces";
 import { zodErrorData } from "../errorHelpers/error.helper";
@@ -58,7 +58,7 @@ export const globalErrorHandler = async (err: any, req: Request, res: Response, 
         stack = err.stack
     } else
     */
-    
+
     if (err instanceof z.ZodError) {
         const zodError = zodErrorData(err)
         statusCode = zodError.statusCode

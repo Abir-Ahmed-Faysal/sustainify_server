@@ -1,0 +1,12 @@
+model Access {
+  id      String @id @default(uuid())
+  userId  String
+  ideaId  String
+
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  idea    Idea   @relation(fields: [ideaId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@unique([userId, ideaId])
+  @@index([userId], name: "idx_access_userId")
+  @@index([ideaId], name: "idx_access_ideaId")
+}

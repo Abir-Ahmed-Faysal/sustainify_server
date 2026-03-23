@@ -1,0 +1,44 @@
+enum IdeaStatus {
+  DRAFT
+  UNDER_REVIEW
+  APPROVED
+  REJECTED
+}
+
+model Idea {
+  id               String  @id @default(uuid())
+  title            String
+  problemStatement String
+  solution         String
+  description      String
+  image            String?
+  totalVotes       Int      @default(0)
+
+  isPaid Boolean @default(false)
+  price  Float?
+
+  status   IdeaStatus @default(DRAFT)
+  feedback String?
+  isFeatured Boolean @default(false)
+
+  authorId   String
+  categoryId String
+
+
+  author   User     @relation(fields: [authorId], references: [id],onDelete: Cascade,onUpdate: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  votes      Vote[]
+  comments   Comment[]
+  payments   Payment[]
+  favorites  Favorite[]
+  accessList Access[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  isDeleted Boolean   @default(false)
+  deletedAt DateTime?
+
+  @@index([authorId], name: "idx_idea_authorId")
+  @@index([categoryId], name: "idx_idea_categoryId")
+}
