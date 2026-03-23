@@ -9,4 +9,5 @@ model Access {
   @@unique([userId, ideaId])
   @@index([userId], name: "idx_access_userId")
   @@index([ideaId], name: "idx_access_ideaId")
+  @@map("accesses")
 }

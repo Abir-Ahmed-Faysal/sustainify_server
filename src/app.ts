@@ -4,6 +4,7 @@ import cors from 'cors';
 import { envVars } from "./app/config/env";
 import { globalErrorHandler } from "./app/middleware/globalErrorHandler";
 import { notFound } from "./app/middleware/notFound";
+import { indexRoutes } from "./app/rotues";
 
 const app: Application = express();
 
@@ -19,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Routes
-// app.use("/api/v1", router)
+app.use("/api/v1", indexRoutes)
 
 // Health Check
 app.get("/", (req: Request, res: Response) => {

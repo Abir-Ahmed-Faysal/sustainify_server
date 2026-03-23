@@ -41,4 +41,5 @@ model Idea {
 
   @@index([authorId], name: "idx_idea_authorId")
   @@index([categoryId], name: "idx_idea_categoryId")
+  @@map("ideas")
 }

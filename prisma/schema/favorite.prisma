@@ -9,4 +9,5 @@ model Favorite {
   @@unique([userId, ideaId])
   @@index([userId], name: "idx_favorite_userId")
   @@index([ideaId], name: "idx_favorite_ideaId")
+  @@map("favorites")
 }

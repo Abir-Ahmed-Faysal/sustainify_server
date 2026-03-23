@@ -24,6 +24,8 @@ model User {
   isDeleted Boolean   @default(false)
   deletedAt DateTime?
   sessions  Session[]
+
+  @@map("users")
 }
 
 model Profile {
@@ -36,6 +38,7 @@ model Profile {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   
   @@index([userId], name: "idx_profile_userId")
+  @@map("profiles")
 }
 
 model Session {
@@ -48,4 +51,5 @@ model Session {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@index([userId], name: "idx_session_userId")
+  @@map("sessions")
 }

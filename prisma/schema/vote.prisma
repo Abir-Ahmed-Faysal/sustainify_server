@@ -15,4 +15,5 @@ model Vote {
   @@unique([userId, ideaId])
   @@index([userId], name: "idx_vote_userId")
   @@index([ideaId], name: "idx_vote_ideaId")
+  @@map("votes")
 }
