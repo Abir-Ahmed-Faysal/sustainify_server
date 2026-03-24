@@ -152,7 +152,8 @@ exports.Prisma.SessionScalarFieldEnum = {
   userId: 'userId',
   refreshToken: 'refreshToken',
   expiresAt: 'expiresAt',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.CategoryScalarFieldEnum = {

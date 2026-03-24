@@ -5409,6 +5409,7 @@ export namespace Prisma {
     refreshToken: string | null
     expiresAt: Date | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type SessionMaxAggregateOutputType = {
@@ -5417,6 +5418,7 @@ export namespace Prisma {
     refreshToken: string | null
     expiresAt: Date | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type SessionCountAggregateOutputType = {
@@ -5425,6 +5427,7 @@ export namespace Prisma {
     refreshToken: number
     expiresAt: number
     createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -5435,6 +5438,7 @@ export namespace Prisma {
     refreshToken?: true
     expiresAt?: true
     createdAt?: true
+    updatedAt?: true
   }
 
   export type SessionMaxAggregateInputType = {
@@ -5443,6 +5447,7 @@ export namespace Prisma {
     refreshToken?: true
     expiresAt?: true
     createdAt?: true
+    updatedAt?: true
   }
 
   export type SessionCountAggregateInputType = {
@@ -5451,6 +5456,7 @@ export namespace Prisma {
     refreshToken?: true
     expiresAt?: true
     createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -5532,6 +5538,7 @@ export namespace Prisma {
     refreshToken: string
     expiresAt: Date
     createdAt: Date
+    updatedAt: Date
     _count: SessionCountAggregateOutputType | null
     _min: SessionMinAggregateOutputType | null
     _max: SessionMaxAggregateOutputType | null
@@ -5557,6 +5564,7 @@ export namespace Prisma {
     refreshToken?: boolean
     expiresAt?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["session"]>
 
@@ -5566,6 +5574,7 @@ export namespace Prisma {
     refreshToken?: boolean
     expiresAt?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["session"]>
 
@@ -5575,6 +5584,7 @@ export namespace Prisma {
     refreshToken?: boolean
     expiresAt?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["session"]>
 
@@ -5584,9 +5594,10 @@ export namespace Prisma {
     refreshToken?: boolean
     expiresAt?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "refreshToken" | "expiresAt" | "createdAt", ExtArgs["result"]["session"]>
+  export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "refreshToken" | "expiresAt" | "createdAt" | "updatedAt", ExtArgs["result"]["session"]>
   export type SessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -5608,6 +5619,7 @@ export namespace Prisma {
       refreshToken: string
       expiresAt: Date
       createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["session"]>
     composites: {}
   }
@@ -6037,6 +6049,7 @@ export namespace Prisma {
     readonly refreshToken: FieldRef<"Session", 'String'>
     readonly expiresAt: FieldRef<"Session", 'DateTime'>
     readonly createdAt: FieldRef<"Session", 'DateTime'>
+    readonly updatedAt: FieldRef<"Session", 'DateTime'>
   }
     
 
@@ -13520,7 +13533,8 @@ export namespace Prisma {
     userId: 'userId',
     refreshToken: 'refreshToken',
     expiresAt: 'expiresAt',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
@@ -14012,6 +14026,7 @@ export namespace Prisma {
     refreshToken?: StringFilter<"Session"> | string
     expiresAt?: DateTimeFilter<"Session"> | Date | string
     createdAt?: DateTimeFilter<"Session"> | Date | string
+    updatedAt?: DateTimeFilter<"Session"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -14021,6 +14036,7 @@ export namespace Prisma {
     refreshToken?: SortOrder
     expiresAt?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -14033,6 +14049,7 @@ export namespace Prisma {
     refreshToken?: StringFilter<"Session"> | string
     expiresAt?: DateTimeFilter<"Session"> | Date | string
     createdAt?: DateTimeFilter<"Session"> | Date | string
+    updatedAt?: DateTimeFilter<"Session"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
@@ -14042,6 +14059,7 @@ export namespace Prisma {
     refreshToken?: SortOrder
     expiresAt?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: SessionCountOrderByAggregateInput
     _max?: SessionMaxOrderByAggregateInput
     _min?: SessionMinOrderByAggregateInput
@@ -14056,6 +14074,7 @@ export namespace Prisma {
     refreshToken?: StringWithAggregatesFilter<"Session"> | string
     expiresAt?: DateTimeWithAggregatesFilter<"Session"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"Session"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Session"> | Date | string
   }
 
   export type CategoryWhereInput = {
@@ -14773,6 +14792,7 @@ export namespace Prisma {
     refreshToken: string
     expiresAt: Date | string
     createdAt?: Date | string
+    updatedAt?: Date | string
     user: UserCreateNestedOneWithoutSessionsInput
   }
 
@@ -14782,6 +14802,7 @@ export namespace Prisma {
     refreshToken: string
     expiresAt: Date | string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SessionUpdateInput = {
@@ -14789,6 +14810,7 @@ export namespace Prisma {
     refreshToken?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutSessionsNestedInput
   }
 
@@ -14798,6 +14820,7 @@ export namespace Prisma {
     refreshToken?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionCreateManyInput = {
@@ -14806,6 +14829,7 @@ export namespace Prisma {
     refreshToken: string
     expiresAt: Date | string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SessionUpdateManyMutationInput = {
@@ -14813,6 +14837,7 @@ export namespace Prisma {
     refreshToken?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionUncheckedUpdateManyInput = {
@@ -14821,6 +14846,7 @@ export namespace Prisma {
     refreshToken?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CategoryCreateInput = {
@@ -15672,6 +15698,7 @@ export namespace Prisma {
     refreshToken?: SortOrder
     expiresAt?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type SessionMaxOrderByAggregateInput = {
@@ -15680,6 +15707,7 @@ export namespace Prisma {
     refreshToken?: SortOrder
     expiresAt?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type SessionMinOrderByAggregateInput = {
@@ -15688,6 +15716,7 @@ export namespace Prisma {
     refreshToken?: SortOrder
     expiresAt?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type CategoryCountOrderByAggregateInput = {
@@ -17755,6 +17784,7 @@ export namespace Prisma {
     refreshToken: string
     expiresAt: Date | string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SessionUncheckedCreateWithoutUserInput = {
@@ -17762,6 +17792,7 @@ export namespace Prisma {
     refreshToken: string
     expiresAt: Date | string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SessionCreateOrConnectWithoutUserInput = {
@@ -18006,6 +18037,7 @@ export namespace Prisma {
     refreshToken?: StringFilter<"Session"> | string
     expiresAt?: DateTimeFilter<"Session"> | Date | string
     createdAt?: DateTimeFilter<"Session"> | Date | string
+    updatedAt?: DateTimeFilter<"Session"> | Date | string
   }
 
   export type UserCreateWithoutProfileInput = {
@@ -19673,6 +19705,7 @@ export namespace Prisma {
     refreshToken: string
     expiresAt: Date | string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type IdeaUpdateWithoutAuthorInput = {
@@ -19878,6 +19911,7 @@ export namespace Prisma {
     refreshToken?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionUncheckedUpdateWithoutUserInput = {
@@ -19885,6 +19919,7 @@ export namespace Prisma {
     refreshToken?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionUncheckedUpdateManyWithoutUserInput = {
@@ -19892,6 +19927,7 @@ export namespace Prisma {
     refreshToken?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IdeaCreateManyCategoryInput = {
