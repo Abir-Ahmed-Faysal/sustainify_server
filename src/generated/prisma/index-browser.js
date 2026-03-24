@@ -207,6 +207,14 @@ exports.Prisma.IdeaScalarFieldEnum = {
   deletedAt: 'deletedAt'
 };
 
+exports.Prisma.NewsletterScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.PaymentScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -287,6 +295,7 @@ exports.Prisma.ModelName = {
   Comment: 'Comment',
   Favorite: 'Favorite',
   Idea: 'Idea',
+  Newsletter: 'Newsletter',
   Payment: 'Payment',
   Vote: 'Vote'
 };

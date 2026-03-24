@@ -173,6 +173,17 @@ model Idea {
   @@map("ideas")
 }
 
+model Newsletter {
+  id       String  @id @default(uuid())
+  email    String  @unique
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("newsletters")
+}
+
 enum PaymentStatus {
   SUCCESS
   FAILED
