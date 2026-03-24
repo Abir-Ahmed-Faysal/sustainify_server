@@ -140,7 +140,9 @@ model Idea {
   solution         String
   description      String
   image            String?
-  totalVotes       Int     @default(0)
+  positiveRatio    Int     @default(0)
+  totalUpVotes     Int     @default(0)
+  totalDownVotes   Int     @default(0)
 
   isPaid Boolean @default(false)
   price  Float?

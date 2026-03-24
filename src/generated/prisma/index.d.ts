@@ -9808,12 +9808,16 @@ export namespace Prisma {
   }
 
   export type IdeaAvgAggregateOutputType = {
-    totalVotes: number | null
+    positiveRatio: number | null
+    totalUpVotes: number | null
+    totalDownVotes: number | null
     price: number | null
   }
 
   export type IdeaSumAggregateOutputType = {
-    totalVotes: number | null
+    positiveRatio: number | null
+    totalUpVotes: number | null
+    totalDownVotes: number | null
     price: number | null
   }
 
@@ -9824,7 +9828,9 @@ export namespace Prisma {
     solution: string | null
     description: string | null
     image: string | null
-    totalVotes: number | null
+    positiveRatio: number | null
+    totalUpVotes: number | null
+    totalDownVotes: number | null
     isPaid: boolean | null
     price: number | null
     status: $Enums.IdeaStatus | null
@@ -9845,7 +9851,9 @@ export namespace Prisma {
     solution: string | null
     description: string | null
     image: string | null
-    totalVotes: number | null
+    positiveRatio: number | null
+    totalUpVotes: number | null
+    totalDownVotes: number | null
     isPaid: boolean | null
     price: number | null
     status: $Enums.IdeaStatus | null
@@ -9866,7 +9874,9 @@ export namespace Prisma {
     solution: number
     description: number
     image: number
-    totalVotes: number
+    positiveRatio: number
+    totalUpVotes: number
+    totalDownVotes: number
     isPaid: number
     price: number
     status: number
@@ -9883,12 +9893,16 @@ export namespace Prisma {
 
 
   export type IdeaAvgAggregateInputType = {
-    totalVotes?: true
+    positiveRatio?: true
+    totalUpVotes?: true
+    totalDownVotes?: true
     price?: true
   }
 
   export type IdeaSumAggregateInputType = {
-    totalVotes?: true
+    positiveRatio?: true
+    totalUpVotes?: true
+    totalDownVotes?: true
     price?: true
   }
 
@@ -9899,7 +9913,9 @@ export namespace Prisma {
     solution?: true
     description?: true
     image?: true
-    totalVotes?: true
+    positiveRatio?: true
+    totalUpVotes?: true
+    totalDownVotes?: true
     isPaid?: true
     price?: true
     status?: true
@@ -9920,7 +9936,9 @@ export namespace Prisma {
     solution?: true
     description?: true
     image?: true
-    totalVotes?: true
+    positiveRatio?: true
+    totalUpVotes?: true
+    totalDownVotes?: true
     isPaid?: true
     price?: true
     status?: true
@@ -9941,7 +9959,9 @@ export namespace Prisma {
     solution?: true
     description?: true
     image?: true
-    totalVotes?: true
+    positiveRatio?: true
+    totalUpVotes?: true
+    totalDownVotes?: true
     isPaid?: true
     price?: true
     status?: true
@@ -10049,7 +10069,9 @@ export namespace Prisma {
     solution: string
     description: string
     image: string | null
-    totalVotes: number
+    positiveRatio: number
+    totalUpVotes: number
+    totalDownVotes: number
     isPaid: boolean
     price: number | null
     status: $Enums.IdeaStatus
@@ -10089,7 +10111,9 @@ export namespace Prisma {
     solution?: boolean
     description?: boolean
     image?: boolean
-    totalVotes?: boolean
+    positiveRatio?: boolean
+    totalUpVotes?: boolean
+    totalDownVotes?: boolean
     isPaid?: boolean
     price?: boolean
     status?: boolean
@@ -10118,7 +10142,9 @@ export namespace Prisma {
     solution?: boolean
     description?: boolean
     image?: boolean
-    totalVotes?: boolean
+    positiveRatio?: boolean
+    totalUpVotes?: boolean
+    totalDownVotes?: boolean
     isPaid?: boolean
     price?: boolean
     status?: boolean
@@ -10141,7 +10167,9 @@ export namespace Prisma {
     solution?: boolean
     description?: boolean
     image?: boolean
-    totalVotes?: boolean
+    positiveRatio?: boolean
+    totalUpVotes?: boolean
+    totalDownVotes?: boolean
     isPaid?: boolean
     price?: boolean
     status?: boolean
@@ -10164,7 +10192,9 @@ export namespace Prisma {
     solution?: boolean
     description?: boolean
     image?: boolean
-    totalVotes?: boolean
+    positiveRatio?: boolean
+    totalUpVotes?: boolean
+    totalDownVotes?: boolean
     isPaid?: boolean
     price?: boolean
     status?: boolean
@@ -10178,7 +10208,7 @@ export namespace Prisma {
     deletedAt?: boolean
   }
 
-  export type IdeaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "problemStatement" | "solution" | "description" | "image" | "totalVotes" | "isPaid" | "price" | "status" | "feedback" | "isFeatured" | "authorId" | "categoryId" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["idea"]>
+  export type IdeaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "problemStatement" | "solution" | "description" | "image" | "positiveRatio" | "totalUpVotes" | "totalDownVotes" | "isPaid" | "price" | "status" | "feedback" | "isFeatured" | "authorId" | "categoryId" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["idea"]>
   export type IdeaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
     category?: boolean | CategoryDefaultArgs<ExtArgs>
@@ -10216,7 +10246,9 @@ export namespace Prisma {
       solution: string
       description: string
       image: string | null
-      totalVotes: number
+      positiveRatio: number
+      totalUpVotes: number
+      totalDownVotes: number
       isPaid: boolean
       price: number | null
       status: $Enums.IdeaStatus
@@ -10664,7 +10696,9 @@ export namespace Prisma {
     readonly solution: FieldRef<"Idea", 'String'>
     readonly description: FieldRef<"Idea", 'String'>
     readonly image: FieldRef<"Idea", 'String'>
-    readonly totalVotes: FieldRef<"Idea", 'Int'>
+    readonly positiveRatio: FieldRef<"Idea", 'Int'>
+    readonly totalUpVotes: FieldRef<"Idea", 'Int'>
+    readonly totalDownVotes: FieldRef<"Idea", 'Int'>
     readonly isPaid: FieldRef<"Idea", 'Boolean'>
     readonly price: FieldRef<"Idea", 'Float'>
     readonly status: FieldRef<"Idea", 'IdeaStatus'>
@@ -13584,7 +13618,9 @@ export namespace Prisma {
     solution: 'solution',
     description: 'description',
     image: 'image',
-    totalVotes: 'totalVotes',
+    positiveRatio: 'positiveRatio',
+    totalUpVotes: 'totalUpVotes',
+    totalDownVotes: 'totalDownVotes',
     isPaid: 'isPaid',
     price: 'price',
     status: 'status',
@@ -14285,7 +14321,9 @@ export namespace Prisma {
     solution?: StringFilter<"Idea"> | string
     description?: StringFilter<"Idea"> | string
     image?: StringNullableFilter<"Idea"> | string | null
-    totalVotes?: IntFilter<"Idea"> | number
+    positiveRatio?: IntFilter<"Idea"> | number
+    totalUpVotes?: IntFilter<"Idea"> | number
+    totalDownVotes?: IntFilter<"Idea"> | number
     isPaid?: BoolFilter<"Idea"> | boolean
     price?: FloatNullableFilter<"Idea"> | number | null
     status?: EnumIdeaStatusFilter<"Idea"> | $Enums.IdeaStatus
@@ -14313,7 +14351,9 @@ export namespace Prisma {
     solution?: SortOrder
     description?: SortOrder
     image?: SortOrderInput | SortOrder
-    totalVotes?: SortOrder
+    positiveRatio?: SortOrder
+    totalUpVotes?: SortOrder
+    totalDownVotes?: SortOrder
     isPaid?: SortOrder
     price?: SortOrderInput | SortOrder
     status?: SortOrder
@@ -14344,7 +14384,9 @@ export namespace Prisma {
     solution?: StringFilter<"Idea"> | string
     description?: StringFilter<"Idea"> | string
     image?: StringNullableFilter<"Idea"> | string | null
-    totalVotes?: IntFilter<"Idea"> | number
+    positiveRatio?: IntFilter<"Idea"> | number
+    totalUpVotes?: IntFilter<"Idea"> | number
+    totalDownVotes?: IntFilter<"Idea"> | number
     isPaid?: BoolFilter<"Idea"> | boolean
     price?: FloatNullableFilter<"Idea"> | number | null
     status?: EnumIdeaStatusFilter<"Idea"> | $Enums.IdeaStatus
@@ -14372,7 +14414,9 @@ export namespace Prisma {
     solution?: SortOrder
     description?: SortOrder
     image?: SortOrderInput | SortOrder
-    totalVotes?: SortOrder
+    positiveRatio?: SortOrder
+    totalUpVotes?: SortOrder
+    totalDownVotes?: SortOrder
     isPaid?: SortOrder
     price?: SortOrderInput | SortOrder
     status?: SortOrder
@@ -14401,7 +14445,9 @@ export namespace Prisma {
     solution?: StringWithAggregatesFilter<"Idea"> | string
     description?: StringWithAggregatesFilter<"Idea"> | string
     image?: StringNullableWithAggregatesFilter<"Idea"> | string | null
-    totalVotes?: IntWithAggregatesFilter<"Idea"> | number
+    positiveRatio?: IntWithAggregatesFilter<"Idea"> | number
+    totalUpVotes?: IntWithAggregatesFilter<"Idea"> | number
+    totalDownVotes?: IntWithAggregatesFilter<"Idea"> | number
     isPaid?: BoolWithAggregatesFilter<"Idea"> | boolean
     price?: FloatNullableWithAggregatesFilter<"Idea"> | number | null
     status?: EnumIdeaStatusWithAggregatesFilter<"Idea"> | $Enums.IdeaStatus
@@ -15055,7 +15101,9 @@ export namespace Prisma {
     solution: string
     description: string
     image?: string | null
-    totalVotes?: number
+    positiveRatio?: number
+    totalUpVotes?: number
+    totalDownVotes?: number
     isPaid?: boolean
     price?: number | null
     status?: $Enums.IdeaStatus
@@ -15081,7 +15129,9 @@ export namespace Prisma {
     solution: string
     description: string
     image?: string | null
-    totalVotes?: number
+    positiveRatio?: number
+    totalUpVotes?: number
+    totalDownVotes?: number
     isPaid?: boolean
     price?: number | null
     status?: $Enums.IdeaStatus
@@ -15107,7 +15157,9 @@ export namespace Prisma {
     solution?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    totalVotes?: IntFieldUpdateOperationsInput | number
+    positiveRatio?: IntFieldUpdateOperationsInput | number
+    totalUpVotes?: IntFieldUpdateOperationsInput | number
+    totalDownVotes?: IntFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumIdeaStatusFieldUpdateOperationsInput | $Enums.IdeaStatus
@@ -15133,7 +15185,9 @@ export namespace Prisma {
     solution?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    totalVotes?: IntFieldUpdateOperationsInput | number
+    positiveRatio?: IntFieldUpdateOperationsInput | number
+    totalUpVotes?: IntFieldUpdateOperationsInput | number
+    totalDownVotes?: IntFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumIdeaStatusFieldUpdateOperationsInput | $Enums.IdeaStatus
@@ -15159,7 +15213,9 @@ export namespace Prisma {
     solution: string
     description: string
     image?: string | null
-    totalVotes?: number
+    positiveRatio?: number
+    totalUpVotes?: number
+    totalDownVotes?: number
     isPaid?: boolean
     price?: number | null
     status?: $Enums.IdeaStatus
@@ -15180,7 +15236,9 @@ export namespace Prisma {
     solution?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    totalVotes?: IntFieldUpdateOperationsInput | number
+    positiveRatio?: IntFieldUpdateOperationsInput | number
+    totalUpVotes?: IntFieldUpdateOperationsInput | number
+    totalDownVotes?: IntFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumIdeaStatusFieldUpdateOperationsInput | $Enums.IdeaStatus
@@ -15199,7 +15257,9 @@ export namespace Prisma {
     solution?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    totalVotes?: IntFieldUpdateOperationsInput | number
+    positiveRatio?: IntFieldUpdateOperationsInput | number
+    totalUpVotes?: IntFieldUpdateOperationsInput | number
+    totalDownVotes?: IntFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumIdeaStatusFieldUpdateOperationsInput | $Enums.IdeaStatus
@@ -15854,7 +15914,9 @@ export namespace Prisma {
     solution?: SortOrder
     description?: SortOrder
     image?: SortOrder
-    totalVotes?: SortOrder
+    positiveRatio?: SortOrder
+    totalUpVotes?: SortOrder
+    totalDownVotes?: SortOrder
     isPaid?: SortOrder
     price?: SortOrder
     status?: SortOrder
@@ -15869,7 +15931,9 @@ export namespace Prisma {
   }
 
   export type IdeaAvgOrderByAggregateInput = {
-    totalVotes?: SortOrder
+    positiveRatio?: SortOrder
+    totalUpVotes?: SortOrder
+    totalDownVotes?: SortOrder
     price?: SortOrder
   }
 
@@ -15880,7 +15944,9 @@ export namespace Prisma {
     solution?: SortOrder
     description?: SortOrder
     image?: SortOrder
-    totalVotes?: SortOrder
+    positiveRatio?: SortOrder
+    totalUpVotes?: SortOrder
+    totalDownVotes?: SortOrder
     isPaid?: SortOrder
     price?: SortOrder
     status?: SortOrder
@@ -15901,7 +15967,9 @@ export namespace Prisma {
     solution?: SortOrder
     description?: SortOrder
     image?: SortOrder
-    totalVotes?: SortOrder
+    positiveRatio?: SortOrder
+    totalUpVotes?: SortOrder
+    totalDownVotes?: SortOrder
     isPaid?: SortOrder
     price?: SortOrder
     status?: SortOrder
@@ -15916,7 +15984,9 @@ export namespace Prisma {
   }
 
   export type IdeaSumOrderByAggregateInput = {
-    totalVotes?: SortOrder
+    positiveRatio?: SortOrder
+    totalUpVotes?: SortOrder
+    totalDownVotes?: SortOrder
     price?: SortOrder
   }
 
@@ -17404,7 +17474,9 @@ export namespace Prisma {
     solution: string
     description: string
     image?: string | null
-    totalVotes?: number
+    positiveRatio?: number
+    totalUpVotes?: number
+    totalDownVotes?: number
     isPaid?: boolean
     price?: number | null
     status?: $Enums.IdeaStatus
@@ -17429,7 +17501,9 @@ export namespace Prisma {
     solution: string
     description: string
     image?: string | null
-    totalVotes?: number
+    positiveRatio?: number
+    totalUpVotes?: number
+    totalDownVotes?: number
     isPaid?: boolean
     price?: number | null
     status?: $Enums.IdeaStatus
@@ -17521,7 +17595,9 @@ export namespace Prisma {
     solution?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    totalVotes?: IntFieldUpdateOperationsInput | number
+    positiveRatio?: IntFieldUpdateOperationsInput | number
+    totalUpVotes?: IntFieldUpdateOperationsInput | number
+    totalDownVotes?: IntFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumIdeaStatusFieldUpdateOperationsInput | $Enums.IdeaStatus
@@ -17546,7 +17622,9 @@ export namespace Prisma {
     solution?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    totalVotes?: IntFieldUpdateOperationsInput | number
+    positiveRatio?: IntFieldUpdateOperationsInput | number
+    totalUpVotes?: IntFieldUpdateOperationsInput | number
+    totalDownVotes?: IntFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumIdeaStatusFieldUpdateOperationsInput | $Enums.IdeaStatus
@@ -17590,7 +17668,9 @@ export namespace Prisma {
     solution: string
     description: string
     image?: string | null
-    totalVotes?: number
+    positiveRatio?: number
+    totalUpVotes?: number
+    totalDownVotes?: number
     isPaid?: boolean
     price?: number | null
     status?: $Enums.IdeaStatus
@@ -17615,7 +17695,9 @@ export namespace Prisma {
     solution: string
     description: string
     image?: string | null
-    totalVotes?: number
+    positiveRatio?: number
+    totalUpVotes?: number
+    totalDownVotes?: number
     isPaid?: boolean
     price?: number | null
     status?: $Enums.IdeaStatus
@@ -17856,7 +17938,9 @@ export namespace Prisma {
     solution?: StringFilter<"Idea"> | string
     description?: StringFilter<"Idea"> | string
     image?: StringNullableFilter<"Idea"> | string | null
-    totalVotes?: IntFilter<"Idea"> | number
+    positiveRatio?: IntFilter<"Idea"> | number
+    totalUpVotes?: IntFilter<"Idea"> | number
+    totalDownVotes?: IntFilter<"Idea"> | number
     isPaid?: BoolFilter<"Idea"> | boolean
     price?: FloatNullableFilter<"Idea"> | number | null
     status?: EnumIdeaStatusFilter<"Idea"> | $Enums.IdeaStatus
@@ -18239,7 +18323,9 @@ export namespace Prisma {
     solution: string
     description: string
     image?: string | null
-    totalVotes?: number
+    positiveRatio?: number
+    totalUpVotes?: number
+    totalDownVotes?: number
     isPaid?: boolean
     price?: number | null
     status?: $Enums.IdeaStatus
@@ -18264,7 +18350,9 @@ export namespace Prisma {
     solution: string
     description: string
     image?: string | null
-    totalVotes?: number
+    positiveRatio?: number
+    totalUpVotes?: number
+    totalDownVotes?: number
     isPaid?: boolean
     price?: number | null
     status?: $Enums.IdeaStatus
@@ -18360,7 +18448,9 @@ export namespace Prisma {
     solution: string
     description: string
     image?: string | null
-    totalVotes?: number
+    positiveRatio?: number
+    totalUpVotes?: number
+    totalDownVotes?: number
     isPaid?: boolean
     price?: number | null
     status?: $Enums.IdeaStatus
@@ -18385,7 +18475,9 @@ export namespace Prisma {
     solution: string
     description: string
     image?: string | null
-    totalVotes?: number
+    positiveRatio?: number
+    totalUpVotes?: number
+    totalDownVotes?: number
     isPaid?: boolean
     price?: number | null
     status?: $Enums.IdeaStatus
@@ -18540,7 +18632,9 @@ export namespace Prisma {
     solution?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    totalVotes?: IntFieldUpdateOperationsInput | number
+    positiveRatio?: IntFieldUpdateOperationsInput | number
+    totalUpVotes?: IntFieldUpdateOperationsInput | number
+    totalDownVotes?: IntFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumIdeaStatusFieldUpdateOperationsInput | $Enums.IdeaStatus
@@ -18565,7 +18659,9 @@ export namespace Prisma {
     solution?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    totalVotes?: IntFieldUpdateOperationsInput | number
+    positiveRatio?: IntFieldUpdateOperationsInput | number
+    totalUpVotes?: IntFieldUpdateOperationsInput | number
+    totalDownVotes?: IntFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumIdeaStatusFieldUpdateOperationsInput | $Enums.IdeaStatus
@@ -18686,7 +18782,9 @@ export namespace Prisma {
     solution: string
     description: string
     image?: string | null
-    totalVotes?: number
+    positiveRatio?: number
+    totalUpVotes?: number
+    totalDownVotes?: number
     isPaid?: boolean
     price?: number | null
     status?: $Enums.IdeaStatus
@@ -18711,7 +18809,9 @@ export namespace Prisma {
     solution: string
     description: string
     image?: string | null
-    totalVotes?: number
+    positiveRatio?: number
+    totalUpVotes?: number
+    totalDownVotes?: number
     isPaid?: boolean
     price?: number | null
     status?: $Enums.IdeaStatus
@@ -18803,7 +18903,9 @@ export namespace Prisma {
     solution?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    totalVotes?: IntFieldUpdateOperationsInput | number
+    positiveRatio?: IntFieldUpdateOperationsInput | number
+    totalUpVotes?: IntFieldUpdateOperationsInput | number
+    totalDownVotes?: IntFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumIdeaStatusFieldUpdateOperationsInput | $Enums.IdeaStatus
@@ -18828,7 +18930,9 @@ export namespace Prisma {
     solution?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    totalVotes?: IntFieldUpdateOperationsInput | number
+    positiveRatio?: IntFieldUpdateOperationsInput | number
+    totalUpVotes?: IntFieldUpdateOperationsInput | number
+    totalDownVotes?: IntFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumIdeaStatusFieldUpdateOperationsInput | $Enums.IdeaStatus
@@ -19266,7 +19370,9 @@ export namespace Prisma {
     solution: string
     description: string
     image?: string | null
-    totalVotes?: number
+    positiveRatio?: number
+    totalUpVotes?: number
+    totalDownVotes?: number
     isPaid?: boolean
     price?: number | null
     status?: $Enums.IdeaStatus
@@ -19291,7 +19397,9 @@ export namespace Prisma {
     solution: string
     description: string
     image?: string | null
-    totalVotes?: number
+    positiveRatio?: number
+    totalUpVotes?: number
+    totalDownVotes?: number
     isPaid?: boolean
     price?: number | null
     status?: $Enums.IdeaStatus
@@ -19383,7 +19491,9 @@ export namespace Prisma {
     solution?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    totalVotes?: IntFieldUpdateOperationsInput | number
+    positiveRatio?: IntFieldUpdateOperationsInput | number
+    totalUpVotes?: IntFieldUpdateOperationsInput | number
+    totalDownVotes?: IntFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumIdeaStatusFieldUpdateOperationsInput | $Enums.IdeaStatus
@@ -19408,7 +19518,9 @@ export namespace Prisma {
     solution?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    totalVotes?: IntFieldUpdateOperationsInput | number
+    positiveRatio?: IntFieldUpdateOperationsInput | number
+    totalUpVotes?: IntFieldUpdateOperationsInput | number
+    totalDownVotes?: IntFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumIdeaStatusFieldUpdateOperationsInput | $Enums.IdeaStatus
@@ -19478,7 +19590,9 @@ export namespace Prisma {
     solution: string
     description: string
     image?: string | null
-    totalVotes?: number
+    positiveRatio?: number
+    totalUpVotes?: number
+    totalDownVotes?: number
     isPaid?: boolean
     price?: number | null
     status?: $Enums.IdeaStatus
@@ -19503,7 +19617,9 @@ export namespace Prisma {
     solution: string
     description: string
     image?: string | null
-    totalVotes?: number
+    positiveRatio?: number
+    totalUpVotes?: number
+    totalDownVotes?: number
     isPaid?: boolean
     price?: number | null
     status?: $Enums.IdeaStatus
@@ -19595,7 +19711,9 @@ export namespace Prisma {
     solution?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    totalVotes?: IntFieldUpdateOperationsInput | number
+    positiveRatio?: IntFieldUpdateOperationsInput | number
+    totalUpVotes?: IntFieldUpdateOperationsInput | number
+    totalDownVotes?: IntFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumIdeaStatusFieldUpdateOperationsInput | $Enums.IdeaStatus
@@ -19620,7 +19738,9 @@ export namespace Prisma {
     solution?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    totalVotes?: IntFieldUpdateOperationsInput | number
+    positiveRatio?: IntFieldUpdateOperationsInput | number
+    totalUpVotes?: IntFieldUpdateOperationsInput | number
+    totalDownVotes?: IntFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumIdeaStatusFieldUpdateOperationsInput | $Enums.IdeaStatus
@@ -19645,7 +19765,9 @@ export namespace Prisma {
     solution: string
     description: string
     image?: string | null
-    totalVotes?: number
+    positiveRatio?: number
+    totalUpVotes?: number
+    totalDownVotes?: number
     isPaid?: boolean
     price?: number | null
     status?: $Enums.IdeaStatus
@@ -19715,7 +19837,9 @@ export namespace Prisma {
     solution?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    totalVotes?: IntFieldUpdateOperationsInput | number
+    positiveRatio?: IntFieldUpdateOperationsInput | number
+    totalUpVotes?: IntFieldUpdateOperationsInput | number
+    totalDownVotes?: IntFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumIdeaStatusFieldUpdateOperationsInput | $Enums.IdeaStatus
@@ -19740,7 +19864,9 @@ export namespace Prisma {
     solution?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    totalVotes?: IntFieldUpdateOperationsInput | number
+    positiveRatio?: IntFieldUpdateOperationsInput | number
+    totalUpVotes?: IntFieldUpdateOperationsInput | number
+    totalDownVotes?: IntFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumIdeaStatusFieldUpdateOperationsInput | $Enums.IdeaStatus
@@ -19765,7 +19891,9 @@ export namespace Prisma {
     solution?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    totalVotes?: IntFieldUpdateOperationsInput | number
+    positiveRatio?: IntFieldUpdateOperationsInput | number
+    totalUpVotes?: IntFieldUpdateOperationsInput | number
+    totalDownVotes?: IntFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumIdeaStatusFieldUpdateOperationsInput | $Enums.IdeaStatus
@@ -19937,7 +20065,9 @@ export namespace Prisma {
     solution: string
     description: string
     image?: string | null
-    totalVotes?: number
+    positiveRatio?: number
+    totalUpVotes?: number
+    totalDownVotes?: number
     isPaid?: boolean
     price?: number | null
     status?: $Enums.IdeaStatus
@@ -19957,7 +20087,9 @@ export namespace Prisma {
     solution?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    totalVotes?: IntFieldUpdateOperationsInput | number
+    positiveRatio?: IntFieldUpdateOperationsInput | number
+    totalUpVotes?: IntFieldUpdateOperationsInput | number
+    totalDownVotes?: IntFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumIdeaStatusFieldUpdateOperationsInput | $Enums.IdeaStatus
@@ -19982,7 +20114,9 @@ export namespace Prisma {
     solution?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    totalVotes?: IntFieldUpdateOperationsInput | number
+    positiveRatio?: IntFieldUpdateOperationsInput | number
+    totalUpVotes?: IntFieldUpdateOperationsInput | number
+    totalDownVotes?: IntFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumIdeaStatusFieldUpdateOperationsInput | $Enums.IdeaStatus
@@ -20007,7 +20141,9 @@ export namespace Prisma {
     solution?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    totalVotes?: IntFieldUpdateOperationsInput | number
+    positiveRatio?: IntFieldUpdateOperationsInput | number
+    totalUpVotes?: IntFieldUpdateOperationsInput | number
+    totalDownVotes?: IntFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumIdeaStatusFieldUpdateOperationsInput | $Enums.IdeaStatus
