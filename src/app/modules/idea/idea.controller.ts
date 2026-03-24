@@ -3,10 +3,10 @@ import { catchAsync } from "../../shared/catchAsync";
 import { ideaService } from "./idea.service";
 import { sendResponse } from "../../shared/sendRes";
 import { StatusCodes } from "http-status-codes";
+import { IUserRequest } from "../../interfaces/user.interface";
 
 const createIdea = catchAsync(async (req: Request, res: Response) => {
-    const authorId = req.user.id as string;
-    const result = await ideaService.createIdea(authorId, req.body);
+    const result = await ideaService.createIdea(req.user as IUserRequest, req.body);
 
     return sendResponse(res, {
         statusCode: StatusCodes.CREATED,
@@ -41,10 +41,9 @@ const getIdeaById = catchAsync(async (req: Request, res: Response) => {
 
 const updateIdea = catchAsync(async (req: Request, res: Response) => {
     const id = req.params.id as string;
-    const authorId = req.user.id;
-    const authorRole = req.user.role;
+    const user = req.user as IUserRequest;
     
-    const result = await ideaService.updateIdea(id, authorId, authorRole, req.body);
+    const result = await ideaService.updateIdea(id, user, req.body);
 
     return sendResponse(res, {
         statusCode: StatusCodes.OK,
@@ -56,10 +55,9 @@ const updateIdea = catchAsync(async (req: Request, res: Response) => {
 
 const deleteIdea = catchAsync(async (req: Request, res: Response) => {
     const id = req.params.id as string;
-    const authorId = req.user.id;
-    const authorRole = req.user.role;
+    const user = req.user as IUserRequest;
     
-    const result = await ideaService.deleteIdea(id, authorId, authorRole);
+    const result = await ideaService.deleteIdea(id, user);
 
     return sendResponse(res, {
         statusCode: StatusCodes.OK,
