@@ -26,6 +26,13 @@ const register = async (payload: any) => {
             data: { name, email, password: hashPassword },
         });
 
+        await tx.profile.create({
+            data: {
+                userId: user.id,
+                
+            },
+        });
+
 
         const tokenPayload = {
             id: user.id,
