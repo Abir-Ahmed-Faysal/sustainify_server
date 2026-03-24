@@ -5,6 +5,7 @@ import { tokenUtils } from "../../utilities/token"
 import { jwtUtils } from "../../utilities/jwt"
 import { envVars } from "../../config/env"
 import ms from "ms";
+import { IUserRequest } from "../../interfaces/user.interface"
 
 
 const register = async (payload: any) => {
@@ -106,7 +107,7 @@ const getMe = async (user: any) => {
 
 
 const refreshTokenHandler = async (refreshToken: string) => {
-    // ✅ 1. Verify refresh token first
+    // ✅ 1. Verify refresh token
     const verifyRefreshToken = jwtUtils.verifyToken(
         refreshToken,
         envVars.REFRESH_TOKEN_SECRET
@@ -116,18 +117,18 @@ const refreshTokenHandler = async (refreshToken: string) => {
         throw new Error("Invalid refresh token");
     }
 
-    const decoded = verifyRefreshToken.data as JwtPayload;
+    const decoded = verifyRefreshToken.data as IUserRequest;
 
-    // ✅ 2. Find session by sessionId
-    const session = await prisma.session.findUnique({
-        where: { id: decoded.sessionId }
+    // ✅ 2. Find session using refreshToken
+    const session = await prisma.session.findFirst({
+        where: { refreshToken }
     });
 
     if (!session) {
         throw new Error("Session not found");
     }
 
-    // ✅ 3. Expiry check + cleanup
+    // ✅ 3. Expiry check
     if (session.expiresAt < new Date()) {
         await prisma.session.delete({
             where: { id: session.id }
@@ -135,15 +136,12 @@ const refreshTokenHandler = async (refreshToken: string) => {
         throw new Error("Session expired");
     }
 
-    // ✅ 4. Token match (reuse attack detection)
-    if (session.refreshToken !== refreshToken) {
-        await prisma.session.delete({
-            where: { id: session.id }
-        });
-        throw new Error("Token reuse detected");
-    }
+    // ❌ REMOVE THIS (redundant)
+    // if (session.refreshToken !== refreshToken)
 
-    // ✅ 5. Validate user status
+    // 👉 Because you already queried by refreshToken
+
+    // ✅ 4. Validate user
     const user = await prisma.user.findUnique({
         where: { id: decoded.id }
     });
@@ -155,20 +153,19 @@ const refreshTokenHandler = async (refreshToken: string) => {
         throw new Error("User not allowed");
     }
 
-    // ✅ 6. Generate new tokens
+    // ✅ 5. Generate new tokens
     const tokenPayload = {
-        id: decoded.id,
-        sessionId: session.id,
+        id: user.id, // no sessionId
     };
 
     const newAccessToken = tokenUtils.getAccessToken(tokenPayload);
     const newRefreshToken = tokenUtils.getRefreshToken(tokenPayload);
 
-    // 🔁 7. Atomic refresh token rotation (race-condition safe)
+    // 🔁 6. Rotate refresh token (IMPORTANT)
     const updated = await prisma.session.updateMany({
         where: {
             id: session.id,
-            refreshToken: refreshToken, // ensure token still valid
+            refreshToken: refreshToken, // still needed for safety
         },
         data: {
             refreshToken: newRefreshToken,

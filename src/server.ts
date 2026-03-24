@@ -2,6 +2,7 @@ import { Server } from "http";
 import app from "./app";
 import { envVars } from "./app/config/env";
 import { prisma } from "./app/lib/prisma";
+import { seedAdmin } from "./app/utilities/seed";
 
 
 let server: Server;
@@ -11,6 +12,8 @@ const bootstrap = async () => {
   try {
      await prisma.$connect();
      console.log("✅ Database connected successfully");
+     
+     await seedAdmin();
 
     server = app.listen(PORT, () => {
       console.log(`🚀 Sustainify Server running on http://localhost:${PORT}`);
