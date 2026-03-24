@@ -7,7 +7,7 @@ const createToken = (payload: JwtPayload, secret: string, { expiresIn }: SignOpt
 
 
 
-const verifyTokne = (token: string, secret: string) => {
+const verifyToken = (token: string, secret: string) => {
     try {
         const decoded = jwt.verify(token, secret)
         return { success: true, data: decoded }
@@ -31,6 +31,6 @@ const decodedToken = (token: string, secret: string) => {
 
 export const jwtUtils = {
     createToken,
-    verifyTokne,
+    verifyToken,
     decodedToken
 }

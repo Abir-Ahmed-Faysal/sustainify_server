@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Appointment Invoice</title>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 30px auto;
+      background: #ffffff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    }
+
+    .header {
+      background: #2563eb;
+      color: #ffffff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .content {
+      padding: 30px;
+    }
+
+    .greeting {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .invoice-box {
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 20px;
+      margin-bottom: 25px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .label {
+      color: #6b7280;
+    }
+
+    .value {
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .amount {
+      font-size: 20px;
+      font-weight: bold;
+      color: #2563eb;
+      margin-top: 10px;
+      text-align: right;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 20px;
+      background: #2563eb;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .footer {
+      background: #f9fafb;
+      padding: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: #6b7280;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="header">
+      <h1>Appointment Invoice</h1>
+    </div>
+
+    <div class="content">
+
+      <p class="greeting">
+        Hello <strong><%= patientName %></strong>,
+      </p>
+
+      <p>
+        Thank you for your appointment. Your payment has been successfully processed.
+        Below are the invoice details for your appointment.
+      </p>
+
+      <div class="invoice-box">
+
+        <div class="row">
+          <span class="label">Invoice ID</span>
+          <span class="value"><%= invoiceId %></span>
+        </div>
+
+        <div class="row">
+          <span class="label">Transaction ID</span>
+          <span class="value"><%= transactionId %></span>
+        </div>
+
+        <div class="row">
+          <span class="label">Doctor</span>
+          <span class="value"><%= doctorName %></span>
+        </div>
+
+        <div class="row">
+          <span class="label">Patient</span>
+          <span class="value"><%= patientName %></span>
+        </div>
+
+        <div class="row">
+          <span class="label">Appointment Date</span>
+          <span class="value"><%= appointmentDate %></span>
+        </div>
+
+        <div class="amount">
+          Total Paid: ৳<%= amount %>
+        </div>
+
+      </div>
+
+      <center>
+        <a href="<%= invoiceUrl %>" class="button">
+          Download Invoice
+        </a>
+      </center>
+
+    </div>
+
+    <div class="footer">
+      <p>
+        This is an automated email. Please do not reply directly to this email.
+      </p>
+
+      <p>
+        © <%= new Date().getFullYear() %> Healthcare Appointment System
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>

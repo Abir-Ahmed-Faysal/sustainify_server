@@ -1,0 +1,42 @@
+enum Role {
+    SUPER_ADMIN
+    ADMIN
+    DOCTOR
+    PATIENT
+}
+
+enum UserStatus {
+    BLOCKED
+    ACTIVE
+    DELETED
+}
+
+enum Gender {
+    MALE
+    FEMALE
+    OTHER
+}
+
+enum PaymentStatus {
+    PAID
+    UNPAID
+}
+
+enum AppointmentStatus {
+    SCHEDULED
+    ONPROGRESS
+    COMPLETE
+    CANCELLED
+}
+
+
+enum BloodGroup{
+    A_POSITIVE
+    A_NEGATIVE
+    B_POSITIVE
+    B_NEGATIVE
+    O_POSITIVE
+    O_NEGATIVE
+    AB_POSITIVE
+    AB_NEGATIVE
+}
