@@ -10,7 +10,6 @@ import { envVars } from "../../config/env";
 const createCheckoutSession = catchAsync(async (req: Request, res: Response) => {
     const user = req.user as IUserRequest;
     const { ideaId } = req.body;
-    console.log("ideaId", ideaId)
     const result = await PaymentService.createCheckoutSession(user, ideaId);
 
     return sendResponse(res, {

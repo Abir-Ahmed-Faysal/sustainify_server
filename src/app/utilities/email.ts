@@ -47,7 +47,6 @@ export const sendEmail = async (
 
         const templatePath = path.resolve(process.cwd(), `src/app/templates/${templateName}.ejs`)
 
-        console.log("Template Path:", templatePath)
 
         const html = await ejs.renderFile(templatePath, templateData)
 
