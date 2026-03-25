@@ -8,7 +8,7 @@ import { zodErrorData } from "../errorHelpers/error.helper";
 import AppError from "../errorHelpers/AppError";
 import { deleteFileFromCloudinary } from "../config/cloudinary.config";
 import { deleteUploadedFilesFromGlobalErrorHandler } from "../utilities/deleteUploadedFilesFromGlobalErrorHandler";
-import { Prisma } from "../../generated/prisma/client";
+
 import { handlePrismaClientInitializationError, handlePrismaClientKnownRequestError, handlePrismaClientRustPanicError, handlePrismaClientUnknownError, handlePrismaClientValidationError, } from "../errorHelpers/handlePrismaError";
 
 

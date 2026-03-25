@@ -4,7 +4,7 @@ import { TErrorSources } from '../interfaces/error.interfaces';
 export const zodErrorData = (err: ZodError) => {
   const errorSources: TErrorSources[] = err.issues.map((issue) => {
     return {
-      path: issue.path[issue.path.length - 1],
+      path: issue.path[issue.path.length - 1] as string | number,
       message: issue.message,
     };
   });

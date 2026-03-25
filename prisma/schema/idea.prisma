@@ -12,22 +12,22 @@ model Idea {
   solution         String
   description      String
   image            String?
-  positiveRatio    Int      @default(0)
-  totalUpVotes     Int      @default(0)
-  totalDownVotes   Int      @default(0)
+  positiveRatio    Int     @default(0)
+  totalUpVotes     Int     @default(0)
+  totalDownVotes   Int     @default(0)
+  attachments String[] @default([])
 
   isPaid Boolean @default(false)
   price  Float?
 
-  status   IdeaStatus @default(DRAFT)
-  feedback String?
-  isFeatured Boolean @default(false)
+  status     IdeaStatus @default(DRAFT)
+  feedback   String?
+  isFeatured Boolean    @default(false)
 
   authorId   String
   categoryId String
 
-
-  author   User     @relation(fields: [authorId], references: [id],onDelete: Cascade,onUpdate: Cascade)
+  author   User     @relation(fields: [authorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   votes      Vote[]

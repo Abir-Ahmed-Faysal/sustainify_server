@@ -25,6 +25,9 @@ const envSchema = z.object({
   EMAIL_SENDER_SMTP_HOST: z.string(),
   EMAIL_SENDER_SMTP_PORT: z.string(),
   EMAIL_SENDER_SMTP_FROM: z.string(),
+  CLOUDINARY_CLOUD_NAME: z.string(),
+  CLOUDINARY_API_KEY: z.string(),
+  CLOUDINARY_API_SECRET: z.string(),
 });
 
 export const envVars = envSchema.parse(process.env);

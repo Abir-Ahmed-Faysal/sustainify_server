@@ -6,9 +6,16 @@ import { notFound } from "./app/middleware/notFound";
 import { indexRoutes } from "./app/routes";
 import { paymentController } from "./app/modules/payment/payment.controller";
 import { startNewsletterCron } from "./app/utilities/newsletterCron";
+import path from "node:path";
+import qs from "qs";
 
 
 const app: Application = express();
+
+app.set("query parser", (str: string) => qs.parse(str))
+
+app.set("view engine", "ejs")
+app.set("views", path.resolve(process.cwd(), `src/app/templates`))
 
 app.post('/webhook', express.raw({
     type: "application/json"

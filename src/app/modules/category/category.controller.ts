@@ -5,8 +5,12 @@ import { sendResponse } from "../../shared/sendRes";
 import { StatusCodes } from "http-status-codes";
 
 const createCategory = catchAsync(async (req: Request, res: Response) => {
+    const payload = req.body;
+    if (req.file) {
+        payload.image = req.file.path;
+    }
 
-    const result = await categoryService.createCategory(req.body);
+    const result = await categoryService.createCategory(payload);
 
     return sendResponse(res, {
         statusCode: StatusCodes.CREATED,
@@ -29,7 +33,12 @@ const getAllCategories = catchAsync(async (req: Request, res: Response) => {
 
 const updateCategory = catchAsync(async (req: Request, res: Response) => {
     const id = req.params.id as string;
-    const result = await categoryService.updateCategory(id, req.body);
+    const payload = req.body;
+    if (req.file) {
+        payload.image = req.file.path;
+    }
+
+    const result = await categoryService.updateCategory(id, payload);
 
     return sendResponse(res, {
         statusCode: StatusCodes.OK,

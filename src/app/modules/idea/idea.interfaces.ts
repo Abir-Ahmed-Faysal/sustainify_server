@@ -10,6 +10,7 @@ export interface IIdea {
     price?: number;
     categoryId: string;
     isPaid?: boolean;
+    attachments?: string[];
 }
 
 export interface IIdeaUpdate {
@@ -23,4 +24,5 @@ export interface IIdeaUpdate {
     status?: IdeaStatus;
     feedback?: string;
     isFeatured?: boolean;
+    attachments?: string[];
 }

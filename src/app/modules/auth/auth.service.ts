@@ -24,6 +24,16 @@ const register = async (payload: any) => {
 
         const user = await tx.user.create({
             data: { name, email, password: hashPassword },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                role: true,
+                isActive: true,
+                isDeleted: true,
+                createdAt: true,
+                updatedAt: true,
+            }
         });
 
         await tx.profile.create({
@@ -65,7 +75,7 @@ const login = async (payload: any) => {
     const { email, password } = payload;
 
     return await prisma.$transaction(async (tx) => {
-        const user = await tx.user.findUnique({ where: { email } });
+        const user = await tx.user.findUnique({ where: { email },select:{id:true,name:true,email:true,role:true,isActive:true,isDeleted:true,createdAt:true,updatedAt:true,password:true} });
         if (!user) throw new Error("User not found");
 
         const isMatch = await bcrypt.compare(password, user.password);
@@ -92,7 +102,20 @@ const login = async (payload: any) => {
             },
         });
 
-        return { user, accessToken, refreshToken };
+        return { 
+            user: {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                role: user.role,
+                isActive: user.isActive,
+                isDeleted: user.isDeleted,
+                createdAt: user.createdAt,
+                updatedAt: user.updatedAt,
+            }, 
+            accessToken, 
+            refreshToken 
+        };
     });
 };
 
@@ -100,8 +123,17 @@ const getMe = async (user: any) => {
     const userExists = await prisma.user.findUnique({
         where: {
             id: user.id
-        }, include: {
-            profile: true
+        }, 
+        select: {
+            id: true,
+            name: true,
+            email: true,
+            role: true,
+            isActive: true,
+            isDeleted: true,
+            createdAt: true,
+            updatedAt: true,
+            profile: true,
         }
     })
 
@@ -109,7 +141,7 @@ const getMe = async (user: any) => {
         throw new Error("User not found")
     }
 
-    return userExists
+    return userExists;
 }
 
 

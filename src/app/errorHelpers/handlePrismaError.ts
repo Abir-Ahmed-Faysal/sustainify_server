@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client';
+import { Prisma } from '../../generated/prisma';
 import { TErrorSources } from '../interfaces/error.interfaces';
 
 export const handlePrismaClientKnownRequestError = (err: Prisma.PrismaClientKnownRequestError) => {

@@ -65,6 +65,6 @@ export const updateIdeaZodSchema = z.object({
 
 
 export const ideaValidation = {
-    createIdeaZodSchema,
-    updateIdeaZodSchema,
+  createIdeaZodSchema,
+  updateIdeaZodSchema,
 };

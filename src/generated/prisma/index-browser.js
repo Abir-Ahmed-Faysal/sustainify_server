@@ -196,6 +196,7 @@ exports.Prisma.IdeaScalarFieldEnum = {
   positiveRatio: 'positiveRatio',
   totalUpVotes: 'totalUpVotes',
   totalDownVotes: 'totalDownVotes',
+  attachments: 'attachments',
   isPaid: 'isPaid',
   price: 'price',
   status: 'status',

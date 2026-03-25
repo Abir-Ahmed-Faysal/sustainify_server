@@ -6,7 +6,21 @@ import { StatusCodes } from "http-status-codes";
 import { IUserRequest } from "../../interfaces/user.interface";
 
 const createIdea = catchAsync(async (req: Request, res: Response) => {
-    const result = await ideaService.createIdea(req.user as IUserRequest, req.body);
+    const payload = req.body;
+
+    if (req.files) {
+        const files = req.files as { [fieldname: string]: Express.Multer.File[] };
+        
+        if (files.image && files.image.length > 0) {
+            payload.image = files.image[0].path;
+        }
+
+        if (files.attachments && files.attachments.length > 0) {
+            payload.attachments = files.attachments.map((file) => file.path);
+        }
+    }
+
+    const result = await ideaService.createIdea(req.user as IUserRequest, payload);
 
     return sendResponse(res, {
         statusCode: StatusCodes.CREATED,
@@ -42,8 +56,26 @@ const getIdeaById = catchAsync(async (req: Request, res: Response) => {
 const updateIdea = catchAsync(async (req: Request, res: Response) => {
     const id = req.params.id as string;
     const user = req.user as IUserRequest;
+    const payload = req.body;
+
+    if (req.files) {
+        const files = req.files as { [fieldname: string]: Express.Multer.File[] };
+        
+        if (files.image && files.image.length > 0) {
+            payload.image = files.image[0].path;
+        }
+
+        if (files.attachments && files.attachments.length > 0) {
+            const newAttachments = files.attachments.map((file) => file.path);
+            if (Array.isArray(payload.attachments)) {
+                payload.attachments = [...payload.attachments, ...newAttachments];
+            } else {
+                payload.attachments = newAttachments;
+            }
+        }
+    }
     
-    const result = await ideaService.updateIdea(id, user, req.body);
+    const result = await ideaService.updateIdea(id, user, payload);
 
     return sendResponse(res, {
         statusCode: StatusCodes.OK,
@@ -56,7 +88,7 @@ const updateIdea = catchAsync(async (req: Request, res: Response) => {
 const deleteIdea = catchAsync(async (req: Request, res: Response) => {
     const id = req.params.id as string;
     const user = req.user as IUserRequest;
-    
+
     const result = await ideaService.deleteIdea(id, user);
 
     return sendResponse(res, {

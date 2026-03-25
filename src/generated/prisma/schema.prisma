@@ -136,15 +136,16 @@ enum IdeaStatus {
 }
 
 model Idea {
-  id               String  @id @default(uuid())
+  id               String   @id @default(uuid())
   title            String
   problemStatement String
   solution         String
   description      String
   image            String?
-  positiveRatio    Int     @default(0)
-  totalUpVotes     Int     @default(0)
-  totalDownVotes   Int     @default(0)
+  positiveRatio    Int      @default(0)
+  totalUpVotes     Int      @default(0)
+  totalDownVotes   Int      @default(0)
+  attachments      String[] @default([])
 
   isPaid Boolean @default(false)
   price  Float?
