@@ -17,6 +17,8 @@ const envSchema = z.object({
   REFRESH_TOKEN_EXPIRES_IN: z.string(),
   ADMIN_EMAIL: z.string(),
   ADMIN_PASSWORD: z.string(),
+  STRIPE_SECRET_KEY: z.string(),
+  FRONTEND_URL: z.string(),
 });
 
 export const envVars = envSchema.parse(process.env);

@@ -92,9 +92,8 @@ export type IdeaStatus = (typeof IdeaStatus)[keyof typeof IdeaStatus]
 
 
 export const PaymentStatus: {
-  SUCCESS: 'SUCCESS',
-  FAILED: 'FAILED',
-  PENDING: 'PENDING'
+  PAID: 'PAID',
+  UNPAID: 'UNPAID'
 };
 
 export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
@@ -12555,7 +12554,7 @@ export namespace Prisma {
     ideaId: string
     amount: number
     status: $Enums.PaymentStatus
-    transactionId: string | null
+    transactionId: string
     stripeEventId: string | null
     invoiceUrl: string | null
     paymentGatewayData: JsonValue | null
@@ -12680,7 +12679,7 @@ export namespace Prisma {
       ideaId: string
       amount: number
       status: $Enums.PaymentStatus
-      transactionId: string | null
+      transactionId: string
       stripeEventId: string | null
       invoiceUrl: string | null
       paymentGatewayData: Prisma.JsonValue | null
@@ -15624,7 +15623,7 @@ export namespace Prisma {
     ideaId?: StringFilter<"Payment"> | string
     amount?: FloatFilter<"Payment"> | number
     status?: EnumPaymentStatusFilter<"Payment"> | $Enums.PaymentStatus
-    transactionId?: StringNullableFilter<"Payment"> | string | null
+    transactionId?: UuidFilter<"Payment"> | string
     stripeEventId?: StringNullableFilter<"Payment"> | string | null
     invoiceUrl?: StringNullableFilter<"Payment"> | string | null
     paymentGatewayData?: JsonNullableFilter<"Payment">
@@ -15642,7 +15641,7 @@ export namespace Prisma {
     ideaId?: SortOrder
     amount?: SortOrder
     status?: SortOrder
-    transactionId?: SortOrderInput | SortOrder
+    transactionId?: SortOrder
     stripeEventId?: SortOrderInput | SortOrder
     invoiceUrl?: SortOrderInput | SortOrder
     paymentGatewayData?: SortOrderInput | SortOrder
@@ -15656,6 +15655,8 @@ export namespace Prisma {
 
   export type PaymentWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    transactionId?: string
+    stripeEventId?: string
     AND?: PaymentWhereInput | PaymentWhereInput[]
     OR?: PaymentWhereInput[]
     NOT?: PaymentWhereInput | PaymentWhereInput[]
@@ -15663,8 +15664,6 @@ export namespace Prisma {
     ideaId?: StringFilter<"Payment"> | string
     amount?: FloatFilter<"Payment"> | number
     status?: EnumPaymentStatusFilter<"Payment"> | $Enums.PaymentStatus
-    transactionId?: StringNullableFilter<"Payment"> | string | null
-    stripeEventId?: StringNullableFilter<"Payment"> | string | null
     invoiceUrl?: StringNullableFilter<"Payment"> | string | null
     paymentGatewayData?: JsonNullableFilter<"Payment">
     createdAt?: DateTimeFilter<"Payment"> | Date | string
@@ -15673,7 +15672,7 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableFilter<"Payment"> | Date | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     idea?: XOR<IdeaScalarRelationFilter, IdeaWhereInput>
-  }, "id">
+  }, "id" | "transactionId" | "stripeEventId">
 
   export type PaymentOrderByWithAggregationInput = {
     id?: SortOrder
@@ -15681,7 +15680,7 @@ export namespace Prisma {
     ideaId?: SortOrder
     amount?: SortOrder
     status?: SortOrder
-    transactionId?: SortOrderInput | SortOrder
+    transactionId?: SortOrder
     stripeEventId?: SortOrderInput | SortOrder
     invoiceUrl?: SortOrderInput | SortOrder
     paymentGatewayData?: SortOrderInput | SortOrder
@@ -15705,7 +15704,7 @@ export namespace Prisma {
     ideaId?: StringWithAggregatesFilter<"Payment"> | string
     amount?: FloatWithAggregatesFilter<"Payment"> | number
     status?: EnumPaymentStatusWithAggregatesFilter<"Payment"> | $Enums.PaymentStatus
-    transactionId?: StringNullableWithAggregatesFilter<"Payment"> | string | null
+    transactionId?: UuidWithAggregatesFilter<"Payment"> | string
     stripeEventId?: StringNullableWithAggregatesFilter<"Payment"> | string | null
     invoiceUrl?: StringNullableWithAggregatesFilter<"Payment"> | string | null
     paymentGatewayData?: JsonNullableWithAggregatesFilter<"Payment">
@@ -16487,7 +16486,7 @@ export namespace Prisma {
     id?: string
     amount: number
     status?: $Enums.PaymentStatus
-    transactionId?: string | null
+    transactionId: string
     stripeEventId?: string | null
     invoiceUrl?: string | null
     paymentGatewayData?: NullableJsonNullValueInput | InputJsonValue
@@ -16505,7 +16504,7 @@ export namespace Prisma {
     ideaId: string
     amount: number
     status?: $Enums.PaymentStatus
-    transactionId?: string | null
+    transactionId: string
     stripeEventId?: string | null
     invoiceUrl?: string | null
     paymentGatewayData?: NullableJsonNullValueInput | InputJsonValue
@@ -16519,7 +16518,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     amount?: FloatFieldUpdateOperationsInput | number
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: StringFieldUpdateOperationsInput | string
     stripeEventId?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceUrl?: NullableStringFieldUpdateOperationsInput | string | null
     paymentGatewayData?: NullableJsonNullValueInput | InputJsonValue
@@ -16537,7 +16536,7 @@ export namespace Prisma {
     ideaId?: StringFieldUpdateOperationsInput | string
     amount?: FloatFieldUpdateOperationsInput | number
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: StringFieldUpdateOperationsInput | string
     stripeEventId?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceUrl?: NullableStringFieldUpdateOperationsInput | string | null
     paymentGatewayData?: NullableJsonNullValueInput | InputJsonValue
@@ -16553,7 +16552,7 @@ export namespace Prisma {
     ideaId: string
     amount: number
     status?: $Enums.PaymentStatus
-    transactionId?: string | null
+    transactionId: string
     stripeEventId?: string | null
     invoiceUrl?: string | null
     paymentGatewayData?: NullableJsonNullValueInput | InputJsonValue
@@ -16567,7 +16566,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     amount?: FloatFieldUpdateOperationsInput | number
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: StringFieldUpdateOperationsInput | string
     stripeEventId?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceUrl?: NullableStringFieldUpdateOperationsInput | string | null
     paymentGatewayData?: NullableJsonNullValueInput | InputJsonValue
@@ -16583,7 +16582,7 @@ export namespace Prisma {
     ideaId?: StringFieldUpdateOperationsInput | string
     amount?: FloatFieldUpdateOperationsInput | number
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: StringFieldUpdateOperationsInput | string
     stripeEventId?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceUrl?: NullableStringFieldUpdateOperationsInput | string | null
     paymentGatewayData?: NullableJsonNullValueInput | InputJsonValue
@@ -17283,6 +17282,18 @@ export namespace Prisma {
     notIn?: $Enums.PaymentStatus[] | ListEnumPaymentStatusFieldRefInput<$PrismaModel>
     not?: NestedEnumPaymentStatusFilter<$PrismaModel> | $Enums.PaymentStatus
   }
+
+  export type UuidFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidFilter<$PrismaModel> | string
+  }
   export type JsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
@@ -17385,6 +17396,21 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumPaymentStatusFilter<$PrismaModel>
     _max?: NestedEnumPaymentStatusFilter<$PrismaModel>
+  }
+
+  export type UuidWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
   export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -18590,6 +18616,17 @@ export namespace Prisma {
     not?: NestedEnumPaymentStatusFilter<$PrismaModel> | $Enums.PaymentStatus
   }
 
+  export type NestedUuidFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedUuidFilter<$PrismaModel> | string
+  }
+
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -18614,6 +18651,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumPaymentStatusFilter<$PrismaModel>
     _max?: NestedEnumPaymentStatusFilter<$PrismaModel>
+  }
+
+  export type NestedUuidWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
   export type NestedJsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -19019,7 +19070,7 @@ export namespace Prisma {
     id?: string
     amount: number
     status?: $Enums.PaymentStatus
-    transactionId?: string | null
+    transactionId: string
     stripeEventId?: string | null
     invoiceUrl?: string | null
     paymentGatewayData?: NullableJsonNullValueInput | InputJsonValue
@@ -19035,7 +19086,7 @@ export namespace Prisma {
     ideaId: string
     amount: number
     status?: $Enums.PaymentStatus
-    transactionId?: string | null
+    transactionId: string
     stripeEventId?: string | null
     invoiceUrl?: string | null
     paymentGatewayData?: NullableJsonNullValueInput | InputJsonValue
@@ -19270,7 +19321,7 @@ export namespace Prisma {
     ideaId?: StringFilter<"Payment"> | string
     amount?: FloatFilter<"Payment"> | number
     status?: EnumPaymentStatusFilter<"Payment"> | $Enums.PaymentStatus
-    transactionId?: StringNullableFilter<"Payment"> | string | null
+    transactionId?: UuidFilter<"Payment"> | string
     stripeEventId?: StringNullableFilter<"Payment"> | string | null
     invoiceUrl?: StringNullableFilter<"Payment"> | string | null
     paymentGatewayData?: JsonNullableFilter<"Payment">
@@ -20314,7 +20365,7 @@ export namespace Prisma {
     id?: string
     amount: number
     status?: $Enums.PaymentStatus
-    transactionId?: string | null
+    transactionId: string
     stripeEventId?: string | null
     invoiceUrl?: string | null
     paymentGatewayData?: NullableJsonNullValueInput | InputJsonValue
@@ -20330,7 +20381,7 @@ export namespace Prisma {
     userId: string
     amount: number
     status?: $Enums.PaymentStatus
-    transactionId?: string | null
+    transactionId: string
     stripeEventId?: string | null
     invoiceUrl?: string | null
     paymentGatewayData?: NullableJsonNullValueInput | InputJsonValue
@@ -21036,7 +21087,7 @@ export namespace Prisma {
     ideaId: string
     amount: number
     status?: $Enums.PaymentStatus
-    transactionId?: string | null
+    transactionId: string
     stripeEventId?: string | null
     invoiceUrl?: string | null
     paymentGatewayData?: NullableJsonNullValueInput | InputJsonValue
@@ -21197,7 +21248,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     amount?: FloatFieldUpdateOperationsInput | number
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: StringFieldUpdateOperationsInput | string
     stripeEventId?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceUrl?: NullableStringFieldUpdateOperationsInput | string | null
     paymentGatewayData?: NullableJsonNullValueInput | InputJsonValue
@@ -21213,7 +21264,7 @@ export namespace Prisma {
     ideaId?: StringFieldUpdateOperationsInput | string
     amount?: FloatFieldUpdateOperationsInput | number
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: StringFieldUpdateOperationsInput | string
     stripeEventId?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceUrl?: NullableStringFieldUpdateOperationsInput | string | null
     paymentGatewayData?: NullableJsonNullValueInput | InputJsonValue
@@ -21228,7 +21279,7 @@ export namespace Prisma {
     ideaId?: StringFieldUpdateOperationsInput | string
     amount?: FloatFieldUpdateOperationsInput | number
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: StringFieldUpdateOperationsInput | string
     stripeEventId?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceUrl?: NullableStringFieldUpdateOperationsInput | string | null
     paymentGatewayData?: NullableJsonNullValueInput | InputJsonValue
@@ -21458,7 +21509,7 @@ export namespace Prisma {
     userId: string
     amount: number
     status?: $Enums.PaymentStatus
-    transactionId?: string | null
+    transactionId: string
     stripeEventId?: string | null
     invoiceUrl?: string | null
     paymentGatewayData?: NullableJsonNullValueInput | InputJsonValue
@@ -21535,7 +21586,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     amount?: FloatFieldUpdateOperationsInput | number
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: StringFieldUpdateOperationsInput | string
     stripeEventId?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceUrl?: NullableStringFieldUpdateOperationsInput | string | null
     paymentGatewayData?: NullableJsonNullValueInput | InputJsonValue
@@ -21551,7 +21602,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     amount?: FloatFieldUpdateOperationsInput | number
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: StringFieldUpdateOperationsInput | string
     stripeEventId?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceUrl?: NullableStringFieldUpdateOperationsInput | string | null
     paymentGatewayData?: NullableJsonNullValueInput | InputJsonValue
@@ -21566,7 +21617,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     amount?: FloatFieldUpdateOperationsInput | number
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: StringFieldUpdateOperationsInput | string
     stripeEventId?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceUrl?: NullableStringFieldUpdateOperationsInput | string | null
     paymentGatewayData?: NullableJsonNullValueInput | InputJsonValue

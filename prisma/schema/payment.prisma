@@ -1,7 +1,6 @@
 enum PaymentStatus {
-  SUCCESS
-  FAILED
-  PENDING
+  PAID
+  UNPAID
 }
 
 model Payment {
@@ -9,23 +8,21 @@ model Payment {
   userId             String
   ideaId             String
   amount             Float
-  status             PaymentStatus @default(PENDING)
-  transactionId      String?
-  stripeEventId      String?
+  status             PaymentStatus @default(UNPAID)
+  transactionId      String        @unique() @db.Uuid()
+  stripeEventId      String?       @unique()
   invoiceUrl         String?
   paymentGatewayData Json?
-
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   idea Idea @relation(fields: [ideaId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  isDeleted Boolean @default(false)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  isDeleted Boolean   @default(false)
   deletedAt DateTime?
 
-  @@index([userId],name:"idx_payment_userId")
-  @@index([ideaId],name:"idx_payment_ideaId")
- 
+  @@index([userId], name: "idx_payment_userId")
+  @@index([ideaId], name: "idx_payment_ideaId")
   @@map("payments")
 }

@@ -3,7 +3,10 @@ import AppError from "../../errorHelpers/AppError";
 import { prisma } from "../../lib/prisma";
 import { IIdea, IIdeaUpdate } from "./idea.interfaces";
 import { IUserRequest } from "../../interfaces/user.interface";
-import { Role } from "../../../generated/prisma";
+import { PaymentStatus, Role } from "../../../generated/prisma";
+import { envVars } from "../../config/env";
+import { stripe } from "../../config/stripe.config";
+import { uuidv7 } from "zod";
 
 const createIdea = async (user: IUserRequest, payload: IIdea) => {
     const categoryExists = await prisma.category.findUnique({
@@ -125,10 +128,14 @@ const deleteIdea = async (id: string, user: IUserRequest) => {
     return result;
 };
 
+
+
+
 export const ideaService = {
     createIdea,
     getAllIdeas,
     getIdeaById,
     updateIdea,
     deleteIdea,
+ 
 };

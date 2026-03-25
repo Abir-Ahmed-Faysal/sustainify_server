@@ -276,9 +276,8 @@ exports.IdeaStatus = exports.$Enums.IdeaStatus = {
 };
 
 exports.PaymentStatus = exports.$Enums.PaymentStatus = {
-  SUCCESS: 'SUCCESS',
-  FAILED: 'FAILED',
-  PENDING: 'PENDING'
+  PAID: 'PAID',
+  UNPAID: 'UNPAID'
 };
 
 exports.VoteType = exports.$Enums.VoteType = {

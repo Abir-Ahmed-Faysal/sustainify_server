@@ -185,9 +185,8 @@ model Newsletter {
 }
 
 enum PaymentStatus {
-  SUCCESS
-  FAILED
-  PENDING
+  PAID
+  UNPAID
 }
 
 model Payment {
@@ -195,9 +194,9 @@ model Payment {
   userId             String
   ideaId             String
   amount             Float
-  status             PaymentStatus @default(PENDING)
-  transactionId      String?
-  stripeEventId      String?
+  status             PaymentStatus @default(UNPAID)
+  transactionId      String        @unique() @db.Uuid()
+  stripeEventId      String?       @unique()
   invoiceUrl         String?
   paymentGatewayData Json?
 

@@ -9,6 +9,7 @@ import { voteRoutes } from "../modules/vote/vote.routes";
 import { commentRoutes } from "../modules/comment/comment.routes";
 import { favouriteRoutes } from "../modules/favourite/favourite.routes";
 import { newsLetterRoutes } from "../modules/newsLetter/newsLetter.routes";
+import { paymentRoutes } from "../modules/payment/payment.routes";
 
 const router = Router()
 
@@ -22,5 +23,6 @@ router.use('/votes', voteRoutes)
 router.use('/comments', commentRoutes)
 router.use('/favourites', favouriteRoutes)
 router.use('/newsletters', newsLetterRoutes)
+router.use('/payment', paymentRoutes)
 
 export const indexRoutes = router
