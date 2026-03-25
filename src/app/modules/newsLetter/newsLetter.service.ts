@@ -6,13 +6,13 @@ import { INewsLetter } from "./newsLetter.interface";
 const subscribe = async (payload: INewsLetter) => {
   const { email } = payload;
 
-  const existingSubscription = await prisma.newsletters.findUnique({
+  const existingSubscription = await prisma.newsletter.findUnique({
     where: { email },
   });
 
   if (existingSubscription) {
     if (!existingSubscription.isActive) {
-      const reactivated = await prisma.newsletters.update({
+      const reactivated = await prisma.newsletter.update({
         where: { email },
         data: { isActive: true },
       });
@@ -21,7 +21,7 @@ const subscribe = async (payload: INewsLetter) => {
     throw new AppError(StatusCodes.CONFLICT, "Email is already subscribed to the newsletter");
   }
 
-  const newSubscription = await prisma.newsletters.create({
+  const newSubscription = await prisma.newsletter.create({
     data: {
       email,
     },
