@@ -19,7 +19,12 @@ const envSchema = z.object({
   ADMIN_PASSWORD: z.string(),
   FRONTEND_URL: z.string(),
   STRIPE_SECRET_KEY: z.string(),
-  STRIPE_WEBHOOK_SECRET: z.string()
+  STRIPE_WEBHOOK_SECRET: z.string(),
+  EMAIL_SENDER_SMTP_USER: z.string(),
+  EMAIL_SENDER_SMTP_PASS: z.string(),
+  EMAIL_SENDER_SMTP_HOST: z.string(),
+  EMAIL_SENDER_SMTP_PORT: z.string(),
+  EMAIL_SENDER_SMTP_FROM: z.string(),
 });
 
 export const envVars = envSchema.parse(process.env);

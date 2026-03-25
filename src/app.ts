@@ -5,6 +5,8 @@ import { globalErrorHandler } from "./app/middleware/globalErrorHandler";
 import { notFound } from "./app/middleware/notFound";
 import { indexRoutes } from "./app/routes";
 import { paymentController } from "./app/modules/payment/payment.controller";
+import { startNewsletterCron } from "./app/utilities/newsletterCron";
+
 
 const app: Application = express();
 
@@ -34,5 +36,9 @@ app.get("/", (req: Request, res: Response) => {
 // Error Handlers
 app.use(globalErrorHandler)
 app.use(notFound)
+
+
+// Start Newsletter Cron (every 15 minutes)
+startNewsletterCron();
 
 export default app;

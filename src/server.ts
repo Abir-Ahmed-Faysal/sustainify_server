@@ -6,14 +6,14 @@ import { seedAdmin } from "./app/utilities/seed";
 
 
 let server: Server;
-const PORT = envVars.PORT  || 5000;
+const PORT = envVars.PORT || 5000;
 
 const bootstrap = async () => {
   try {
-     await prisma.$connect();
-     console.log("✅ Database connected successfully");
-     
-     await seedAdmin();
+    await prisma.$connect();
+    console.log("✅ Database connected successfully");
+
+    await seedAdmin();
 
     server = app.listen(PORT, () => {
       console.log(`🚀 Sustainify Server running on http://localhost:${PORT}`);
@@ -21,7 +21,7 @@ const bootstrap = async () => {
 
   } catch (error) {
     console.error("❌ Bootstrap Error:", error);
-    process.exit(1); 
+    process.exit(1);
   }
 };
 
