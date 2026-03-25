@@ -1,5 +1,4 @@
 import bcrypt from "bcryptjs"
-import { JwtPayload } from "jsonwebtoken"
 import { prisma } from "../../lib/prisma"
 import { tokenUtils } from "../../utilities/token"
 import { jwtUtils } from "../../utilities/jwt"

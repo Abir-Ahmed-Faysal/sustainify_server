@@ -32,7 +32,7 @@ const updateProfile = async (user: IUserRequest, payload: IProfileUpdate) => {
 
     // ✅ 3. Remove undefined fields (VERY IMPORTANT)
     const filteredPayload = Object.fromEntries(
-        Object.entries(payload).filter(([_, value]) => value !== undefined)
+        Object.entries(payload).filter(([, value]) => value !== undefined)
     );
 
     if (Object.keys(filteredPayload).length === 0) {
