@@ -3,10 +3,8 @@ import AppError from "../../errorHelpers/AppError";
 import { prisma } from "../../lib/prisma";
 import { IIdea, IIdeaUpdate } from "./idea.interfaces";
 import { IUserRequest } from "../../interfaces/user.interface";
-import { PaymentStatus, Role } from "../../../generated/prisma";
-import { envVars } from "../../config/env";
-import { stripe } from "../../config/stripe.config";
-import { uuidv7 } from "zod";
+import { Role } from "../../../generated/prisma";
+
 
 const createIdea = async (user: IUserRequest, payload: IIdea) => {
     const categoryExists = await prisma.category.findUnique({
@@ -15,6 +13,12 @@ const createIdea = async (user: IUserRequest, payload: IIdea) => {
 
     if (!categoryExists) {
         throw new AppError(StatusCodes.NOT_FOUND, "Category not found");
+    }
+
+    const price = Number(payload?.price)
+
+    if (price) {
+        payload.isPaid = true
     }
 
     const result = await prisma.idea.create({
@@ -79,7 +83,7 @@ const getIdeaById = async (id: string) => {
 
 const updateIdea = async (id: string, user: IUserRequest, payload: IIdeaUpdate) => {
 
-    console.log(payload, "idea up");
+    
 
     const idea = await prisma.idea.findUnique({
         where: { id, isDeleted: false },
@@ -90,7 +94,7 @@ const updateIdea = async (id: string, user: IUserRequest, payload: IIdeaUpdate) 
     }
 
     // Only the author or an ADMIN can update the idea
-    if (idea.authorId !== user.id && user.role !== "ADMIN") {
+    if (idea.authorId !== user.id && user.role !== Role.ADMIN) {
         throw new AppError(StatusCodes.FORBIDDEN, "You are not authorized to update this idea");
     }
 
@@ -137,5 +141,5 @@ export const ideaService = {
     getIdeaById,
     updateIdea,
     deleteIdea,
- 
+
 };

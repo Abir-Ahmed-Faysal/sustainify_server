@@ -3,6 +3,7 @@ import { categoryController } from "./category.controller";
 import { checkAuth } from "../../middleware/checkAuth";
 import { validateRequest } from "../../middleware/validateRequest";
 import { categoryValidation } from "./categorySchema";
+import { Role } from "../../../generated/prisma";
 
 const router = Router();
 
@@ -12,7 +13,7 @@ router.get("/", categoryController.getAllCategories);
 // Admin only: create category
 router.post(
     "/",
-    checkAuth("ADMIN"),
+    checkAuth(Role.ADMIN),
     validateRequest(categoryValidation.createCategoryZodSchema),
     categoryController.createCategory
 );
@@ -20,7 +21,7 @@ router.post(
 // Admin only: update category
 router.patch(
     "/:id",
-    checkAuth("ADMIN"),
+    checkAuth(Role.ADMIN),
     validateRequest(categoryValidation.updateCategoryZodSchema),
     categoryController.updateCategory
 );
@@ -28,7 +29,7 @@ router.patch(
 // Admin only: delete category
 router.delete(
     "/:id",
-    checkAuth("ADMIN"),
+    checkAuth(Role.ADMIN),
     categoryController.deleteCategory
 );
 

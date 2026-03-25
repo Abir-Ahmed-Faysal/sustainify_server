@@ -33,9 +33,9 @@ const createCheckoutSession = async (user: IUserRequest, ideaId: string) => {
         },
     });
 
-    if (existingAccess || idea.authorId === user.id) {
-        throw new AppError(StatusCodes.BAD_REQUEST, "You already have access to this idea");
-    }
+    // if (existingAccess || idea.authorId === user.id) {
+    //     throw new AppError(StatusCodes.BAD_REQUEST, "You already have access to this idea");
+    // }
 
     const transactionId = String(uuidv7())
 

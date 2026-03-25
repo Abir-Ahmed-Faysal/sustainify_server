@@ -1,12 +1,16 @@
 import express, { Application, Request, Response } from "express";
 import cookieParser from "cookie-parser";
 import cors from 'cors';
-import { envVars } from "./app/config/env";
 import { globalErrorHandler } from "./app/middleware/globalErrorHandler";
 import { notFound } from "./app/middleware/notFound";
 import { indexRoutes } from "./app/routes";
+import { paymentController } from "./app/modules/payment/payment.controller";
 
 const app: Application = express();
+
+app.post('/webhook', express.raw({
+    type: "application/json"
+}),paymentController.stripeWebhook)
 
 app.use(cors({
     origin: ['http://localhost:3000', 'http://localhost:3001'],

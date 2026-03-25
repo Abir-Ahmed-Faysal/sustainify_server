@@ -9,6 +9,7 @@ export interface IIdea {
     image?: string;
     price?: number;
     categoryId: string;
+    isPaid?: boolean;
 }
 
 export interface IIdeaUpdate {
