@@ -1,58 +1,43 @@
+import { QueryBuilder } from "../../utilities/QueryBuilder";
+import { IQueryParams } from "../../interfaces/query.interface";
 import { prisma } from "../../lib/prisma";
 import { IUserRequest } from "../../interfaces/user.interface";
 import AppError from "../../errorHelpers/AppError";
 import { StatusCodes } from "http-status-codes";
 
-const getAllUsers = async (query: {
-    page?: string;
-    limit?: string;
-    search?: string;
-}) => {
-    const page = Number(query.page) || 1;
-    const limit = Number(query.limit) || 10;
-    const skip = (page - 1) * limit;
+const getAllUsers = async (query: IQueryParams) => {
+    const userModel = prisma.user as any;
+    
+    const userQueryBuilder = new QueryBuilder(userModel, query, {
+        searchableFields: ["name", "email"],
+        filterableFields: ["role", "isActive"],
+    });
 
-    const where: any = {
-        isDeleted: false,
-    };
+    const result = await userQueryBuilder
+        .search()
+        .filter()
+        .sort()
+        .paginate()
+        .where({ isDeleted: false })
+        .include({
+            profile: true
+        })
+        .execute();
 
-    if (query.search) {
-        where.OR = [
-            { name: { contains: query.search, mode: "insensitive" } },
-            { email: { contains: query.search, mode: "insensitive" } },
-        ];
-    }
+    // Securely project fields
+    result.data = result.data.map((user: any) => ({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        isActive: user.isActive,
+        isDeleted: user.isDeleted,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+        profile: user.profile,
+    }));
 
-    const [users, total] = await Promise.all([
-        prisma.user.findMany({
-            where,
-            skip,
-            take: limit,
-            select: {
-                id: true,
-                name: true,
-                email: true,
-                role: true,
-                isActive: true,
-                isDeleted: true,
-                createdAt: true,
-                updatedAt: true,
-                profile: true,
-            },
-            orderBy: { createdAt: "desc" },
-        }),
-        prisma.user.count({ where }),
-    ]);
-
-    return {
-        data: users,
-        meta: {
-            total,
-            page,
-            limit,
-            totalPages: Math.ceil(total / limit),
-        },
-    };
+    return result;
 };
 
 const getUserById = async (id: string) => {

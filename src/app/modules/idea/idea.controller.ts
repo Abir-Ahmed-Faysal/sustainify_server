@@ -31,7 +31,8 @@ const createIdea = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllIdeas = catchAsync(async (req: Request, res: Response) => {
-    const result = await ideaService.getAllIdeas();
+    const query = req.query as Record<string, string>;
+    const result = await ideaService.getAllIdeas(query);
 
     return sendResponse(res, {
         statusCode: StatusCodes.OK,
@@ -43,7 +44,8 @@ const getAllIdeas = catchAsync(async (req: Request, res: Response) => {
 
 const getIdeaById = catchAsync(async (req: Request, res: Response) => {
     const id = req.params.id as string;
-    const result = await ideaService.getIdeaById(id);
+    const user = req.user as IUserRequest;
+    const result = await ideaService.getIdeaById(id, user);
 
     return sendResponse(res, {
         statusCode: StatusCodes.OK,

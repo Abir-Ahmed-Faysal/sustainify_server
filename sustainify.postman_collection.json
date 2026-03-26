@@ -1,0 +1,690 @@
+{
+  "info": {
+    "_postman_id": "32784b85-1e95-4688-b814-6859000ed398",
+    "name": "sustainify",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "47545985",
+    "_collection_link": "https://go.postman.co/collection/47545985-32784b85-1e95-4688-b814-6859000ed398?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "login member",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"fr@gmail.com\",\r\n    \"password\": \"1234dA5678@\"\r\n    \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/auth/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "v1", "auth", "login"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login admin",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"fr.abir.ahmed.faysal@gmail.com\",\r\n    \"password\": \"Ae100ae100@\"\r\n    \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/auth/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "v1", "auth", "login"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"fr@gmail.com\",\r\n    \"password\": \"1234dA5678@\",\r\n    \"name\":\"md faysal\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/auth/register",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "v1", "auth", "register"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get me",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"fr@gmail.com\",\r\n    \"password\": \"1234dA5678@\"\r\n    \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/auth/me",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "v1", "auth", "me"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get new refresh token",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"fr@gmail.com\",\r\n    \"password\": \"1234dA5678@\"\r\n    \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/auth/refresh-token",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "v1", "auth", "refresh-token"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "category",
+      "item": [
+        {
+          "name": "create new category",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "data",
+                  "value": "{\r\n    \"name\": \"zoro carbon\"\r\n}",
+                  "type": "text"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/categories",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "v1", "categories"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update new category",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "data",
+                  "value": "{\r\n    \"name\": \"zoro carbon\",\r\n    \"image\": \"http://www.google.com\"\r\n}",
+                  "type": "text"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/categories/9bb41c63-23df-4130-ba68-739bb094ab3c",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "categories",
+                "9bb41c63-23df-4130-ba68-739bb094ab3c"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete category",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"zoro carbon\",\r\n    \"image\": \"http://www.google.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/categories/9bb41c63-23df-4130-ba68-739bb094ab3c",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "categories",
+                "9bb41c63-23df-4130-ba68-739bb094ab3c"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all category",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"zoro carbon\",\r\n    \"image\":\"http://www.example.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/categories",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "v1", "categories"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "profile",
+      "item": [
+        {
+          "name": "update profile",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "data",
+                  "value": "{\r\n    \"avatar\": \"http://www.example.com\"\r\n}",
+                  "type": "text"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/profile",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "v1", "profile"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "idea",
+      "item": [
+        {
+          "name": "create idea",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "data",
+                  "value": "{\r\n  \"title\": \"Solar-Powered Community Garden\",\r\n  \"problemStatement\": \"Many urban areas lack green spaces and sustainable food sources.\",\r\n  \"solution\": \"We propose installing solar-powered irrigation and raised garden beds in community spaces.\",\r\n  \"description\": \"This project will reduce food miles, promote community engagement, and provide fresh produce. Solar irrigation ensures sustainability even in hot climates.\",\r\n  \"image\": \"https://example.com/images/solar-garden.jpg\",\r\n  \"price\": 150.5,\r\n  \"categoryId\": \"2bfadf1a-378b-47b2-a32e-e0eb04363610\"\r\n}",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "attachments",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/ideas",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "v1", "ideas"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update idea",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "data",
+                  "value": "{\r\n  \"title\": \"Solar-Powered Community Garden - Phase 3\",\r\n  \"description\": \"We are expanding the project with more raised beds and solar panels for irrigation.\",\r\n  \"price\": 200,\r\n  \"categoryId\": \"2bfadf1a-378b-47b2-a32e-e0eb04363610\",\r\n  \"status\": \"UNDER_REVIEW\",\r\n  \"feedback\": \"Looks promising, needs budget details.\",\r\n  \"isFeatured\": true\r\n}",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "attachments",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/ideas/97305421-8641-4db9-a92a-b83f13a8a650",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "ideas",
+                "97305421-8641-4db9-a92a-b83f13a8a650"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete idea",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Solar-Powered Community Garden - Phase 3\",\r\n  \"description\": \"We are expanding the project with more raised beds and solar panels for irrigation.\",\r\n  \"price\": 200,\r\n  \"categoryId\": \"2bfadf1a-378b-47b2-a32e-e0eb04363610\",\r\n  \"status\": \"UNDER_REVIEW\",\r\n  \"feedback\": \"Looks promising, needs budget details.\",\r\n  \"isFeatured\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/ideas/97305421-8641-4db9-a92a-b83f13a8a650",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "ideas",
+                "97305421-8641-4db9-a92a-b83f13a8a650"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all ieda",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/v1/ideas",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "v1", "ideas"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get single idea",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/v1/ideas/97305421-8641-4db9-a92a-b83f13a8a650",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "ideas",
+                "97305421-8641-4db9-a92a-b83f13a8a650"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "vote",
+      "item": [
+        {
+          "name": "give vote",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"ideaId\": \"0c1ec103-c1de-4187-999d-4cc81b8bf9ef\",\r\n    \"type\": \"UP\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/votes",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "v1", "votes"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "comment",
+      "item": [
+        {
+          "name": "update comment",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\r\n    \"content\": \"hello have a nice try go to helldfsadfasfsadf\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/comments/98ab501f-d005-46fe-b0b1-59d81143af9e",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "comments",
+                "98ab501f-d005-46fe-b0b1-59d81143af9e"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create comment",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"ideaId\": \"0c1ec103-c1de-4187-999d-4cc81b8bf9ef\",\r\n    \"content\": \"hello have a nice try go to hell\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/comments",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "v1", "comments"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Favourite",
+      "item": [
+        {
+          "name": "Toggle Favourite",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"ideaId\": \"0c1ec103-c1de-4187-999d-4cc81b8bf9ef\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/favourites",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "v1", "favourites"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get My Favourites",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/favourites/my-favourites",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "v1", "favourites", "my-favourites"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "NewsLetter",
+      "item": [
+        {
+          "name": "Subscribe",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"user@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/newsLetters/subscribe",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "v1", "newsLetters", "subscribe"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Subscribers",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/v1/newsletters",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "v1", "newsletters"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "payment",
+      "item": [
+        {
+          "name": "create pay",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"ideaId\": \"0c1ec103-c1de-4187-999d-4cc81b8bf9ef\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/payment/create-checkout-session",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "v1", "payment", "create-checkout-session"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

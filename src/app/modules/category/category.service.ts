@@ -2,6 +2,8 @@ import { StatusCodes } from "http-status-codes";
 import AppError from "../../errorHelpers/AppError";
 import { prisma } from "../../lib/prisma";
 import { ICategory, ICategoryUpdate } from "./category.interfaces";
+import { QueryBuilder } from "../../utilities/QueryBuilder";
+import { IQueryParams } from "../../interfaces/query.interface";
 
 const createCategory = async (payload: ICategory) => {
 
@@ -19,8 +21,22 @@ const createCategory = async (payload: ICategory) => {
     return result;
 };
 
-const getAllCategories = async () => {
-    const result = await prisma.category.findMany();
+
+const getAllCategories = async (query: IQueryParams) => {
+    const categoryModel = prisma.category as any;
+
+    const categoryQueryBuilder = new QueryBuilder(categoryModel, query, {
+        searchableFields: ["name"],
+        filterableFields: ["name"],
+    });
+
+    const result = await categoryQueryBuilder
+        .search()
+        .filter()
+        .sort()
+        .paginate()
+        .execute();
+
     return result;
 };
 

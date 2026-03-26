@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { ideaController } from "./idea.controller";
 import { checkAuth } from "../../middleware/checkAuth";
+import { checkOptionalAuth } from "../../middleware/checkOptionalAuth";
 import { Role } from "../../../generated/prisma";
 import { multerUpload } from "../../config/multer.config";
 import { validateRequest } from "../../middleware/validateRequest";
@@ -9,10 +10,10 @@ import { ideaValidation } from "./ideaSchema";
 const router = Router();
 
 // Public: get all ideas
-router.get("/", ideaController.getAllIdeas);
+router.get("/", checkOptionalAuth, ideaController.getAllIdeas);
 
 // Public: get single idea
-router.get("/:id", ideaController.getIdeaById);
+router.get("/:id", checkOptionalAuth, ideaController.getIdeaById);
 
 // Users can create ideas
 router.post(
