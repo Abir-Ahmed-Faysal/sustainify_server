@@ -1,22 +1,19 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entry: ["src/server.ts"],  // main server file
-  format: ["esm"],           // Node18+ ESM
-  target: "node18",
+  entry: ["src/server.ts"],
   outDir: "dist",
+  format: ["esm"], // or ["cjs"] if needed
+  target: "esnext",
   clean: true,
-  sourcemap: true,
-  splitting: false,          // backend এ splitting দরকার নেই
-  bundle: true,              // 🔹 তুমি চাইছ bundle
   external: [
-    "@prisma/client",        // Prisma must stay external
-    ".prisma/client"         // Prisma generated client
+    "@prisma/client",
+    "@prisma/client/runtime",
+    "@prisma/client/runtime/utils",
+    "@prisma/client/runtime-library",
+    "node:fs",
+    "node:path",
+    "node:os",
   ],
-  banner: {
-    js: `
-      import { createRequire } from 'module';
-      const require = createRequire(import.meta.url);
-    `
-  }
+  dts: true,
 });

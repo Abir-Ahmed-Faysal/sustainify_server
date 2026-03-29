@@ -3,7 +3,7 @@ import cookieParser from "cookie-parser";
 import cors from 'cors';
 import { globalErrorHandler } from "./app/middleware/globalErrorHandler";
 import { notFound } from "./app/middleware/notFound";
-import { indexRoutes } from "./app/routes";
+import { indexRoutes } from "./app/routes/index.js";
 import { paymentController } from "./app/modules/payment/payment.controller";
 import { startNewsletterCron } from "./app/utilities/newsletterCron";
 import path from "node:path";

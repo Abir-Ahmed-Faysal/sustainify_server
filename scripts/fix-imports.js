@@ -1,7 +1,15 @@
 import fs from "fs";
 import path from "path";
 
+const distRoot = path.resolve("dist");
+const distGenerated = path.join(distRoot, "src", "generated");
+
 function fixDir(dir) {
+  const abs = path.resolve(dir);
+  if (abs === distGenerated || abs.startsWith(distGenerated + path.sep)) {
+    return;
+  }
+
   const files = fs.readdirSync(dir);
 
   for (const file of files) {
@@ -16,14 +24,15 @@ function fixDir(dir) {
 
     let content = fs.readFileSync(full, "utf8");
 
-    // Replace your existing content.replace block with this:
     content = content.replace(
       /from\s+["'](\.\.?\/[^"']+)["']/g,
       (match, p1) => {
-        // If it already ends in .js, return the match unchanged
         if (p1.endsWith(".js")) return match;
 
-        // Otherwise, append .js
+        if (p1.endsWith("/generated/prisma")) {
+          return match.replace(p1, `${p1}/index.js`);
+        }
+
         return match.replace(p1, `${p1}.js`);
       },
     );
@@ -33,3 +42,10 @@ function fixDir(dir) {
 }
 
 fixDir("./dist");
+
+const srcGenerated = path.join("src", "generated");
+if (fs.existsSync(srcGenerated)) {
+  fs.mkdirSync(path.dirname(distGenerated), { recursive: true });
+  fs.rmSync(distGenerated, { recursive: true, force: true });
+  fs.cpSync(srcGenerated, distGenerated, { recursive: true });
+}

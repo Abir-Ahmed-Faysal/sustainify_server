@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "node dist/src/server.js",
     "build": "prisma generate && tsc && node scripts/fix-imports.js",
     "build:tsup": "tsup",
     "dev": "tsx watch src/server.ts",
@@ -25,6 +25,7 @@
   "dependencies": {
     "@prisma/adapter-pg": "^7.3.0",
     "@prisma/client": "^7.3.0",
+    "@prisma/client-runtime-utils": "^7.3.0",
     "bcrypt": "^6.0.0",
     "better-auth": "^1.4.18",
     "cloudinary": "^2.9.0",
