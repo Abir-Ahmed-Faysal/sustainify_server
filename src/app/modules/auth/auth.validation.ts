@@ -21,7 +21,12 @@ const loginValidationSchema = z.object({
   password: z.string("Password is required"),
 });
 
+export type RegisterInput = z.infer<typeof registerValidationSchema>;
+export type LoginInput = z.infer<typeof loginValidationSchema>;
+
 export const authValidation = {
   registerValidationSchema,
   loginValidationSchema,
 };
+
+

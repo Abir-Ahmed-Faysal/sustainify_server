@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { StatusCodes } from "http-status-codes";
 import AppError from "../../errorHelpers/AppError";
 import { prisma } from "../../lib/prisma";
 import { ICategory, ICategoryUpdate } from "./category.interfaces";
 import { QueryBuilder } from "../../utilities/QueryBuilder";
 import { IQueryParams } from "../../interfaces/query.interface";
+import { formatToLocalTime } from "../../utilities/dateTime";
 
 const createCategory = async (payload: ICategory) => {
 
@@ -36,6 +38,13 @@ const getAllCategories = async (query: IQueryParams) => {
         .sort()
         .paginate()
         .execute();
+
+    // Add formatted dates
+    result.data = result.data.map((category: any) => ({
+        ...category,
+        createdAt: formatToLocalTime(category.createdAt),
+        updatedAt: formatToLocalTime(category.updatedAt),
+    }));
 
     return result;
 };

@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { QueryBuilder } from "../../utilities/QueryBuilder";
 import { IQueryParams } from "../../interfaces/query.interface";
 import { prisma } from "../../lib/prisma";
 import { IUserRequest } from "../../interfaces/user.interface";
 import AppError from "../../errorHelpers/AppError";
 import { StatusCodes } from "http-status-codes";
+import { formatToLocalTime } from "../../utilities/dateTime";
 
 const getAllUsers = async (query: IQueryParams) => {
     const userModel = prisma.user as any;
@@ -32,8 +34,8 @@ const getAllUsers = async (query: IQueryParams) => {
         role: user.role,
         isActive: user.isActive,
         isDeleted: user.isDeleted,
-        createdAt: user.createdAt,
-        updatedAt: user.updatedAt,
+        createdAt: formatToLocalTime(user.createdAt),
+        updatedAt: formatToLocalTime(user.updatedAt),
         profile: user.profile,
     }));
 
@@ -59,7 +61,11 @@ const getUserById = async (id: string) => {
         throw new AppError(StatusCodes.NOT_FOUND, "User not found");
     }
 
-    return user;
+    return {
+        ...user,
+        createdAt: formatToLocalTime(user.createdAt),
+        updatedAt: formatToLocalTime(user.updatedAt),
+    };
 };
 
 const updateMyProfile = async (

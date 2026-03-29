@@ -1,13 +1,14 @@
-import bcrypt from "bcryptjs"
+import bcrypt from "bcrypt"
 import { prisma } from "../../lib/prisma"
 import { tokenUtils } from "../../utilities/token"
 import { jwtUtils } from "../../utilities/jwt"
 import { envVars } from "../../config/env"
 import ms from "ms";
 import { IUserRequest } from "../../interfaces/user.interface"
+import { LoginInput, RegisterInput } from "./auth.validation"
 
 
-const register = async (payload: any) => {
+const register = async (payload: RegisterInput) => {
 
 
     const { name, email, password } = payload;
@@ -70,7 +71,7 @@ const register = async (payload: any) => {
 };
 
 
-const login = async (payload: any) => {
+const login = async (payload: LoginInput) => {
     const { email, password } = payload;
 
     return await prisma.$transaction(async (tx) => {
@@ -118,7 +119,7 @@ const login = async (payload: any) => {
     });
 };
 
-const getMe = async (user: any) => {
+const getMe = async (user: IUserRequest) => {
     const userExists = await prisma.user.findUnique({
         where: {
             id: user.id

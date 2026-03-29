@@ -61,6 +61,9 @@ export const updateIdeaZodSchema = z.object({
   isFeatured: z.boolean().optional(),
 });
 
+export type IIdeaUpdate = z.infer<typeof updateIdeaZodSchema>;
+export type IIdeaCreate = z.infer<typeof createIdeaZodSchema>;
+
 
 
 

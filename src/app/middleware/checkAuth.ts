@@ -14,7 +14,7 @@ export const checkAuth = (...roles: Role[]) => {
       // ----------------------------
       // 1️⃣ Access Token Verification
       // ----------------------------
-      const accessToken = cookieUtils.getCookie(req, "accessToken");
+      const accessToken = cookieUtils.getCookie(req, "__accessToken") || cookieUtils.getCookie(req, "accessToken");
       if (!accessToken) {
         throw new AppError(StatusCodes.UNAUTHORIZED, "No access token provided");
       }
@@ -30,7 +30,7 @@ export const checkAuth = (...roles: Role[]) => {
       // ----------------------------
       // 2️⃣ Session + Refresh Token Verification
       // ----------------------------
-      const refreshToken = cookieUtils.getCookie(req, "refreshToken");
+      const refreshToken = cookieUtils.getCookie(req, "__refreshToken") || cookieUtils.getCookie(req, "refreshToken");
       if (!refreshToken) {
         throw new AppError(StatusCodes.UNAUTHORIZED, "No refresh token provided");
       }

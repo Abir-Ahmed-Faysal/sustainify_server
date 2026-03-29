@@ -1,4 +1,4 @@
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
 import { prisma } from "../lib/prisma";
 import { envVars } from "../config/env";
 import { Role } from "../../generated/prisma";
