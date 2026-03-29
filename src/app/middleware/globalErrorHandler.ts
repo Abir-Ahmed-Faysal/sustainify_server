@@ -5,7 +5,6 @@ import z from "zod";
 import { TErrorResponse, TErrorSources } from "../interfaces/error.interfaces";
 import { zodErrorData } from "../errorHelpers/error.helper";
 import AppError from "../errorHelpers/AppError";
-import { deleteUploadedFilesFromGlobalErrorHandler } from "../utilities/deleteUploadedFilesFromGlobalErrorHandler";
 // import { Prisma } from "@prisma/client";
 // import {
 //     handlePrismaClientInitializationError,
@@ -16,8 +15,6 @@ import { deleteUploadedFilesFromGlobalErrorHandler } from "../utilities/deleteUp
 // } from "../errorHelpers/handlePrismaError";
 
 export const globalErrorHandler = async (err: any, req: Request, res: Response, _: NextFunction) => {
-    await deleteUploadedFilesFromGlobalErrorHandler(req);
-
     if (envVars.NODE_ENV === "development") {
         console.log("Error from Global Error Handler", err);
     }

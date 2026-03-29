@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { Role } from "../../generated/prisma";
+import { Role } from "../../generated/prisma/index";
 import { cookieUtils } from "../utilities/cookie";
 import { StatusCodes } from "http-status-codes";
 import { jwtUtils } from "../utilities/jwt";

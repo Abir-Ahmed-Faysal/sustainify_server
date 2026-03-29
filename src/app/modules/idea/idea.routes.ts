@@ -3,7 +3,6 @@ import { ideaController } from "./idea.controller";
 import { checkAuth } from "../../middleware/checkAuth";
 import { checkOptionalAuth } from "../../middleware/checkOptionalAuth";
 import { Role } from "../../../generated/prisma";
-import { multerUpload } from "../../config/multer.config";
 import { validateRequest } from "../../middleware/validateRequest";
 import { ideaValidation } from "./ideaSchema";
 
@@ -19,10 +18,6 @@ router.get("/:id", checkOptionalAuth, ideaController.getIdeaById);
 router.post(
     "/",
     checkAuth(Role.MEMBER, Role.ADMIN),
-    multerUpload.fields([
-        { name: "image", maxCount: 1 },
-        { name: "attachments", maxCount: 5 }
-    ]),
     validateRequest(ideaValidation.createIdeaZodSchema),
     ideaController.createIdea
 );
@@ -31,10 +26,6 @@ router.post(
 router.patch(
     "/:id",
     checkAuth(Role.MEMBER, Role.ADMIN),
-    multerUpload.fields([
-        { name: "image", maxCount: 1 },
-        { name: "attachments", maxCount: 5 }
-    ]),
     validateRequest(ideaValidation.updateIdeaZodSchema),
     ideaController.updateIdea
 );

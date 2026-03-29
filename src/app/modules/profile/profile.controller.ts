@@ -10,10 +10,6 @@ const updateProfile = catchAsync(async (req: Request, res: Response) => {
 
     const user = req.user as IUserRequest;
     const payload = req.body;
-
-    if (req.file) {
-        payload.avatar = req.file.path;
-    }
     
     const result = await profileService.updateProfile(user, payload);
 

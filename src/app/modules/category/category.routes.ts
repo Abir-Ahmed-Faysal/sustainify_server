@@ -4,7 +4,6 @@ import { checkAuth } from "../../middleware/checkAuth";
 import { validateRequest } from "../../middleware/validateRequest";
 import { categoryValidation } from "./categorySchema";
 import { Role } from "../../../generated/prisma";
-import { multerUpload } from "../../config/multer.config";
 
 const router = Router();
 
@@ -15,7 +14,6 @@ router.get("/", categoryController.getAllCategories);
 router.post(
     "/",
     checkAuth(Role.ADMIN),
-    multerUpload.single("file"),
     validateRequest(categoryValidation.createCategoryZodSchema),
     categoryController.createCategory
 );
@@ -24,7 +22,6 @@ router.post(
 router.patch(
     "/:id",
     checkAuth(Role.ADMIN),
-    multerUpload.single("file"),
     validateRequest(categoryValidation.updateCategoryZodSchema),
     categoryController.updateCategory
 );

@@ -1,4 +1,4 @@
-import { Role } from "../../generated/prisma";
+import { Role } from "../../generated/prisma/index";
 
 export interface IUserRequest {
     id: string;

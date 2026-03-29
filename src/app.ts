@@ -5,8 +5,6 @@ import { globalErrorHandler } from "./app/middleware/globalErrorHandler";
 import { notFound } from "./app/middleware/notFound";
 import { indexRoutes } from "./app/routes/index.js";
 import { paymentController } from "./app/modules/payment/payment.controller";
-import { startNewsletterCron } from "./app/utilities/newsletterCron";
-import path from "node:path";
 import qs from "qs";
 
 
@@ -14,17 +12,18 @@ const app: Application = express();
 
 app.set("query parser", (str: string) => qs.parse(str))
 
-app.set("view engine", "ejs")
-app.set("views", path.resolve(process.cwd(), `src/app/templates`))
-
 app.post('/webhook', express.raw({
     type: "application/json"
 }),paymentController.stripeWebhook)
 
+const corsOrigins = process.env.NODE_ENV === 'production' 
+  ? [process.env.FRONTEND_URL || 'https://sustainify-frontend.vercel.app']
+  : ['http://localhost:3000', 'http://localhost:3001'];
+
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://localhost:3001'],
+    origin: corsOrigins,
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }))
 
@@ -46,6 +45,6 @@ app.use(notFound)
 
 
 // Start Newsletter Cron (every 15 minutes)
-startNewsletterCron();
+
 
 export default app;
