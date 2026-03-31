@@ -152,12 +152,18 @@ export class QueryBuilder<
             countQueryWhere[relation] = {};
           }
 
+          // Apply case-insensitive filtering for string values
+          const filterValue =
+            typeof value === "string"
+              ? { contains: value, mode: "insensitive" as const }
+              : this.parseFilterValue(value);
+
           (queryWhere[relation] as Record<string, unknown>)[nestedField] =
-            this.parseFilterValue(value);
+            filterValue;
 
           (countQueryWhere[relation] as Record<string, unknown>)[
-            nestedField
-          ] = this.parseFilterValue(value);
+            nestedField 
+          ] = filterValue;
 
           return;
         }

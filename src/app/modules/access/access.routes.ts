@@ -1,9 +1,8 @@
 import { Router } from "express";
 import { accessController } from "./access.controller";
 import { checkAuth } from "../../middleware/checkAuth";
+import { checkOptionalAuth } from "../../middleware/checkOptionalAuth";
 import { Role } from "../../../generated/prisma";
-import { validateRequest } from "../../middleware/validateRequest";
-import { checkMyAccessSchema } from "./access.validation";
 
 const router = Router();
 
@@ -21,11 +20,11 @@ router.get(
 /**
  * Check if the authenticated user has accessed a specific idea
  * GET /api/v1/access/:ideaId
+ * Uses optional auth - if user is not authenticated, returns false (no access)
  */
 router.get(
     "/:ideaId",
-    checkAuth(Role.MEMBER, Role.ADMIN),
-    validateRequest(checkMyAccessSchema),
+    checkOptionalAuth,
     accessController.checkMyAccess
 );
 

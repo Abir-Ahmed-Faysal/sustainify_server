@@ -9,10 +9,21 @@ import { IQueryParams } from "../../interfaces/query.interface";
 /**
  * Check if the authenticated user has accessed a specific idea
  * GET /api/v1/access/:ideaId
+ * If user is not authenticated, returns false (no access)
  */
 const checkMyAccess = catchAsync(async (req: Request, res: Response) => {
     const { ideaId } = req.params as { ideaId: string };
-    const user = req.user as IUserRequest;
+    const user = req.user as IUserRequest | undefined;
+
+    // If no user (not authenticated), return no access
+    if (!user || !user.id) {
+        return sendResponse(res, {
+            statusCode: StatusCodes.OK,
+            success: true,
+            message: "Your access status retrieved",
+            data: false,
+        });
+    }
 
     const hasAccess = await accessService.checkMyAccessToIdea(user.id, ideaId);
 

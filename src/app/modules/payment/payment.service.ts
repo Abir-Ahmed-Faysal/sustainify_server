@@ -13,17 +13,26 @@ const createCheckoutSession = async (user: IUserRequest, ideaId: string) => {
     const idea = await prisma.idea.findUnique({
         where: { 
             id: ideaId,
-            status: IdeaStatus.APPROVED,
             isDeleted: false
         },
     });
 
     if (!idea) {
-        throw new AppError(StatusCodes.NOT_FOUND, "Idea not found or not approved");
+        throw new AppError(StatusCodes.NOT_FOUND, "Idea not found");
+    }
+
+    // Only APPROVED ideas can be purchased
+    if (idea.status !== IdeaStatus.APPROVED) {
+        throw new AppError(StatusCodes.BAD_REQUEST, "This idea is not approved yet and cannot be purchased");
     }
 
     if (!idea.isPaid || !idea.price) {
         throw new AppError(StatusCodes.BAD_REQUEST, "This idea is not a paid idea or has no price");
+    }
+
+    // Author cannot buy their own idea
+    if (idea.authorId === user.id) {
+        throw new AppError(StatusCodes.BAD_REQUEST, "You cannot purchase your own idea");
     }
 
     // Check if user already has access
@@ -34,7 +43,7 @@ const createCheckoutSession = async (user: IUserRequest, ideaId: string) => {
         },
     });
 
-    if (existingAccess || idea.authorId === user.id) {
+    if (existingAccess) {
         throw new AppError(StatusCodes.BAD_REQUEST, "You already have access to this idea");
     }
 
@@ -77,7 +86,7 @@ const createCheckoutSession = async (user: IUserRequest, ideaId: string) => {
         },
     });
 
-    return { sessionUrl: session.url };
+    return { url: session.url };
 };
 
 const StripeWebhookEventHandler = async (event: Stripe.Event) => {

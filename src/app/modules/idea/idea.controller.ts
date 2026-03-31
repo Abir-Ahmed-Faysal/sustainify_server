@@ -34,6 +34,7 @@ const getAllIdeas = catchAsync(async (req: Request, res: Response) => {
 const getIdeaById = catchAsync(async (req: Request, res: Response) => {
     const id = req.params.id as string;
     const user = req.user as IUserRequest;
+    console.log("idea →req",id,"user→",user);
     const result = await ideaService.getIdeaById(id, user);
 
     return sendResponse(res, {

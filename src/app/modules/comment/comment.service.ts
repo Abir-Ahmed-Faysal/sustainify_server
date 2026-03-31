@@ -33,6 +33,11 @@ const createComment = async (user: IUserRequest, payload: ICreateComment) => {
           id: true,
           name: true,
           email: true,
+          profile: {
+            select: {
+              avatar: true
+            }
+          }
         }
       }
     }
@@ -49,7 +54,12 @@ const getCommentsByIdea = async (ideaId: string) => {
         select: {
           id: true,
           name: true,
-          email: true
+          email: true,
+          profile: {
+            select: {
+              avatar: true
+            }
+          }
         }
       },
       replies: {
