@@ -111,6 +111,83 @@ const getAllIdeas = async (query: IQueryParams) => {
 
   return result;
 };
+const getMyIdeas = async (query: IQueryParams,user:IUserRequest) => {
+  const ideaModel = prisma.idea as any; // Cast for QueryBuilder compatibility
+
+  // Transform categoryName to category.name for nested filtering
+  if (query.categoryName) {
+    query["category.name"] = query.categoryName;
+    delete query.categoryName;
+  }
+
+  // Set professional default sorting if not provided
+  if (!query.sortBy) {
+    query.sortBy = "positiveRatio,createdAt";
+    query.sortOrder = "desc,desc";
+  }
+
+  const ideaQueryBuilder = new QueryBuilder(ideaModel, query, {
+    searchableFields: ["title", "problemStatement", "description"],
+    filterableFields: ["categoryId", "isPaid", "status", "authorId", "isFeatured", "category.name"],
+  });
+
+  const result = await ideaQueryBuilder
+    .search()
+    .filter()
+    .sort()
+    .paginate()
+    .where({ isDeleted: false, status: IdeaStatus.APPROVED ,authorId:user.id})
+    .include({
+      category: {
+        select: {
+          id: true,
+          name: true,
+          image: true,
+        }
+      },
+      author: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          profile: {
+            select: {
+              avatar: true,
+            }
+          }
+        }
+      },
+      _count: {
+        select: {
+          comments: true,
+          votes: true,
+        }
+      }
+    })
+    .execute();
+
+  // Securely project fields to hide sensitive data in list view
+  result.data = result.data.map((idea: any) => ({
+    id: idea.id,
+    title: idea.title,
+    problemStatement: idea.problemStatement,
+    image: idea.image,
+    isPaid: idea.isPaid,
+    price: idea.price,
+    status: idea.status,
+    isFeatured: idea.isFeatured,
+    createdAt: formatToLocalTime(idea.createdAt),
+    positiveRatio: idea.positiveRatio,
+    totalUpVotes: idea.totalUpVotes,
+    totalDownVotes: idea.totalDownVotes,
+    author: idea.author,
+    category: idea.category,
+    _count: idea._count
+  }));
+
+  return result;
+};
 
 export const getIdeaById = async (id: string, user?: IUserRequest) => {
   // Fetch idea with author, category, and counts
@@ -234,8 +311,6 @@ export const getIdeaById = async (id: string, user?: IUserRequest) => {
 
 const updateIdea = async (id: string, user: IUserRequest, payload: IIdeaUpdate) => {
 
-
-
   const idea = await prisma.idea.findUnique({
     where: { id, isDeleted: false },
   });
@@ -255,6 +330,7 @@ const updateIdea = async (id: string, user: IUserRequest, payload: IIdeaUpdate) 
   });
   return result;
 };
+
 
 const deleteIdea = async (id: string, user: IUserRequest) => {
   // Find the idea
@@ -292,4 +368,5 @@ export const ideaService = {
   getIdeaById,
   updateIdea,
   deleteIdea,
+  getMyIdeas 
 };

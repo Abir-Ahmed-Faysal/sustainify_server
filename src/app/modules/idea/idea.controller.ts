@@ -31,6 +31,22 @@ const getAllIdeas = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+
+const getMyIdeas = catchAsync(async (req: Request, res: Response) => {
+    const query = req.query as Record<string, string>;
+    const user = req.user as IUserRequest
+
+    const result = await ideaService.getMyIdeas (query,user);
+
+    return sendResponse(res, {
+        statusCode: StatusCodes.OK,
+        success: true,
+        message: "My Ideas retrieved successfully",
+        meta: result.meta,
+        data: result.data,
+    });
+});
+
 const getIdeaById = catchAsync(async (req: Request, res: Response) => {
     const id = req.params.id as string;
     const user = req.user as IUserRequest;
@@ -80,4 +96,5 @@ export const ideaController = {
     getIdeaById,
     updateIdea,
     deleteIdea,
+    getMyIdeas 
 };

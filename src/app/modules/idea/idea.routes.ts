@@ -11,6 +11,8 @@ const router = Router();
 // Public: get all ideas
 router.get("/", checkOptionalAuth, ideaController.getAllIdeas);
 
+router.get("/my-ideas", checkAuth(Role.ADMIN,Role.MEMBER), ideaController.getMyIdeas);
+
 // Public: get single idea
 router.get("/:id", checkOptionalAuth, ideaController.getIdeaById);
 

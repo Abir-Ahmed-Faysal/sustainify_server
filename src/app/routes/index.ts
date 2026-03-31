@@ -11,6 +11,7 @@ import { favouriteRoutes } from "../modules/favourite/favourite.routes";
 import { newsLetterRoutes } from "../modules/newsLetter/newsLetter.routes";
 import { paymentRoutes } from "../modules/payment/payment.routes";
 import { accessRoutes } from "../modules/access/access.routes";
+import { statsRoutes } from "../modules/stats/stats.routes";
 
 const router = Router()
 
@@ -26,5 +27,9 @@ router.use('/favourites', favouriteRoutes)
 router.use('/newsletters', newsLetterRoutes)
 router.use('/payment', paymentRoutes)
 router.use('/access', accessRoutes)
+router.use("/stats",statsRoutes)
+
+
+
 
 export const indexRoutes = router

@@ -150,7 +150,7 @@ model Idea {
   isPaid Boolean @default(false)
   price  Float?
 
-  status     IdeaStatus @default(DRAFT)
+  status     IdeaStatus @default(UNDER_REVIEW)
   feedback   String?
   isFeatured Boolean    @default(false)
 
