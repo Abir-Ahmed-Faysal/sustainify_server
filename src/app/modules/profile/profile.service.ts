@@ -42,10 +42,27 @@ const updateProfile = async (user: IUserRequest, payload: IProfileUpdate) => {
         );
     }
 
-    // ✅ 4. Update
-    const result = await prisma.profile.update({
-        where: { userId: user.id },
-        data: filteredPayload,
+    // ✅ 4. Separate name from other profile fields
+    const { name, ...profileData } = filteredPayload as any;
+
+    // ✅ 5. Use transaction to update both User and Profile if needed
+    const result = await prisma.$transaction(async (tx) => {
+        // Update user name if provided
+        if (name) {
+            await tx.user.update({
+                where: { id: user.id },
+                data: { name },
+            });
+        }
+
+        // Update profile with other fields
+        const updatedProfile = await tx.profile.update({
+            where: { userId: user.id },
+            data: profileData,
+            include: { user: true },
+        });
+
+        return updatedProfile;
     });
 
     return result;

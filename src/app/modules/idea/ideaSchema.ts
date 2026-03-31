@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { IdeaStatus } from "../../../generated/prisma";
 
 export const createIdeaZodSchema = z.object({
   title: z
@@ -22,6 +23,7 @@ export const createIdeaZodSchema = z.object({
   price: z.coerce.number().positive({ message: "Price must be greater than 0" }).optional(),
 
   categoryId: z.uuid({ message: "Invalid category ID" }),
+  status:z.enum([IdeaStatus.DRAFT],'only draft status granted').optional()
 });
 
 

@@ -5,6 +5,7 @@ export interface IProfileCreate {
 }
 
 export interface IProfileUpdate {
+    name?: string;
     avatar?: string;
     bio?: string;
     address?: string;

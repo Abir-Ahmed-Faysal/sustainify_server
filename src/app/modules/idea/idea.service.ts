@@ -136,7 +136,7 @@ const getMyIdeas = async (query: IQueryParams,user:IUserRequest) => {
     .filter()
     .sort()
     .paginate()
-    .where({ isDeleted: false, status: IdeaStatus.APPROVED ,authorId:user.id})
+    .where({ isDeleted: false, authorId:user.id})
     .include({
       category: {
         select: {
