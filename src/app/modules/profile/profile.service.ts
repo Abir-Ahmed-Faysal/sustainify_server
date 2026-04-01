@@ -43,7 +43,7 @@ const updateProfile = async (user: IUserRequest, payload: IProfileUpdate) => {
     }
 
     // ✅ 4. Separate name from other profile fields
-    const { name, ...profileData } = filteredPayload as any;
+    const { name, ...profileData } = filteredPayload as IProfileUpdate;
 
     // ✅ 5. Use transaction to update both User and Profile if needed
     const result = await prisma.$transaction(async (tx) => {
@@ -56,13 +56,32 @@ const updateProfile = async (user: IUserRequest, payload: IProfileUpdate) => {
         }
 
         // Update profile with other fields
-        const updatedProfile = await tx.profile.update({
+        await tx.profile.update({
             where: { userId: user.id },
-            data: profileData,
-            include: { user: true },
+            data: profileData
         });
 
-        return updatedProfile;
+        // Return updated user with profile relation matching /auth/me
+        const updatedUser = await tx.user.findUnique({
+            where: { id: user.id },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                role: true,
+                isActive: true,
+                isDeleted: true,
+                createdAt: true,
+                updatedAt: true,
+                profile: true,
+            }
+        });
+
+        if (!updatedUser) {
+            throw new AppError(StatusCodes.NOT_FOUND, "User not found after update");
+        }
+
+        return updatedUser;
     });
 
     return result;

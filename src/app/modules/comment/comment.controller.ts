@@ -34,7 +34,7 @@ const getCommentsByIdea = catchAsync(async (req: Request, res: Response) => {
 const updateComment = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const user = req.user as IUserRequest;
-  const result = await commentService.updateComment(id as string, user.id, req.body);
+  const result = await commentService.updateComment(id as string, user, req.body);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,
@@ -48,7 +48,7 @@ const deleteComment = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const user = req.user as IUserRequest;
   
-  const result = await commentService.deleteComment(id as string, user.id, user.role);
+  const result = await commentService.deleteComment(id as string, user);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,

@@ -34,6 +34,7 @@ model User {
   payments   Payment[]
   favorites  Favorite[]
   accessList Access[]
+  blogs      Blog[]
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -69,6 +70,22 @@ model Session {
 
   @@index([userId], name: "idx_session_userId")
   @@map("sessions")
+}
+
+model Blog {
+  id          String   @id @default(uuid())
+  title       String
+  slug        String   @unique
+  content     String
+  image       String?
+  authorId    String
+  author      User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  isDeleted   Boolean  @default(false)
+
+  @@map("blogs")
 }
 
 model Category {

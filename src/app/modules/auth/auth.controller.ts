@@ -78,9 +78,26 @@ const refreshToken = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+const logout = catchAsync(async (req: Request, res: Response) => {
+    const refreshToken = req.cookies.refreshToken;
+
+    if (refreshToken) {
+        await authService.logout(refreshToken);
+    }
+
+    tokenUtils.clearAuthCookies(res);
+
+    return sendResponse(res, {
+        statusCode: StatusCodes.OK,
+        success: true,
+        message: "Logged out successfully",
+    });
+});
+
 export const authController = {
     register,
     login,
     getMe,
     refreshToken,
+    logout,
 };

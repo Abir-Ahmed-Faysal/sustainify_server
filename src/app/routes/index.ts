@@ -12,6 +12,7 @@ import { newsLetterRoutes } from "../modules/newsLetter/newsLetter.routes";
 import { paymentRoutes } from "../modules/payment/payment.routes";
 import { accessRoutes } from "../modules/access/access.routes";
 import { statsRoutes } from "../modules/stats/stats.routes";
+import { blogRoutes } from "../modules/blog/blog.routes";
 
 const router = Router()
 
@@ -28,6 +29,7 @@ router.use('/newsletters', newsLetterRoutes)
 router.use('/payment', paymentRoutes)
 router.use('/access', accessRoutes)
 router.use("/stats",statsRoutes)
+router.use("/blogs", blogRoutes);
 
 
 

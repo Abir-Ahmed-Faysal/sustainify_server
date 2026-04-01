@@ -11,7 +11,10 @@ const router = Router();
 // Public: get all ideas
 router.get("/", checkOptionalAuth, ideaController.getAllIdeas);
 
-router.get("/my-ideas", checkAuth(Role.ADMIN,Role.MEMBER), ideaController.getMyIdeas);
+router.get("/my-ideas", checkAuth(Role.ADMIN, Role.MEMBER), ideaController.getMyIdeas);
+
+
+router.get("/my-Idea/:id", checkAuth(Role.ADMIN, Role.MEMBER), ideaController.getMyIdeaById);
 
 // Public: get single idea
 router.get("/:id", checkOptionalAuth, ideaController.getIdeaById);
@@ -31,6 +34,12 @@ router.patch(
     validateRequest(ideaValidation.updateIdeaZodSchema),
     ideaController.updateIdea
 );
+
+router.patch('/status/:id',checkAuth(Role.ADMIN,Role.MEMBER),ideaController.updateIdeaStatus)
+
+router.patch('/status/admin/:id',checkAuth(Role.ADMIN),ideaController.updateIdeaStatus)
+
+router.patch('/toggle-isFeatured/:id', checkAuth(Role.ADMIN), ideaController.toggleIsFeatured)
 
 // Users and Admin can delete ideas
 router.delete(

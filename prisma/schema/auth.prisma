@@ -18,6 +18,7 @@ model User {
   payments   Payment[]
   favorites  Favorite[]
   accessList Access[]
+  blogs      Blog[]
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt

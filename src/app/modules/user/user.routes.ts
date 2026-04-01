@@ -18,11 +18,11 @@ router.patch(
     userController.updateMyProfile
 );
 
-// Member: soft-delete own account
-router.delete(
-    "/delete-account",
-    checkAuth(Role.MEMBER),
-    userController.deleteMyAccount
+// Admin: activate/deactivate user
+router.patch(
+    "/:id/toggle-status",
+    checkAuth(Role.ADMIN),
+    userController.toggleUserStatus
 );
 
 export const userRoutes = router;

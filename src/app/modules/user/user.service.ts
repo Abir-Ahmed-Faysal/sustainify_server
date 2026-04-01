@@ -147,9 +147,39 @@ const deleteMyAccount = async (authUser: IUserRequest) => {
     return { message: "Account deleted successfully" };
 };
 
+const toggleUserStatus = async (
+    id: string,
+    payload: { isActive: boolean }
+) => {
+    const user = await prisma.user.findUnique({
+        where: { id, isDeleted: false },
+    });
+
+    if (!user) {
+        throw new AppError(StatusCodes.NOT_FOUND, "User not found");
+    }
+
+    if (user.role === "ADMIN") {
+        throw new AppError(StatusCodes.FORBIDDEN, "Cannot deactivate an ADMIN account");
+    }
+
+    const result = await prisma.user.update({
+        where: { id },
+        data: { isActive: payload.isActive },
+    });
+
+    return {
+        id: result.id,
+        name: result.name,
+        email: result.email,
+        isActive: result.isActive,
+    };
+};
+
 export const userService = {
     getAllUsers,
     getUserById,
     updateMyProfile,
     deleteMyAccount,
+    toggleUserStatus,
 };

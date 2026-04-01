@@ -22,7 +22,9 @@ export const createIdeaZodSchema = z.object({
 
   price: z.coerce.number().positive({ message: "Price must be greater than 0" }).optional(),
 
-  categoryId: z.uuid({ message: "Invalid category ID" }),
+  attachments: z.array(z.string().url()).optional(),
+
+  categoryId: z.string().uuid({ message: "Invalid category ID" }),
   status:z.enum([IdeaStatus.DRAFT],'only draft status granted').optional()
 });
 
@@ -52,16 +54,36 @@ export const updateIdeaZodSchema = z.object({
 
   price: z.coerce.number().positive({ message: "Price must be greater than 0" }).optional(),
 
-  categoryId: z.uuid({ message: "Invalid category ID" }).optional(),
+  attachments: z.array(z.string().url()).optional(),
 
-  status: z
-    .enum(["DRAFT", "UNDER_REVIEW", "APPROVED", "REJECTED"])
-    .optional(),
+  categoryId: z.string().uuid({ message: "Invalid category ID" }).optional(),
 
-  feedback: z.string().optional(),
-
-  isFeatured: z.boolean().optional(),
 });
+
+export const updateIdeaStatus= z.object({
+  status:z.enum([IdeaStatus.UNDER_REVIEW,IdeaStatus.DRAFT],"only change the status as under review or draft")
+})
+
+
+
+export const toggleIsFeatured= z.object({
+  isFeatured: z.boolean()
+})
+
+
+export const updateIdeaStatusByAdmin= z.object({
+  status: z.enum([IdeaStatus.APPROVED,IdeaStatus.REJECTED,IdeaStatus.UNDER_REVIEW]),
+  feedback: z.string().optional(),
+}).refine((data) => {
+  if (data.status === IdeaStatus.REJECTED) {
+    return !!data.feedback && data.feedback.trim() !== "";
+  }
+  return true;
+}, {
+  message: "Feedback is required when rejecting an idea",
+});
+
+
 
 export type IIdeaUpdate = z.infer<typeof updateIdeaZodSchema>;
 export type IIdeaCreate = z.infer<typeof createIdeaZodSchema>;

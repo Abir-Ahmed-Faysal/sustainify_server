@@ -6,7 +6,7 @@ import { StatusCodes } from "http-status-codes";
 import { IUserRequest } from "../../interfaces/user.interface";
 
 const getAllUsers = catchAsync(async (req: Request, res: Response) => {
-    const result = await userService.getAllUsers(req.query as any);
+    const result = await userService.getAllUsers(req.query as Record<string,string>);
 
     return sendResponse(res, {
         statusCode: StatusCodes.OK,
@@ -52,9 +52,22 @@ const deleteMyAccount = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+const toggleUserStatus = catchAsync(async (req: Request, res: Response) => {
+    const id = req.params.id as string;
+    const result = await userService.toggleUserStatus(id, req.body);
+
+    return sendResponse(res, {
+        statusCode: StatusCodes.OK,
+        success: true,
+        message: "User status updated successfully",
+        data: result,
+    });
+});
+
 export const userController = {
     getAllUsers,
     getUserById,
     updateMyProfile,
     deleteMyAccount,
+    toggleUserStatus,
 };

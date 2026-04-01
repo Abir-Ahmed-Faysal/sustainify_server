@@ -47,6 +47,24 @@ const setRefreshTokenCookie = (res: Response, token: string) => {
 }
 
 
+const clearAuthCookies = (res: Response) => {
+    cookieUtils.setCookie(res, "accessToken", "", {
+        httpOnly: true,
+        secure: envVars.NODE_ENV === "production",
+        sameSite: "lax",
+        path: '/',
+        maxAge: 0
+    });
+    cookieUtils.setCookie(res, "refreshToken", "", {
+        httpOnly: true,
+        secure: envVars.NODE_ENV === "production",
+        sameSite: "lax",
+        path: '/',
+        maxAge: 0
+    });
+}
+
+
 
 
 export const tokenUtils = {
@@ -54,4 +72,5 @@ export const tokenUtils = {
     getRefreshToken,
     setAccessTokenCookie,
     setRefreshTokenCookie,
+    clearAuthCookies,
 }

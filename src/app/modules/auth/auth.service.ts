@@ -222,6 +222,12 @@ const refreshTokenHandler = async (refreshToken: string) => {
     };
 };
 
+const logout = async (refreshToken: string) => {
+    return await prisma.session.deleteMany({
+        where: { refreshToken }
+    });
+};
+
 export const authService = {
-    register, login, getMe, refreshTokenHandler
+    register, login, getMe, refreshTokenHandler, logout
 }

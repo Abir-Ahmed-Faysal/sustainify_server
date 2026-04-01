@@ -4,6 +4,7 @@ import AppError from "../../errorHelpers/AppError";
 import { StatusCodes } from "http-status-codes";
 import { IUserRequest } from "../../interfaces/user.interface";
 import { IVote } from "./vote.interface";
+import { QueryBuilder } from "../../utilities/QueryBuilder";
 
 const toggleVote = async (user: IUserRequest, payload: IVote) => {
   const { ideaId, type } = payload;
@@ -77,10 +78,10 @@ const toggleVote = async (user: IUserRequest, payload: IVote) => {
     const newUpVotes = Math.max(0, idea.totalUpVotes + upVoteChange);
     const newDownVotes = Math.max(0, idea.totalDownVotes + downVoteChange);
     const totalVotes = newUpVotes + newDownVotes;
-    
+
     // Calculate positive ratio
     const positiveRatio = totalVotes > 0 ? Math.ceil((newUpVotes / totalVotes) * 100) : 0;
-    
+
     // Check if it should be featured (ratio over 80)
     const isFeatured = positiveRatio > 80;
 
@@ -101,6 +102,16 @@ const toggleVote = async (user: IUserRequest, payload: IVote) => {
     };
   });
 };
+
+
+// // include idea title , minimal data for dashboard 
+// const votingActivity = async (user) => {
+//   const model = prisma.vote
+//   const queryClient = new QueryBuilder < ()
+//   const vote = await 
+// }
+
+
 
 export const voteService = {
   toggleVote,

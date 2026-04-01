@@ -158,6 +158,19 @@ exports.Prisma.SessionScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.BlogScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  slug: 'slug',
+  content: 'content',
+  image: 'image',
+  authorId: 'authorId',
+  isPublished: 'isPublished',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted'
+};
+
 exports.Prisma.CategoryScalarFieldEnum = {
   id: 'id',
   image: 'image',
@@ -293,6 +306,7 @@ exports.Prisma.ModelName = {
   User: 'User',
   Profile: 'Profile',
   Session: 'Session',
+  Blog: 'Blog',
   Category: 'Category',
   Comment: 'Comment',
   Favorite: 'Favorite',

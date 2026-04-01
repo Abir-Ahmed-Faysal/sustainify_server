@@ -83,48 +83,101 @@ const getCommentsByIdea = async (ideaId: string) => {
   return comments.filter(c => !c.parentId);
 };
 
-const updateComment = async (commentId: string, userId: string, payload: { content: string }) => {
-  const comment = await prisma.comment.findUnique({ where: { id: commentId } });
+const updateComment = async (
+  commentId: string,
+  user: IUserRequest,
+  payload: { content: string }
+) => {
 
-  if (!comment || comment.isDeleted) {
-    throw new AppError(StatusCodes.NOT_FOUND, "Comment not found");
+  // ✅ find comment (correct way)
+  const existingComment = await prisma.comment.findFirst({
+    where: {
+      id: commentId,
+      isDeleted: false,
+    },
+  });
+
+  // ❌ not found
+  if (!existingComment) {
+    throw new AppError(
+      StatusCodes.NOT_FOUND,
+      "Comment not found"
+    );
   }
 
-  if (comment.userId !== userId) {
-    throw new AppError(StatusCodes.FORBIDDEN, "You are not authorized to update this comment");
+  // ❌ not owner
+  if (existingComment.userId !== user.id) {
+    throw new AppError(
+      StatusCodes.FORBIDDEN,
+      "You are not allowed to update this comment"
+    );
   }
 
+  // ✅ optional: empty content check
+  if (!payload.content || payload.content.trim() === "") {
+    throw new AppError(
+      StatusCodes.BAD_REQUEST,
+      "Content cannot be empty"
+    );
+  }
+
+  // ✅ update
   const updatedComment = await prisma.comment.update({
     where: { id: commentId },
-    data: { content: payload.content }
+    data: { content: payload.content },
   });
 
   return updatedComment;
 };
 
-const deleteComment = async (commentId: string, userId: string, userRole: Role) => {
-  const comment = await prisma.comment.findUnique({ where: { id: commentId } });
+const deleteComment = async (
+  commentId: string,
+  user: IUserRequest
+) => {
 
-  if (!comment || comment.isDeleted) {
-    throw new AppError(StatusCodes.NOT_FOUND, "Comment not found");
+  const existingComment = await prisma.comment.findFirst({
+    where: {
+      id: commentId,
+      isDeleted: false,
+    },
+    include: {
+      idea: {
+        select: {
+          authorId: true,
+        },
+      },
+    },
+  });
+
+  // ❌ not found
+  if (!existingComment) {
+    throw new AppError(
+      StatusCodes.NOT_FOUND,
+      "Comment not found"
+    );
   }
 
-  // Only the author or an ADMIN can delete the comment
-  if (comment.userId !== userId && userRole !== Role.ADMIN) {
-    throw new AppError(StatusCodes.FORBIDDEN, "You are not authorized to delete this comment");
+  // ✅ permission check
+  const isCommentOwner = existingComment.userId === user.id;
+  const isIdeaOwner = existingComment.idea.authorId === user.id;
+  const isAdmin = user.role === Role.ADMIN;
+
+  if (!isCommentOwner && !isIdeaOwner && !isAdmin) {
+    throw new AppError(
+      StatusCodes.FORBIDDEN,
+      "You are not authorized to delete this comment"
+    );
   }
 
-  const deletedComment = await prisma.comment.update({
+  // ✅ soft delete
+  return prisma.comment.update({
     where: { id: commentId },
     data: {
       isDeleted: true,
-      deletedAt: new Date()
-    }
+      deletedAt: new Date(),
+    },
   });
-
-  return deletedComment;
 };
-
 export const commentService = {
   createComment,
   getCommentsByIdea,
