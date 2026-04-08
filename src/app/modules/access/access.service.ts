@@ -43,6 +43,7 @@ const getMyPaidPursuedIdeas = async (
     userId: string,
     queryParams: IQueryParams
 ): Promise<IAccessHistoryResponse> => {
+    console.log(userId,"here is the userid");
     try {
         const accessModel = prisma.access as any; // eslint-disable-line @typescript-eslint/no-explicit-any
 
@@ -65,13 +66,23 @@ const getMyPaidPursuedIdeas = async (
                         title: true,
                         description: true,
                         problemStatement: true,
+                        solution: true,
+                        image: true,
+                        attachments: true,
                         isPaid: true,
+                        price: true,
                         status: true,
+                        feedback: true,
+                        isFeatured: true,
                         authorId: true,
                         categoryId: true,
                         positiveRatio: true,
-                        negativeRatio: true,
+                        totalUpVotes: true,
+                        totalDownVotes: true,
                         createdAt: true,
+                        updatedAt: true,
+                        isDeleted: true,
+                        deletedAt: true,
                         author: {
                             select: {
                                 id: true,
@@ -91,6 +102,8 @@ const getMyPaidPursuedIdeas = async (
             .paginate()
             .sort()
             .execute();
+
+            console.log(result)
 
         // Filter only paid ideas
         const paidIdeas = result.data.filter((access) => (access as IAccessRecord).idea?.isPaid === true);

@@ -4,8 +4,8 @@ export interface IAccessRecord {
     ideaId: string;
     createdAt: Date;
     updatedAt: Date;
-    idea?: any; // Prisma Idea relation
-    user?: any; // Prisma User relation
+    idea?: Record<string, unknown>; // Prisma Idea relation
+    user?: Record<string, unknown>; // Prisma User relation
 }
 
 export interface IAccessHistoryResponse {

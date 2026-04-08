@@ -15,8 +15,8 @@ const toggleFavourite = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: StatusCodes.OK,
     success: true,
-    message: result.action === "REMOVED" ? "Removed from favourites successfully" : "Added to favourites successfully",
-    data: result.favourite || null,
+    message: result.action === "REMOVED" ? "Removed from favorites successfully" : "Added to favorites successfully",
+    data: result,
   });
 });
 
@@ -27,7 +27,7 @@ const getMyFavourites = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: StatusCodes.OK,
     success: true,
-    message: "Favourites retrieved successfully",
+    message: "Favorites retrieved successfully",
     data: result,
   });
 });

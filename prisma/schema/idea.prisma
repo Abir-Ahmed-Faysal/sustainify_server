@@ -33,7 +33,7 @@ model Idea {
   votes      Vote[]
   comments   Comment[]
   payments   Payment[]
-  favorites  Favorite[]
+  favourites  Favourite[]
   accessList Access[]
 
   createdAt DateTime  @default(now())

@@ -12,6 +12,25 @@ const createComment = async (user: IUserRequest, payload: ICreateComment) => {
     throw new AppError(StatusCodes.NOT_FOUND, "Idea not found");
   }
 
+  // For paid ideas, check if user has access (is author or has paid)
+  if (idea.isPaid && idea.authorId !== user.id) {
+    const accessRecord = await prisma.access.findUnique({
+      where: {
+        userId_ideaId: {
+          userId: user.id,
+          ideaId: payload.ideaId,
+        },
+      },
+    });
+
+    if (!accessRecord) {
+      throw new AppError(
+        StatusCodes.FORBIDDEN,
+        "You don't have access to this paid idea. Please purchase access first."
+      );
+    }
+  }
+
   // Check parent comment if parentId is provided
   if (payload.parentId) {
     const parentComment = await prisma.comment.findUnique({ where: { id: payload.parentId } });

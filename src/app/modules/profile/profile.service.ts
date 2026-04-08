@@ -10,6 +10,9 @@ import { IUserRequest } from "../../interfaces/user.interface";
 
 const updateProfile = async (user: IUserRequest, payload: IProfileUpdate) => {
 
+
+    console.log(payload , user,"profile update")
+
     // ✅ 1. Empty payload check
     if (!payload || Object.keys(payload).length === 0) {
         throw new AppError(

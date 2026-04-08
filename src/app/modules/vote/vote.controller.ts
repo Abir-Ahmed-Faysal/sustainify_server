@@ -16,7 +16,7 @@ const toggleVote = catchAsync(async (req: Request, res: Response) => {
     statusCode: StatusCodes.OK,
     success: true,
     message: result.action === "REMOVED" ? "Vote removed successfully" : "Vote recorded successfully",
-    data: result.idea,
+    data: result,
   });
 });
 

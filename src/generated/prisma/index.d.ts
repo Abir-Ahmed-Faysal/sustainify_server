@@ -49,10 +49,15 @@ export type Category = $Result.DefaultSelection<Prisma.$CategoryPayload>
  */
 export type Comment = $Result.DefaultSelection<Prisma.$CommentPayload>
 /**
- * Model Favorite
+ * Model ContactMessage
  * 
  */
-export type Favorite = $Result.DefaultSelection<Prisma.$FavoritePayload>
+export type ContactMessage = $Result.DefaultSelection<Prisma.$ContactMessagePayload>
+/**
+ * Model Favourite
+ * 
+ */
+export type Favourite = $Result.DefaultSelection<Prisma.$FavouritePayload>
 /**
  * Model Idea
  * 
@@ -321,14 +326,24 @@ export class PrismaClient<
   get comment(): Prisma.CommentDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.favorite`: Exposes CRUD operations for the **Favorite** model.
+   * `prisma.contactMessage`: Exposes CRUD operations for the **ContactMessage** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Favorites
-    * const favorites = await prisma.favorite.findMany()
+    * // Fetch zero or more ContactMessages
+    * const contactMessages = await prisma.contactMessage.findMany()
     * ```
     */
-  get favorite(): Prisma.FavoriteDelegate<ExtArgs, ClientOptions>;
+  get contactMessage(): Prisma.ContactMessageDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.favourite`: Exposes CRUD operations for the **Favourite** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Favourites
+    * const favourites = await prisma.favourite.findMany()
+    * ```
+    */
+  get favourite(): Prisma.FavouriteDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.idea`: Exposes CRUD operations for the **Idea** model.
@@ -810,7 +825,8 @@ export namespace Prisma {
     Blog: 'Blog',
     Category: 'Category',
     Comment: 'Comment',
-    Favorite: 'Favorite',
+    ContactMessage: 'ContactMessage',
+    Favourite: 'Favourite',
     Idea: 'Idea',
     Newsletter: 'Newsletter',
     Payment: 'Payment',
@@ -830,7 +846,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "access" | "user" | "profile" | "session" | "blog" | "category" | "comment" | "favorite" | "idea" | "newsletter" | "payment" | "vote"
+      modelProps: "access" | "user" | "profile" | "session" | "blog" | "category" | "comment" | "contactMessage" | "favourite" | "idea" | "newsletter" | "payment" | "vote"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1352,77 +1368,151 @@ export namespace Prisma {
           }
         }
       }
-      Favorite: {
-        payload: Prisma.$FavoritePayload<ExtArgs>
-        fields: Prisma.FavoriteFieldRefs
+      ContactMessage: {
+        payload: Prisma.$ContactMessagePayload<ExtArgs>
+        fields: Prisma.ContactMessageFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.FavoriteFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FavoritePayload> | null
+            args: Prisma.ContactMessageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactMessagePayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.FavoriteFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FavoritePayload>
+            args: Prisma.ContactMessageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactMessagePayload>
           }
           findFirst: {
-            args: Prisma.FavoriteFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FavoritePayload> | null
+            args: Prisma.ContactMessageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactMessagePayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.FavoriteFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FavoritePayload>
+            args: Prisma.ContactMessageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactMessagePayload>
           }
           findMany: {
-            args: Prisma.FavoriteFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FavoritePayload>[]
+            args: Prisma.ContactMessageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactMessagePayload>[]
           }
           create: {
-            args: Prisma.FavoriteCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FavoritePayload>
+            args: Prisma.ContactMessageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactMessagePayload>
           }
           createMany: {
-            args: Prisma.FavoriteCreateManyArgs<ExtArgs>
+            args: Prisma.ContactMessageCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.FavoriteCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FavoritePayload>[]
+            args: Prisma.ContactMessageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactMessagePayload>[]
           }
           delete: {
-            args: Prisma.FavoriteDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FavoritePayload>
+            args: Prisma.ContactMessageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactMessagePayload>
           }
           update: {
-            args: Prisma.FavoriteUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FavoritePayload>
+            args: Prisma.ContactMessageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactMessagePayload>
           }
           deleteMany: {
-            args: Prisma.FavoriteDeleteManyArgs<ExtArgs>
+            args: Prisma.ContactMessageDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.FavoriteUpdateManyArgs<ExtArgs>
+            args: Prisma.ContactMessageUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.FavoriteUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FavoritePayload>[]
+            args: Prisma.ContactMessageUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactMessagePayload>[]
           }
           upsert: {
-            args: Prisma.FavoriteUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FavoritePayload>
+            args: Prisma.ContactMessageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactMessagePayload>
           }
           aggregate: {
-            args: Prisma.FavoriteAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateFavorite>
+            args: Prisma.ContactMessageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateContactMessage>
           }
           groupBy: {
-            args: Prisma.FavoriteGroupByArgs<ExtArgs>
-            result: $Utils.Optional<FavoriteGroupByOutputType>[]
+            args: Prisma.ContactMessageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ContactMessageGroupByOutputType>[]
           }
           count: {
-            args: Prisma.FavoriteCountArgs<ExtArgs>
-            result: $Utils.Optional<FavoriteCountAggregateOutputType> | number
+            args: Prisma.ContactMessageCountArgs<ExtArgs>
+            result: $Utils.Optional<ContactMessageCountAggregateOutputType> | number
+          }
+        }
+      }
+      Favourite: {
+        payload: Prisma.$FavouritePayload<ExtArgs>
+        fields: Prisma.FavouriteFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FavouriteFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavouritePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FavouriteFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavouritePayload>
+          }
+          findFirst: {
+            args: Prisma.FavouriteFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavouritePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FavouriteFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavouritePayload>
+          }
+          findMany: {
+            args: Prisma.FavouriteFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavouritePayload>[]
+          }
+          create: {
+            args: Prisma.FavouriteCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavouritePayload>
+          }
+          createMany: {
+            args: Prisma.FavouriteCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FavouriteCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavouritePayload>[]
+          }
+          delete: {
+            args: Prisma.FavouriteDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavouritePayload>
+          }
+          update: {
+            args: Prisma.FavouriteUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavouritePayload>
+          }
+          deleteMany: {
+            args: Prisma.FavouriteDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FavouriteUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FavouriteUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavouritePayload>[]
+          }
+          upsert: {
+            args: Prisma.FavouriteUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FavouritePayload>
+          }
+          aggregate: {
+            args: Prisma.FavouriteAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFavourite>
+          }
+          groupBy: {
+            args: Prisma.FavouriteGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FavouriteGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FavouriteCountArgs<ExtArgs>
+            result: $Utils.Optional<FavouriteCountAggregateOutputType> | number
           }
         }
       }
@@ -1837,7 +1927,8 @@ export namespace Prisma {
     blog?: BlogOmit
     category?: CategoryOmit
     comment?: CommentOmit
-    favorite?: FavoriteOmit
+    contactMessage?: ContactMessageOmit
+    favourite?: FavouriteOmit
     idea?: IdeaOmit
     newsletter?: NewsletterOmit
     payment?: PaymentOmit
@@ -1926,7 +2017,7 @@ export namespace Prisma {
     votes: number
     comments: number
     payments: number
-    favorites: number
+    favourites: number
     accessList: number
     blogs: number
     sessions: number
@@ -1937,7 +2028,7 @@ export namespace Prisma {
     votes?: boolean | UserCountOutputTypeCountVotesArgs
     comments?: boolean | UserCountOutputTypeCountCommentsArgs
     payments?: boolean | UserCountOutputTypeCountPaymentsArgs
-    favorites?: boolean | UserCountOutputTypeCountFavoritesArgs
+    favourites?: boolean | UserCountOutputTypeCountFavouritesArgs
     accessList?: boolean | UserCountOutputTypeCountAccessListArgs
     blogs?: boolean | UserCountOutputTypeCountBlogsArgs
     sessions?: boolean | UserCountOutputTypeCountSessionsArgs
@@ -1985,8 +2076,8 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountFavoritesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FavoriteWhereInput
+  export type UserCountOutputTypeCountFavouritesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FavouriteWhereInput
   }
 
   /**
@@ -2081,7 +2172,7 @@ export namespace Prisma {
     votes: number
     comments: number
     payments: number
-    favorites: number
+    favourites: number
     accessList: number
   }
 
@@ -2089,7 +2180,7 @@ export namespace Prisma {
     votes?: boolean | IdeaCountOutputTypeCountVotesArgs
     comments?: boolean | IdeaCountOutputTypeCountCommentsArgs
     payments?: boolean | IdeaCountOutputTypeCountPaymentsArgs
-    favorites?: boolean | IdeaCountOutputTypeCountFavoritesArgs
+    favourites?: boolean | IdeaCountOutputTypeCountFavouritesArgs
     accessList?: boolean | IdeaCountOutputTypeCountAccessListArgs
   }
 
@@ -2128,8 +2219,8 @@ export namespace Prisma {
   /**
    * IdeaCountOutputType without action
    */
-  export type IdeaCountOutputTypeCountFavoritesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FavoriteWhereInput
+  export type IdeaCountOutputTypeCountFavouritesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FavouriteWhereInput
   }
 
   /**
@@ -3424,7 +3515,7 @@ export namespace Prisma {
     votes?: boolean | User$votesArgs<ExtArgs>
     comments?: boolean | User$commentsArgs<ExtArgs>
     payments?: boolean | User$paymentsArgs<ExtArgs>
-    favorites?: boolean | User$favoritesArgs<ExtArgs>
+    favourites?: boolean | User$favouritesArgs<ExtArgs>
     accessList?: boolean | User$accessListArgs<ExtArgs>
     blogs?: boolean | User$blogsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
@@ -3477,7 +3568,7 @@ export namespace Prisma {
     votes?: boolean | User$votesArgs<ExtArgs>
     comments?: boolean | User$commentsArgs<ExtArgs>
     payments?: boolean | User$paymentsArgs<ExtArgs>
-    favorites?: boolean | User$favoritesArgs<ExtArgs>
+    favourites?: boolean | User$favouritesArgs<ExtArgs>
     accessList?: boolean | User$accessListArgs<ExtArgs>
     blogs?: boolean | User$blogsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
@@ -3494,7 +3585,7 @@ export namespace Prisma {
       votes: Prisma.$VotePayload<ExtArgs>[]
       comments: Prisma.$CommentPayload<ExtArgs>[]
       payments: Prisma.$PaymentPayload<ExtArgs>[]
-      favorites: Prisma.$FavoritePayload<ExtArgs>[]
+      favourites: Prisma.$FavouritePayload<ExtArgs>[]
       accessList: Prisma.$AccessPayload<ExtArgs>[]
       blogs: Prisma.$BlogPayload<ExtArgs>[]
       sessions: Prisma.$SessionPayload<ExtArgs>[]
@@ -3909,7 +4000,7 @@ export namespace Prisma {
     votes<T extends User$votesArgs<ExtArgs> = {}>(args?: Subset<T, User$votesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     comments<T extends User$commentsArgs<ExtArgs> = {}>(args?: Subset<T, User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     payments<T extends User$paymentsArgs<ExtArgs> = {}>(args?: Subset<T, User$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    favorites<T extends User$favoritesArgs<ExtArgs> = {}>(args?: Subset<T, User$favoritesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    favourites<T extends User$favouritesArgs<ExtArgs> = {}>(args?: Subset<T, User$favouritesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavouritePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     accessList<T extends User$accessListArgs<ExtArgs> = {}>(args?: Subset<T, User$accessListArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccessPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     blogs<T extends User$blogsArgs<ExtArgs> = {}>(args?: Subset<T, User$blogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -4460,27 +4551,27 @@ export namespace Prisma {
   }
 
   /**
-   * User.favorites
+   * User.favourites
    */
-  export type User$favoritesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$favouritesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Favorite
+     * Select specific fields to fetch from the Favourite
      */
-    select?: FavoriteSelect<ExtArgs> | null
+    select?: FavouriteSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Favorite
+     * Omit specific fields from the Favourite
      */
-    omit?: FavoriteOmit<ExtArgs> | null
+    omit?: FavouriteOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteInclude<ExtArgs> | null
-    where?: FavoriteWhereInput
-    orderBy?: FavoriteOrderByWithRelationInput | FavoriteOrderByWithRelationInput[]
-    cursor?: FavoriteWhereUniqueInput
+    include?: FavouriteInclude<ExtArgs> | null
+    where?: FavouriteWhereInput
+    orderBy?: FavouriteOrderByWithRelationInput | FavouriteOrderByWithRelationInput[]
+    cursor?: FavouriteWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: FavoriteScalarFieldEnum | FavoriteScalarFieldEnum[]
+    distinct?: FavouriteScalarFieldEnum | FavouriteScalarFieldEnum[]
   }
 
   /**
@@ -10123,333 +10214,372 @@ export namespace Prisma {
 
 
   /**
-   * Model Favorite
+   * Model ContactMessage
    */
 
-  export type AggregateFavorite = {
-    _count: FavoriteCountAggregateOutputType | null
-    _min: FavoriteMinAggregateOutputType | null
-    _max: FavoriteMaxAggregateOutputType | null
+  export type AggregateContactMessage = {
+    _count: ContactMessageCountAggregateOutputType | null
+    _min: ContactMessageMinAggregateOutputType | null
+    _max: ContactMessageMaxAggregateOutputType | null
   }
 
-  export type FavoriteMinAggregateOutputType = {
+  export type ContactMessageMinAggregateOutputType = {
     id: string | null
-    userId: string | null
-    ideaId: string | null
+    name: string | null
+    email: string | null
+    subject: string | null
+    message: string | null
+    isRead: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
-  export type FavoriteMaxAggregateOutputType = {
+  export type ContactMessageMaxAggregateOutputType = {
     id: string | null
-    userId: string | null
-    ideaId: string | null
+    name: string | null
+    email: string | null
+    subject: string | null
+    message: string | null
+    isRead: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
-  export type FavoriteCountAggregateOutputType = {
+  export type ContactMessageCountAggregateOutputType = {
     id: number
-    userId: number
-    ideaId: number
+    name: number
+    email: number
+    subject: number
+    message: number
+    isRead: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
 
-  export type FavoriteMinAggregateInputType = {
+  export type ContactMessageMinAggregateInputType = {
     id?: true
-    userId?: true
-    ideaId?: true
+    name?: true
+    email?: true
+    subject?: true
+    message?: true
+    isRead?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
-  export type FavoriteMaxAggregateInputType = {
+  export type ContactMessageMaxAggregateInputType = {
     id?: true
-    userId?: true
-    ideaId?: true
+    name?: true
+    email?: true
+    subject?: true
+    message?: true
+    isRead?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
-  export type FavoriteCountAggregateInputType = {
+  export type ContactMessageCountAggregateInputType = {
     id?: true
-    userId?: true
-    ideaId?: true
+    name?: true
+    email?: true
+    subject?: true
+    message?: true
+    isRead?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
-  export type FavoriteAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ContactMessageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Favorite to aggregate.
+     * Filter which ContactMessage to aggregate.
      */
-    where?: FavoriteWhereInput
+    where?: ContactMessageWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Favorites to fetch.
+     * Determine the order of ContactMessages to fetch.
      */
-    orderBy?: FavoriteOrderByWithRelationInput | FavoriteOrderByWithRelationInput[]
+    orderBy?: ContactMessageOrderByWithRelationInput | ContactMessageOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: FavoriteWhereUniqueInput
+    cursor?: ContactMessageWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Favorites from the position of the cursor.
+     * Take `±n` ContactMessages from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Favorites.
+     * Skip the first `n` ContactMessages.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Favorites
+     * Count returned ContactMessages
     **/
-    _count?: true | FavoriteCountAggregateInputType
+    _count?: true | ContactMessageCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: FavoriteMinAggregateInputType
+    _min?: ContactMessageMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: FavoriteMaxAggregateInputType
+    _max?: ContactMessageMaxAggregateInputType
   }
 
-  export type GetFavoriteAggregateType<T extends FavoriteAggregateArgs> = {
-        [P in keyof T & keyof AggregateFavorite]: P extends '_count' | 'count'
+  export type GetContactMessageAggregateType<T extends ContactMessageAggregateArgs> = {
+        [P in keyof T & keyof AggregateContactMessage]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateFavorite[P]>
-      : GetScalarType<T[P], AggregateFavorite[P]>
+        : GetScalarType<T[P], AggregateContactMessage[P]>
+      : GetScalarType<T[P], AggregateContactMessage[P]>
   }
 
 
 
 
-  export type FavoriteGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FavoriteWhereInput
-    orderBy?: FavoriteOrderByWithAggregationInput | FavoriteOrderByWithAggregationInput[]
-    by: FavoriteScalarFieldEnum[] | FavoriteScalarFieldEnum
-    having?: FavoriteScalarWhereWithAggregatesInput
+  export type ContactMessageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContactMessageWhereInput
+    orderBy?: ContactMessageOrderByWithAggregationInput | ContactMessageOrderByWithAggregationInput[]
+    by: ContactMessageScalarFieldEnum[] | ContactMessageScalarFieldEnum
+    having?: ContactMessageScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: FavoriteCountAggregateInputType | true
-    _min?: FavoriteMinAggregateInputType
-    _max?: FavoriteMaxAggregateInputType
+    _count?: ContactMessageCountAggregateInputType | true
+    _min?: ContactMessageMinAggregateInputType
+    _max?: ContactMessageMaxAggregateInputType
   }
 
-  export type FavoriteGroupByOutputType = {
+  export type ContactMessageGroupByOutputType = {
     id: string
-    userId: string
-    ideaId: string
-    _count: FavoriteCountAggregateOutputType | null
-    _min: FavoriteMinAggregateOutputType | null
-    _max: FavoriteMaxAggregateOutputType | null
+    name: string
+    email: string
+    subject: string
+    message: string
+    isRead: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: ContactMessageCountAggregateOutputType | null
+    _min: ContactMessageMinAggregateOutputType | null
+    _max: ContactMessageMaxAggregateOutputType | null
   }
 
-  type GetFavoriteGroupByPayload<T extends FavoriteGroupByArgs> = Prisma.PrismaPromise<
+  type GetContactMessageGroupByPayload<T extends ContactMessageGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<FavoriteGroupByOutputType, T['by']> &
+      PickEnumerable<ContactMessageGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof FavoriteGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof ContactMessageGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], FavoriteGroupByOutputType[P]>
-            : GetScalarType<T[P], FavoriteGroupByOutputType[P]>
+              : GetScalarType<T[P], ContactMessageGroupByOutputType[P]>
+            : GetScalarType<T[P], ContactMessageGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type FavoriteSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ContactMessageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    userId?: boolean
-    ideaId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    idea?: boolean | IdeaDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["favorite"]>
+    name?: boolean
+    email?: boolean
+    subject?: boolean
+    message?: boolean
+    isRead?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["contactMessage"]>
 
-  export type FavoriteSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ContactMessageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    userId?: boolean
-    ideaId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    idea?: boolean | IdeaDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["favorite"]>
+    name?: boolean
+    email?: boolean
+    subject?: boolean
+    message?: boolean
+    isRead?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["contactMessage"]>
 
-  export type FavoriteSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ContactMessageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    userId?: boolean
-    ideaId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    idea?: boolean | IdeaDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["favorite"]>
+    name?: boolean
+    email?: boolean
+    subject?: boolean
+    message?: boolean
+    isRead?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["contactMessage"]>
 
-  export type FavoriteSelectScalar = {
+  export type ContactMessageSelectScalar = {
     id?: boolean
-    userId?: boolean
-    ideaId?: boolean
+    name?: boolean
+    email?: boolean
+    subject?: boolean
+    message?: boolean
+    isRead?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type FavoriteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "ideaId", ExtArgs["result"]["favorite"]>
-  export type FavoriteInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    idea?: boolean | IdeaDefaultArgs<ExtArgs>
-  }
-  export type FavoriteIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    idea?: boolean | IdeaDefaultArgs<ExtArgs>
-  }
-  export type FavoriteIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    idea?: boolean | IdeaDefaultArgs<ExtArgs>
-  }
+  export type ContactMessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "subject" | "message" | "isRead" | "createdAt" | "updatedAt", ExtArgs["result"]["contactMessage"]>
 
-  export type $FavoritePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Favorite"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-      idea: Prisma.$IdeaPayload<ExtArgs>
-    }
+  export type $ContactMessagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ContactMessage"
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      userId: string
-      ideaId: string
-    }, ExtArgs["result"]["favorite"]>
+      name: string
+      email: string
+      subject: string
+      message: string
+      isRead: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["contactMessage"]>
     composites: {}
   }
 
-  type FavoriteGetPayload<S extends boolean | null | undefined | FavoriteDefaultArgs> = $Result.GetResult<Prisma.$FavoritePayload, S>
+  type ContactMessageGetPayload<S extends boolean | null | undefined | ContactMessageDefaultArgs> = $Result.GetResult<Prisma.$ContactMessagePayload, S>
 
-  type FavoriteCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<FavoriteFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: FavoriteCountAggregateInputType | true
+  type ContactMessageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ContactMessageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ContactMessageCountAggregateInputType | true
     }
 
-  export interface FavoriteDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Favorite'], meta: { name: 'Favorite' } }
+  export interface ContactMessageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ContactMessage'], meta: { name: 'ContactMessage' } }
     /**
-     * Find zero or one Favorite that matches the filter.
-     * @param {FavoriteFindUniqueArgs} args - Arguments to find a Favorite
+     * Find zero or one ContactMessage that matches the filter.
+     * @param {ContactMessageFindUniqueArgs} args - Arguments to find a ContactMessage
      * @example
-     * // Get one Favorite
-     * const favorite = await prisma.favorite.findUnique({
+     * // Get one ContactMessage
+     * const contactMessage = await prisma.contactMessage.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends FavoriteFindUniqueArgs>(args: SelectSubset<T, FavoriteFindUniqueArgs<ExtArgs>>): Prisma__FavoriteClient<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends ContactMessageFindUniqueArgs>(args: SelectSubset<T, ContactMessageFindUniqueArgs<ExtArgs>>): Prisma__ContactMessageClient<$Result.GetResult<Prisma.$ContactMessagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Favorite that matches the filter or throw an error with `error.code='P2025'`
+     * Find one ContactMessage that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {FavoriteFindUniqueOrThrowArgs} args - Arguments to find a Favorite
+     * @param {ContactMessageFindUniqueOrThrowArgs} args - Arguments to find a ContactMessage
      * @example
-     * // Get one Favorite
-     * const favorite = await prisma.favorite.findUniqueOrThrow({
+     * // Get one ContactMessage
+     * const contactMessage = await prisma.contactMessage.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends FavoriteFindUniqueOrThrowArgs>(args: SelectSubset<T, FavoriteFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FavoriteClient<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends ContactMessageFindUniqueOrThrowArgs>(args: SelectSubset<T, ContactMessageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ContactMessageClient<$Result.GetResult<Prisma.$ContactMessagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Favorite that matches the filter.
+     * Find the first ContactMessage that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FavoriteFindFirstArgs} args - Arguments to find a Favorite
+     * @param {ContactMessageFindFirstArgs} args - Arguments to find a ContactMessage
      * @example
-     * // Get one Favorite
-     * const favorite = await prisma.favorite.findFirst({
+     * // Get one ContactMessage
+     * const contactMessage = await prisma.contactMessage.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends FavoriteFindFirstArgs>(args?: SelectSubset<T, FavoriteFindFirstArgs<ExtArgs>>): Prisma__FavoriteClient<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends ContactMessageFindFirstArgs>(args?: SelectSubset<T, ContactMessageFindFirstArgs<ExtArgs>>): Prisma__ContactMessageClient<$Result.GetResult<Prisma.$ContactMessagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Favorite that matches the filter or
+     * Find the first ContactMessage that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FavoriteFindFirstOrThrowArgs} args - Arguments to find a Favorite
+     * @param {ContactMessageFindFirstOrThrowArgs} args - Arguments to find a ContactMessage
      * @example
-     * // Get one Favorite
-     * const favorite = await prisma.favorite.findFirstOrThrow({
+     * // Get one ContactMessage
+     * const contactMessage = await prisma.contactMessage.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends FavoriteFindFirstOrThrowArgs>(args?: SelectSubset<T, FavoriteFindFirstOrThrowArgs<ExtArgs>>): Prisma__FavoriteClient<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends ContactMessageFindFirstOrThrowArgs>(args?: SelectSubset<T, ContactMessageFindFirstOrThrowArgs<ExtArgs>>): Prisma__ContactMessageClient<$Result.GetResult<Prisma.$ContactMessagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Favorites that matches the filter.
+     * Find zero or more ContactMessages that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FavoriteFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {ContactMessageFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Favorites
-     * const favorites = await prisma.favorite.findMany()
+     * // Get all ContactMessages
+     * const contactMessages = await prisma.contactMessage.findMany()
      * 
-     * // Get first 10 Favorites
-     * const favorites = await prisma.favorite.findMany({ take: 10 })
+     * // Get first 10 ContactMessages
+     * const contactMessages = await prisma.contactMessage.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const favoriteWithIdOnly = await prisma.favorite.findMany({ select: { id: true } })
+     * const contactMessageWithIdOnly = await prisma.contactMessage.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends FavoriteFindManyArgs>(args?: SelectSubset<T, FavoriteFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends ContactMessageFindManyArgs>(args?: SelectSubset<T, ContactMessageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Favorite.
-     * @param {FavoriteCreateArgs} args - Arguments to create a Favorite.
+     * Create a ContactMessage.
+     * @param {ContactMessageCreateArgs} args - Arguments to create a ContactMessage.
      * @example
-     * // Create one Favorite
-     * const Favorite = await prisma.favorite.create({
+     * // Create one ContactMessage
+     * const ContactMessage = await prisma.contactMessage.create({
      *   data: {
-     *     // ... data to create a Favorite
+     *     // ... data to create a ContactMessage
      *   }
      * })
      * 
      */
-    create<T extends FavoriteCreateArgs>(args: SelectSubset<T, FavoriteCreateArgs<ExtArgs>>): Prisma__FavoriteClient<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends ContactMessageCreateArgs>(args: SelectSubset<T, ContactMessageCreateArgs<ExtArgs>>): Prisma__ContactMessageClient<$Result.GetResult<Prisma.$ContactMessagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Favorites.
-     * @param {FavoriteCreateManyArgs} args - Arguments to create many Favorites.
+     * Create many ContactMessages.
+     * @param {ContactMessageCreateManyArgs} args - Arguments to create many ContactMessages.
      * @example
-     * // Create many Favorites
-     * const favorite = await prisma.favorite.createMany({
+     * // Create many ContactMessages
+     * const contactMessage = await prisma.contactMessage.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends FavoriteCreateManyArgs>(args?: SelectSubset<T, FavoriteCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends ContactMessageCreateManyArgs>(args?: SelectSubset<T, ContactMessageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Favorites and returns the data saved in the database.
-     * @param {FavoriteCreateManyAndReturnArgs} args - Arguments to create many Favorites.
+     * Create many ContactMessages and returns the data saved in the database.
+     * @param {ContactMessageCreateManyAndReturnArgs} args - Arguments to create many ContactMessages.
      * @example
-     * // Create many Favorites
-     * const favorite = await prisma.favorite.createManyAndReturn({
+     * // Create many ContactMessages
+     * const contactMessage = await prisma.contactMessage.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Favorites and only return the `id`
-     * const favoriteWithIdOnly = await prisma.favorite.createManyAndReturn({
+     * // Create many ContactMessages and only return the `id`
+     * const contactMessageWithIdOnly = await prisma.contactMessage.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -10459,28 +10589,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends FavoriteCreateManyAndReturnArgs>(args?: SelectSubset<T, FavoriteCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends ContactMessageCreateManyAndReturnArgs>(args?: SelectSubset<T, ContactMessageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactMessagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Favorite.
-     * @param {FavoriteDeleteArgs} args - Arguments to delete one Favorite.
+     * Delete a ContactMessage.
+     * @param {ContactMessageDeleteArgs} args - Arguments to delete one ContactMessage.
      * @example
-     * // Delete one Favorite
-     * const Favorite = await prisma.favorite.delete({
+     * // Delete one ContactMessage
+     * const ContactMessage = await prisma.contactMessage.delete({
      *   where: {
-     *     // ... filter to delete one Favorite
+     *     // ... filter to delete one ContactMessage
      *   }
      * })
      * 
      */
-    delete<T extends FavoriteDeleteArgs>(args: SelectSubset<T, FavoriteDeleteArgs<ExtArgs>>): Prisma__FavoriteClient<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends ContactMessageDeleteArgs>(args: SelectSubset<T, ContactMessageDeleteArgs<ExtArgs>>): Prisma__ContactMessageClient<$Result.GetResult<Prisma.$ContactMessagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Favorite.
-     * @param {FavoriteUpdateArgs} args - Arguments to update one Favorite.
+     * Update one ContactMessage.
+     * @param {ContactMessageUpdateArgs} args - Arguments to update one ContactMessage.
      * @example
-     * // Update one Favorite
-     * const favorite = await prisma.favorite.update({
+     * // Update one ContactMessage
+     * const contactMessage = await prisma.contactMessage.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -10490,30 +10620,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends FavoriteUpdateArgs>(args: SelectSubset<T, FavoriteUpdateArgs<ExtArgs>>): Prisma__FavoriteClient<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends ContactMessageUpdateArgs>(args: SelectSubset<T, ContactMessageUpdateArgs<ExtArgs>>): Prisma__ContactMessageClient<$Result.GetResult<Prisma.$ContactMessagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Favorites.
-     * @param {FavoriteDeleteManyArgs} args - Arguments to filter Favorites to delete.
+     * Delete zero or more ContactMessages.
+     * @param {ContactMessageDeleteManyArgs} args - Arguments to filter ContactMessages to delete.
      * @example
-     * // Delete a few Favorites
-     * const { count } = await prisma.favorite.deleteMany({
+     * // Delete a few ContactMessages
+     * const { count } = await prisma.contactMessage.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends FavoriteDeleteManyArgs>(args?: SelectSubset<T, FavoriteDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends ContactMessageDeleteManyArgs>(args?: SelectSubset<T, ContactMessageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Favorites.
+     * Update zero or more ContactMessages.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FavoriteUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {ContactMessageUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Favorites
-     * const favorite = await prisma.favorite.updateMany({
+     * // Update many ContactMessages
+     * const contactMessage = await prisma.contactMessage.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -10523,14 +10653,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends FavoriteUpdateManyArgs>(args: SelectSubset<T, FavoriteUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends ContactMessageUpdateManyArgs>(args: SelectSubset<T, ContactMessageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Favorites and returns the data updated in the database.
-     * @param {FavoriteUpdateManyAndReturnArgs} args - Arguments to update many Favorites.
+     * Update zero or more ContactMessages and returns the data updated in the database.
+     * @param {ContactMessageUpdateManyAndReturnArgs} args - Arguments to update many ContactMessages.
      * @example
-     * // Update many Favorites
-     * const favorite = await prisma.favorite.updateManyAndReturn({
+     * // Update many ContactMessages
+     * const contactMessage = await prisma.contactMessage.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -10539,8 +10669,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Favorites and only return the `id`
-     * const favoriteWithIdOnly = await prisma.favorite.updateManyAndReturn({
+     * // Update zero or more ContactMessages and only return the `id`
+     * const contactMessageWithIdOnly = await prisma.contactMessage.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -10553,56 +10683,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends FavoriteUpdateManyAndReturnArgs>(args: SelectSubset<T, FavoriteUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends ContactMessageUpdateManyAndReturnArgs>(args: SelectSubset<T, ContactMessageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactMessagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Favorite.
-     * @param {FavoriteUpsertArgs} args - Arguments to update or create a Favorite.
+     * Create or update one ContactMessage.
+     * @param {ContactMessageUpsertArgs} args - Arguments to update or create a ContactMessage.
      * @example
-     * // Update or create a Favorite
-     * const favorite = await prisma.favorite.upsert({
+     * // Update or create a ContactMessage
+     * const contactMessage = await prisma.contactMessage.upsert({
      *   create: {
-     *     // ... data to create a Favorite
+     *     // ... data to create a ContactMessage
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Favorite we want to update
+     *     // ... the filter for the ContactMessage we want to update
      *   }
      * })
      */
-    upsert<T extends FavoriteUpsertArgs>(args: SelectSubset<T, FavoriteUpsertArgs<ExtArgs>>): Prisma__FavoriteClient<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends ContactMessageUpsertArgs>(args: SelectSubset<T, ContactMessageUpsertArgs<ExtArgs>>): Prisma__ContactMessageClient<$Result.GetResult<Prisma.$ContactMessagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Favorites.
+     * Count the number of ContactMessages.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FavoriteCountArgs} args - Arguments to filter Favorites to count.
+     * @param {ContactMessageCountArgs} args - Arguments to filter ContactMessages to count.
      * @example
-     * // Count the number of Favorites
-     * const count = await prisma.favorite.count({
+     * // Count the number of ContactMessages
+     * const count = await prisma.contactMessage.count({
      *   where: {
-     *     // ... the filter for the Favorites we want to count
+     *     // ... the filter for the ContactMessages we want to count
      *   }
      * })
     **/
-    count<T extends FavoriteCountArgs>(
-      args?: Subset<T, FavoriteCountArgs>,
+    count<T extends ContactMessageCountArgs>(
+      args?: Subset<T, ContactMessageCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], FavoriteCountAggregateOutputType>
+          : GetScalarType<T['select'], ContactMessageCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Favorite.
+     * Allows you to perform aggregations operations on a ContactMessage.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FavoriteAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {ContactMessageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -10622,13 +10752,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends FavoriteAggregateArgs>(args: Subset<T, FavoriteAggregateArgs>): Prisma.PrismaPromise<GetFavoriteAggregateType<T>>
+    aggregate<T extends ContactMessageAggregateArgs>(args: Subset<T, ContactMessageAggregateArgs>): Prisma.PrismaPromise<GetContactMessageAggregateType<T>>
 
     /**
-     * Group by Favorite.
+     * Group by ContactMessage.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FavoriteGroupByArgs} args - Group by arguments.
+     * @param {ContactMessageGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -10643,14 +10773,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends FavoriteGroupByArgs,
+      T extends ContactMessageGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: FavoriteGroupByArgs['orderBy'] }
-        : { orderBy?: FavoriteGroupByArgs['orderBy'] },
+        ? { orderBy: ContactMessageGroupByArgs['orderBy'] }
+        : { orderBy?: ContactMessageGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -10699,20 +10829,1020 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, FavoriteGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFavoriteGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, ContactMessageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetContactMessageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Favorite model
+   * Fields of the ContactMessage model
    */
-  readonly fields: FavoriteFieldRefs;
+  readonly fields: ContactMessageFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Favorite.
+   * The delegate class that acts as a "Promise-like" for ContactMessage.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__FavoriteClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__ContactMessageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ContactMessage model
+   */
+  interface ContactMessageFieldRefs {
+    readonly id: FieldRef<"ContactMessage", 'String'>
+    readonly name: FieldRef<"ContactMessage", 'String'>
+    readonly email: FieldRef<"ContactMessage", 'String'>
+    readonly subject: FieldRef<"ContactMessage", 'String'>
+    readonly message: FieldRef<"ContactMessage", 'String'>
+    readonly isRead: FieldRef<"ContactMessage", 'Boolean'>
+    readonly createdAt: FieldRef<"ContactMessage", 'DateTime'>
+    readonly updatedAt: FieldRef<"ContactMessage", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ContactMessage findUnique
+   */
+  export type ContactMessageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactMessage
+     */
+    select?: ContactMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactMessage
+     */
+    omit?: ContactMessageOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactMessage to fetch.
+     */
+    where: ContactMessageWhereUniqueInput
+  }
+
+  /**
+   * ContactMessage findUniqueOrThrow
+   */
+  export type ContactMessageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactMessage
+     */
+    select?: ContactMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactMessage
+     */
+    omit?: ContactMessageOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactMessage to fetch.
+     */
+    where: ContactMessageWhereUniqueInput
+  }
+
+  /**
+   * ContactMessage findFirst
+   */
+  export type ContactMessageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactMessage
+     */
+    select?: ContactMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactMessage
+     */
+    omit?: ContactMessageOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactMessage to fetch.
+     */
+    where?: ContactMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContactMessages to fetch.
+     */
+    orderBy?: ContactMessageOrderByWithRelationInput | ContactMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ContactMessages.
+     */
+    cursor?: ContactMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContactMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContactMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContactMessages.
+     */
+    distinct?: ContactMessageScalarFieldEnum | ContactMessageScalarFieldEnum[]
+  }
+
+  /**
+   * ContactMessage findFirstOrThrow
+   */
+  export type ContactMessageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactMessage
+     */
+    select?: ContactMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactMessage
+     */
+    omit?: ContactMessageOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactMessage to fetch.
+     */
+    where?: ContactMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContactMessages to fetch.
+     */
+    orderBy?: ContactMessageOrderByWithRelationInput | ContactMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ContactMessages.
+     */
+    cursor?: ContactMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContactMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContactMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContactMessages.
+     */
+    distinct?: ContactMessageScalarFieldEnum | ContactMessageScalarFieldEnum[]
+  }
+
+  /**
+   * ContactMessage findMany
+   */
+  export type ContactMessageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactMessage
+     */
+    select?: ContactMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactMessage
+     */
+    omit?: ContactMessageOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactMessages to fetch.
+     */
+    where?: ContactMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContactMessages to fetch.
+     */
+    orderBy?: ContactMessageOrderByWithRelationInput | ContactMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ContactMessages.
+     */
+    cursor?: ContactMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContactMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContactMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContactMessages.
+     */
+    distinct?: ContactMessageScalarFieldEnum | ContactMessageScalarFieldEnum[]
+  }
+
+  /**
+   * ContactMessage create
+   */
+  export type ContactMessageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactMessage
+     */
+    select?: ContactMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactMessage
+     */
+    omit?: ContactMessageOmit<ExtArgs> | null
+    /**
+     * The data needed to create a ContactMessage.
+     */
+    data: XOR<ContactMessageCreateInput, ContactMessageUncheckedCreateInput>
+  }
+
+  /**
+   * ContactMessage createMany
+   */
+  export type ContactMessageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ContactMessages.
+     */
+    data: ContactMessageCreateManyInput | ContactMessageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ContactMessage createManyAndReturn
+   */
+  export type ContactMessageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactMessage
+     */
+    select?: ContactMessageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactMessage
+     */
+    omit?: ContactMessageOmit<ExtArgs> | null
+    /**
+     * The data used to create many ContactMessages.
+     */
+    data: ContactMessageCreateManyInput | ContactMessageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ContactMessage update
+   */
+  export type ContactMessageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactMessage
+     */
+    select?: ContactMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactMessage
+     */
+    omit?: ContactMessageOmit<ExtArgs> | null
+    /**
+     * The data needed to update a ContactMessage.
+     */
+    data: XOR<ContactMessageUpdateInput, ContactMessageUncheckedUpdateInput>
+    /**
+     * Choose, which ContactMessage to update.
+     */
+    where: ContactMessageWhereUniqueInput
+  }
+
+  /**
+   * ContactMessage updateMany
+   */
+  export type ContactMessageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ContactMessages.
+     */
+    data: XOR<ContactMessageUpdateManyMutationInput, ContactMessageUncheckedUpdateManyInput>
+    /**
+     * Filter which ContactMessages to update
+     */
+    where?: ContactMessageWhereInput
+    /**
+     * Limit how many ContactMessages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContactMessage updateManyAndReturn
+   */
+  export type ContactMessageUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactMessage
+     */
+    select?: ContactMessageSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactMessage
+     */
+    omit?: ContactMessageOmit<ExtArgs> | null
+    /**
+     * The data used to update ContactMessages.
+     */
+    data: XOR<ContactMessageUpdateManyMutationInput, ContactMessageUncheckedUpdateManyInput>
+    /**
+     * Filter which ContactMessages to update
+     */
+    where?: ContactMessageWhereInput
+    /**
+     * Limit how many ContactMessages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContactMessage upsert
+   */
+  export type ContactMessageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactMessage
+     */
+    select?: ContactMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactMessage
+     */
+    omit?: ContactMessageOmit<ExtArgs> | null
+    /**
+     * The filter to search for the ContactMessage to update in case it exists.
+     */
+    where: ContactMessageWhereUniqueInput
+    /**
+     * In case the ContactMessage found by the `where` argument doesn't exist, create a new ContactMessage with this data.
+     */
+    create: XOR<ContactMessageCreateInput, ContactMessageUncheckedCreateInput>
+    /**
+     * In case the ContactMessage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ContactMessageUpdateInput, ContactMessageUncheckedUpdateInput>
+  }
+
+  /**
+   * ContactMessage delete
+   */
+  export type ContactMessageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactMessage
+     */
+    select?: ContactMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactMessage
+     */
+    omit?: ContactMessageOmit<ExtArgs> | null
+    /**
+     * Filter which ContactMessage to delete.
+     */
+    where: ContactMessageWhereUniqueInput
+  }
+
+  /**
+   * ContactMessage deleteMany
+   */
+  export type ContactMessageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ContactMessages to delete
+     */
+    where?: ContactMessageWhereInput
+    /**
+     * Limit how many ContactMessages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContactMessage without action
+   */
+  export type ContactMessageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactMessage
+     */
+    select?: ContactMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactMessage
+     */
+    omit?: ContactMessageOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Favourite
+   */
+
+  export type AggregateFavourite = {
+    _count: FavouriteCountAggregateOutputType | null
+    _min: FavouriteMinAggregateOutputType | null
+    _max: FavouriteMaxAggregateOutputType | null
+  }
+
+  export type FavouriteMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    ideaId: string | null
+  }
+
+  export type FavouriteMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    ideaId: string | null
+  }
+
+  export type FavouriteCountAggregateOutputType = {
+    id: number
+    userId: number
+    ideaId: number
+    _all: number
+  }
+
+
+  export type FavouriteMinAggregateInputType = {
+    id?: true
+    userId?: true
+    ideaId?: true
+  }
+
+  export type FavouriteMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    ideaId?: true
+  }
+
+  export type FavouriteCountAggregateInputType = {
+    id?: true
+    userId?: true
+    ideaId?: true
+    _all?: true
+  }
+
+  export type FavouriteAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Favourite to aggregate.
+     */
+    where?: FavouriteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Favourites to fetch.
+     */
+    orderBy?: FavouriteOrderByWithRelationInput | FavouriteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FavouriteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Favourites from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Favourites.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Favourites
+    **/
+    _count?: true | FavouriteCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FavouriteMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FavouriteMaxAggregateInputType
+  }
+
+  export type GetFavouriteAggregateType<T extends FavouriteAggregateArgs> = {
+        [P in keyof T & keyof AggregateFavourite]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFavourite[P]>
+      : GetScalarType<T[P], AggregateFavourite[P]>
+  }
+
+
+
+
+  export type FavouriteGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FavouriteWhereInput
+    orderBy?: FavouriteOrderByWithAggregationInput | FavouriteOrderByWithAggregationInput[]
+    by: FavouriteScalarFieldEnum[] | FavouriteScalarFieldEnum
+    having?: FavouriteScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FavouriteCountAggregateInputType | true
+    _min?: FavouriteMinAggregateInputType
+    _max?: FavouriteMaxAggregateInputType
+  }
+
+  export type FavouriteGroupByOutputType = {
+    id: string
+    userId: string
+    ideaId: string
+    _count: FavouriteCountAggregateOutputType | null
+    _min: FavouriteMinAggregateOutputType | null
+    _max: FavouriteMaxAggregateOutputType | null
+  }
+
+  type GetFavouriteGroupByPayload<T extends FavouriteGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FavouriteGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FavouriteGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FavouriteGroupByOutputType[P]>
+            : GetScalarType<T[P], FavouriteGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FavouriteSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    ideaId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    idea?: boolean | IdeaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["favourite"]>
+
+  export type FavouriteSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    ideaId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    idea?: boolean | IdeaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["favourite"]>
+
+  export type FavouriteSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    ideaId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    idea?: boolean | IdeaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["favourite"]>
+
+  export type FavouriteSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    ideaId?: boolean
+  }
+
+  export type FavouriteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "ideaId", ExtArgs["result"]["favourite"]>
+  export type FavouriteInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    idea?: boolean | IdeaDefaultArgs<ExtArgs>
+  }
+  export type FavouriteIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    idea?: boolean | IdeaDefaultArgs<ExtArgs>
+  }
+  export type FavouriteIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    idea?: boolean | IdeaDefaultArgs<ExtArgs>
+  }
+
+  export type $FavouritePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Favourite"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      idea: Prisma.$IdeaPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      ideaId: string
+    }, ExtArgs["result"]["favourite"]>
+    composites: {}
+  }
+
+  type FavouriteGetPayload<S extends boolean | null | undefined | FavouriteDefaultArgs> = $Result.GetResult<Prisma.$FavouritePayload, S>
+
+  type FavouriteCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FavouriteFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FavouriteCountAggregateInputType | true
+    }
+
+  export interface FavouriteDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Favourite'], meta: { name: 'Favourite' } }
+    /**
+     * Find zero or one Favourite that matches the filter.
+     * @param {FavouriteFindUniqueArgs} args - Arguments to find a Favourite
+     * @example
+     * // Get one Favourite
+     * const favourite = await prisma.favourite.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FavouriteFindUniqueArgs>(args: SelectSubset<T, FavouriteFindUniqueArgs<ExtArgs>>): Prisma__FavouriteClient<$Result.GetResult<Prisma.$FavouritePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Favourite that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FavouriteFindUniqueOrThrowArgs} args - Arguments to find a Favourite
+     * @example
+     * // Get one Favourite
+     * const favourite = await prisma.favourite.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FavouriteFindUniqueOrThrowArgs>(args: SelectSubset<T, FavouriteFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FavouriteClient<$Result.GetResult<Prisma.$FavouritePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Favourite that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FavouriteFindFirstArgs} args - Arguments to find a Favourite
+     * @example
+     * // Get one Favourite
+     * const favourite = await prisma.favourite.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FavouriteFindFirstArgs>(args?: SelectSubset<T, FavouriteFindFirstArgs<ExtArgs>>): Prisma__FavouriteClient<$Result.GetResult<Prisma.$FavouritePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Favourite that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FavouriteFindFirstOrThrowArgs} args - Arguments to find a Favourite
+     * @example
+     * // Get one Favourite
+     * const favourite = await prisma.favourite.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FavouriteFindFirstOrThrowArgs>(args?: SelectSubset<T, FavouriteFindFirstOrThrowArgs<ExtArgs>>): Prisma__FavouriteClient<$Result.GetResult<Prisma.$FavouritePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Favourites that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FavouriteFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Favourites
+     * const favourites = await prisma.favourite.findMany()
+     * 
+     * // Get first 10 Favourites
+     * const favourites = await prisma.favourite.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const favouriteWithIdOnly = await prisma.favourite.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FavouriteFindManyArgs>(args?: SelectSubset<T, FavouriteFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavouritePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Favourite.
+     * @param {FavouriteCreateArgs} args - Arguments to create a Favourite.
+     * @example
+     * // Create one Favourite
+     * const Favourite = await prisma.favourite.create({
+     *   data: {
+     *     // ... data to create a Favourite
+     *   }
+     * })
+     * 
+     */
+    create<T extends FavouriteCreateArgs>(args: SelectSubset<T, FavouriteCreateArgs<ExtArgs>>): Prisma__FavouriteClient<$Result.GetResult<Prisma.$FavouritePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Favourites.
+     * @param {FavouriteCreateManyArgs} args - Arguments to create many Favourites.
+     * @example
+     * // Create many Favourites
+     * const favourite = await prisma.favourite.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FavouriteCreateManyArgs>(args?: SelectSubset<T, FavouriteCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Favourites and returns the data saved in the database.
+     * @param {FavouriteCreateManyAndReturnArgs} args - Arguments to create many Favourites.
+     * @example
+     * // Create many Favourites
+     * const favourite = await prisma.favourite.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Favourites and only return the `id`
+     * const favouriteWithIdOnly = await prisma.favourite.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FavouriteCreateManyAndReturnArgs>(args?: SelectSubset<T, FavouriteCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavouritePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Favourite.
+     * @param {FavouriteDeleteArgs} args - Arguments to delete one Favourite.
+     * @example
+     * // Delete one Favourite
+     * const Favourite = await prisma.favourite.delete({
+     *   where: {
+     *     // ... filter to delete one Favourite
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FavouriteDeleteArgs>(args: SelectSubset<T, FavouriteDeleteArgs<ExtArgs>>): Prisma__FavouriteClient<$Result.GetResult<Prisma.$FavouritePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Favourite.
+     * @param {FavouriteUpdateArgs} args - Arguments to update one Favourite.
+     * @example
+     * // Update one Favourite
+     * const favourite = await prisma.favourite.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FavouriteUpdateArgs>(args: SelectSubset<T, FavouriteUpdateArgs<ExtArgs>>): Prisma__FavouriteClient<$Result.GetResult<Prisma.$FavouritePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Favourites.
+     * @param {FavouriteDeleteManyArgs} args - Arguments to filter Favourites to delete.
+     * @example
+     * // Delete a few Favourites
+     * const { count } = await prisma.favourite.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FavouriteDeleteManyArgs>(args?: SelectSubset<T, FavouriteDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Favourites.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FavouriteUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Favourites
+     * const favourite = await prisma.favourite.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FavouriteUpdateManyArgs>(args: SelectSubset<T, FavouriteUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Favourites and returns the data updated in the database.
+     * @param {FavouriteUpdateManyAndReturnArgs} args - Arguments to update many Favourites.
+     * @example
+     * // Update many Favourites
+     * const favourite = await prisma.favourite.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Favourites and only return the `id`
+     * const favouriteWithIdOnly = await prisma.favourite.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FavouriteUpdateManyAndReturnArgs>(args: SelectSubset<T, FavouriteUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavouritePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Favourite.
+     * @param {FavouriteUpsertArgs} args - Arguments to update or create a Favourite.
+     * @example
+     * // Update or create a Favourite
+     * const favourite = await prisma.favourite.upsert({
+     *   create: {
+     *     // ... data to create a Favourite
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Favourite we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FavouriteUpsertArgs>(args: SelectSubset<T, FavouriteUpsertArgs<ExtArgs>>): Prisma__FavouriteClient<$Result.GetResult<Prisma.$FavouritePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Favourites.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FavouriteCountArgs} args - Arguments to filter Favourites to count.
+     * @example
+     * // Count the number of Favourites
+     * const count = await prisma.favourite.count({
+     *   where: {
+     *     // ... the filter for the Favourites we want to count
+     *   }
+     * })
+    **/
+    count<T extends FavouriteCountArgs>(
+      args?: Subset<T, FavouriteCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FavouriteCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Favourite.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FavouriteAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FavouriteAggregateArgs>(args: Subset<T, FavouriteAggregateArgs>): Prisma.PrismaPromise<GetFavouriteAggregateType<T>>
+
+    /**
+     * Group by Favourite.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FavouriteGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FavouriteGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FavouriteGroupByArgs['orderBy'] }
+        : { orderBy?: FavouriteGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FavouriteGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFavouriteGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Favourite model
+   */
+  readonly fields: FavouriteFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Favourite.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FavouriteClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     idea<T extends IdeaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, IdeaDefaultArgs<ExtArgs>>): Prisma__IdeaClient<$Result.GetResult<Prisma.$IdeaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
@@ -10742,428 +11872,428 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Favorite model
+   * Fields of the Favourite model
    */
-  interface FavoriteFieldRefs {
-    readonly id: FieldRef<"Favorite", 'String'>
-    readonly userId: FieldRef<"Favorite", 'String'>
-    readonly ideaId: FieldRef<"Favorite", 'String'>
+  interface FavouriteFieldRefs {
+    readonly id: FieldRef<"Favourite", 'String'>
+    readonly userId: FieldRef<"Favourite", 'String'>
+    readonly ideaId: FieldRef<"Favourite", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * Favorite findUnique
+   * Favourite findUnique
    */
-  export type FavoriteFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Favorite
+     * Select specific fields to fetch from the Favourite
      */
-    select?: FavoriteSelect<ExtArgs> | null
+    select?: FavouriteSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Favorite
+     * Omit specific fields from the Favourite
      */
-    omit?: FavoriteOmit<ExtArgs> | null
+    omit?: FavouriteOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteInclude<ExtArgs> | null
+    include?: FavouriteInclude<ExtArgs> | null
     /**
-     * Filter, which Favorite to fetch.
+     * Filter, which Favourite to fetch.
      */
-    where: FavoriteWhereUniqueInput
+    where: FavouriteWhereUniqueInput
   }
 
   /**
-   * Favorite findUniqueOrThrow
+   * Favourite findUniqueOrThrow
    */
-  export type FavoriteFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Favorite
+     * Select specific fields to fetch from the Favourite
      */
-    select?: FavoriteSelect<ExtArgs> | null
+    select?: FavouriteSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Favorite
+     * Omit specific fields from the Favourite
      */
-    omit?: FavoriteOmit<ExtArgs> | null
+    omit?: FavouriteOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteInclude<ExtArgs> | null
+    include?: FavouriteInclude<ExtArgs> | null
     /**
-     * Filter, which Favorite to fetch.
+     * Filter, which Favourite to fetch.
      */
-    where: FavoriteWhereUniqueInput
+    where: FavouriteWhereUniqueInput
   }
 
   /**
-   * Favorite findFirst
+   * Favourite findFirst
    */
-  export type FavoriteFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Favorite
+     * Select specific fields to fetch from the Favourite
      */
-    select?: FavoriteSelect<ExtArgs> | null
+    select?: FavouriteSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Favorite
+     * Omit specific fields from the Favourite
      */
-    omit?: FavoriteOmit<ExtArgs> | null
+    omit?: FavouriteOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteInclude<ExtArgs> | null
+    include?: FavouriteInclude<ExtArgs> | null
     /**
-     * Filter, which Favorite to fetch.
+     * Filter, which Favourite to fetch.
      */
-    where?: FavoriteWhereInput
+    where?: FavouriteWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Favorites to fetch.
+     * Determine the order of Favourites to fetch.
      */
-    orderBy?: FavoriteOrderByWithRelationInput | FavoriteOrderByWithRelationInput[]
+    orderBy?: FavouriteOrderByWithRelationInput | FavouriteOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Favorites.
+     * Sets the position for searching for Favourites.
      */
-    cursor?: FavoriteWhereUniqueInput
+    cursor?: FavouriteWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Favorites from the position of the cursor.
+     * Take `±n` Favourites from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Favorites.
+     * Skip the first `n` Favourites.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Favorites.
+     * Filter by unique combinations of Favourites.
      */
-    distinct?: FavoriteScalarFieldEnum | FavoriteScalarFieldEnum[]
+    distinct?: FavouriteScalarFieldEnum | FavouriteScalarFieldEnum[]
   }
 
   /**
-   * Favorite findFirstOrThrow
+   * Favourite findFirstOrThrow
    */
-  export type FavoriteFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Favorite
+     * Select specific fields to fetch from the Favourite
      */
-    select?: FavoriteSelect<ExtArgs> | null
+    select?: FavouriteSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Favorite
+     * Omit specific fields from the Favourite
      */
-    omit?: FavoriteOmit<ExtArgs> | null
+    omit?: FavouriteOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteInclude<ExtArgs> | null
+    include?: FavouriteInclude<ExtArgs> | null
     /**
-     * Filter, which Favorite to fetch.
+     * Filter, which Favourite to fetch.
      */
-    where?: FavoriteWhereInput
+    where?: FavouriteWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Favorites to fetch.
+     * Determine the order of Favourites to fetch.
      */
-    orderBy?: FavoriteOrderByWithRelationInput | FavoriteOrderByWithRelationInput[]
+    orderBy?: FavouriteOrderByWithRelationInput | FavouriteOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Favorites.
+     * Sets the position for searching for Favourites.
      */
-    cursor?: FavoriteWhereUniqueInput
+    cursor?: FavouriteWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Favorites from the position of the cursor.
+     * Take `±n` Favourites from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Favorites.
+     * Skip the first `n` Favourites.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Favorites.
+     * Filter by unique combinations of Favourites.
      */
-    distinct?: FavoriteScalarFieldEnum | FavoriteScalarFieldEnum[]
+    distinct?: FavouriteScalarFieldEnum | FavouriteScalarFieldEnum[]
   }
 
   /**
-   * Favorite findMany
+   * Favourite findMany
    */
-  export type FavoriteFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Favorite
+     * Select specific fields to fetch from the Favourite
      */
-    select?: FavoriteSelect<ExtArgs> | null
+    select?: FavouriteSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Favorite
+     * Omit specific fields from the Favourite
      */
-    omit?: FavoriteOmit<ExtArgs> | null
+    omit?: FavouriteOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteInclude<ExtArgs> | null
+    include?: FavouriteInclude<ExtArgs> | null
     /**
-     * Filter, which Favorites to fetch.
+     * Filter, which Favourites to fetch.
      */
-    where?: FavoriteWhereInput
+    where?: FavouriteWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Favorites to fetch.
+     * Determine the order of Favourites to fetch.
      */
-    orderBy?: FavoriteOrderByWithRelationInput | FavoriteOrderByWithRelationInput[]
+    orderBy?: FavouriteOrderByWithRelationInput | FavouriteOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Favorites.
+     * Sets the position for listing Favourites.
      */
-    cursor?: FavoriteWhereUniqueInput
+    cursor?: FavouriteWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Favorites from the position of the cursor.
+     * Take `±n` Favourites from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Favorites.
+     * Skip the first `n` Favourites.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Favorites.
+     * Filter by unique combinations of Favourites.
      */
-    distinct?: FavoriteScalarFieldEnum | FavoriteScalarFieldEnum[]
+    distinct?: FavouriteScalarFieldEnum | FavouriteScalarFieldEnum[]
   }
 
   /**
-   * Favorite create
+   * Favourite create
    */
-  export type FavoriteCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Favorite
+     * Select specific fields to fetch from the Favourite
      */
-    select?: FavoriteSelect<ExtArgs> | null
+    select?: FavouriteSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Favorite
+     * Omit specific fields from the Favourite
      */
-    omit?: FavoriteOmit<ExtArgs> | null
+    omit?: FavouriteOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteInclude<ExtArgs> | null
+    include?: FavouriteInclude<ExtArgs> | null
     /**
-     * The data needed to create a Favorite.
+     * The data needed to create a Favourite.
      */
-    data: XOR<FavoriteCreateInput, FavoriteUncheckedCreateInput>
+    data: XOR<FavouriteCreateInput, FavouriteUncheckedCreateInput>
   }
 
   /**
-   * Favorite createMany
+   * Favourite createMany
    */
-  export type FavoriteCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Favorites.
+     * The data used to create many Favourites.
      */
-    data: FavoriteCreateManyInput | FavoriteCreateManyInput[]
+    data: FavouriteCreateManyInput | FavouriteCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Favorite createManyAndReturn
+   * Favourite createManyAndReturn
    */
-  export type FavoriteCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Favorite
+     * Select specific fields to fetch from the Favourite
      */
-    select?: FavoriteSelectCreateManyAndReturn<ExtArgs> | null
+    select?: FavouriteSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Favorite
+     * Omit specific fields from the Favourite
      */
-    omit?: FavoriteOmit<ExtArgs> | null
+    omit?: FavouriteOmit<ExtArgs> | null
     /**
-     * The data used to create many Favorites.
+     * The data used to create many Favourites.
      */
-    data: FavoriteCreateManyInput | FavoriteCreateManyInput[]
+    data: FavouriteCreateManyInput | FavouriteCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: FavouriteIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Favorite update
+   * Favourite update
    */
-  export type FavoriteUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Favorite
+     * Select specific fields to fetch from the Favourite
      */
-    select?: FavoriteSelect<ExtArgs> | null
+    select?: FavouriteSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Favorite
+     * Omit specific fields from the Favourite
      */
-    omit?: FavoriteOmit<ExtArgs> | null
+    omit?: FavouriteOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteInclude<ExtArgs> | null
+    include?: FavouriteInclude<ExtArgs> | null
     /**
-     * The data needed to update a Favorite.
+     * The data needed to update a Favourite.
      */
-    data: XOR<FavoriteUpdateInput, FavoriteUncheckedUpdateInput>
+    data: XOR<FavouriteUpdateInput, FavouriteUncheckedUpdateInput>
     /**
-     * Choose, which Favorite to update.
+     * Choose, which Favourite to update.
      */
-    where: FavoriteWhereUniqueInput
+    where: FavouriteWhereUniqueInput
   }
 
   /**
-   * Favorite updateMany
+   * Favourite updateMany
    */
-  export type FavoriteUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Favorites.
+     * The data used to update Favourites.
      */
-    data: XOR<FavoriteUpdateManyMutationInput, FavoriteUncheckedUpdateManyInput>
+    data: XOR<FavouriteUpdateManyMutationInput, FavouriteUncheckedUpdateManyInput>
     /**
-     * Filter which Favorites to update
+     * Filter which Favourites to update
      */
-    where?: FavoriteWhereInput
+    where?: FavouriteWhereInput
     /**
-     * Limit how many Favorites to update.
+     * Limit how many Favourites to update.
      */
     limit?: number
   }
 
   /**
-   * Favorite updateManyAndReturn
+   * Favourite updateManyAndReturn
    */
-  export type FavoriteUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Favorite
+     * Select specific fields to fetch from the Favourite
      */
-    select?: FavoriteSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: FavouriteSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Favorite
+     * Omit specific fields from the Favourite
      */
-    omit?: FavoriteOmit<ExtArgs> | null
+    omit?: FavouriteOmit<ExtArgs> | null
     /**
-     * The data used to update Favorites.
+     * The data used to update Favourites.
      */
-    data: XOR<FavoriteUpdateManyMutationInput, FavoriteUncheckedUpdateManyInput>
+    data: XOR<FavouriteUpdateManyMutationInput, FavouriteUncheckedUpdateManyInput>
     /**
-     * Filter which Favorites to update
+     * Filter which Favourites to update
      */
-    where?: FavoriteWhereInput
+    where?: FavouriteWhereInput
     /**
-     * Limit how many Favorites to update.
+     * Limit how many Favourites to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: FavouriteIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Favorite upsert
+   * Favourite upsert
    */
-  export type FavoriteUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Favorite
+     * Select specific fields to fetch from the Favourite
      */
-    select?: FavoriteSelect<ExtArgs> | null
+    select?: FavouriteSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Favorite
+     * Omit specific fields from the Favourite
      */
-    omit?: FavoriteOmit<ExtArgs> | null
+    omit?: FavouriteOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteInclude<ExtArgs> | null
+    include?: FavouriteInclude<ExtArgs> | null
     /**
-     * The filter to search for the Favorite to update in case it exists.
+     * The filter to search for the Favourite to update in case it exists.
      */
-    where: FavoriteWhereUniqueInput
+    where: FavouriteWhereUniqueInput
     /**
-     * In case the Favorite found by the `where` argument doesn't exist, create a new Favorite with this data.
+     * In case the Favourite found by the `where` argument doesn't exist, create a new Favourite with this data.
      */
-    create: XOR<FavoriteCreateInput, FavoriteUncheckedCreateInput>
+    create: XOR<FavouriteCreateInput, FavouriteUncheckedCreateInput>
     /**
-     * In case the Favorite was found with the provided `where` argument, update it with this data.
+     * In case the Favourite was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<FavoriteUpdateInput, FavoriteUncheckedUpdateInput>
+    update: XOR<FavouriteUpdateInput, FavouriteUncheckedUpdateInput>
   }
 
   /**
-   * Favorite delete
+   * Favourite delete
    */
-  export type FavoriteDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Favorite
+     * Select specific fields to fetch from the Favourite
      */
-    select?: FavoriteSelect<ExtArgs> | null
+    select?: FavouriteSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Favorite
+     * Omit specific fields from the Favourite
      */
-    omit?: FavoriteOmit<ExtArgs> | null
+    omit?: FavouriteOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteInclude<ExtArgs> | null
+    include?: FavouriteInclude<ExtArgs> | null
     /**
-     * Filter which Favorite to delete.
+     * Filter which Favourite to delete.
      */
-    where: FavoriteWhereUniqueInput
+    where: FavouriteWhereUniqueInput
   }
 
   /**
-   * Favorite deleteMany
+   * Favourite deleteMany
    */
-  export type FavoriteDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Favorites to delete
+     * Filter which Favourites to delete
      */
-    where?: FavoriteWhereInput
+    where?: FavouriteWhereInput
     /**
-     * Limit how many Favorites to delete.
+     * Limit how many Favourites to delete.
      */
     limit?: number
   }
 
   /**
-   * Favorite without action
+   * Favourite without action
    */
-  export type FavoriteDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FavouriteDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Favorite
+     * Select specific fields to fetch from the Favourite
      */
-    select?: FavoriteSelect<ExtArgs> | null
+    select?: FavouriteSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Favorite
+     * Omit specific fields from the Favourite
      */
-    omit?: FavoriteOmit<ExtArgs> | null
+    omit?: FavouriteOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteInclude<ExtArgs> | null
+    include?: FavouriteInclude<ExtArgs> | null
   }
 
 
@@ -11506,7 +12636,7 @@ export namespace Prisma {
     votes?: boolean | Idea$votesArgs<ExtArgs>
     comments?: boolean | Idea$commentsArgs<ExtArgs>
     payments?: boolean | Idea$paymentsArgs<ExtArgs>
-    favorites?: boolean | Idea$favoritesArgs<ExtArgs>
+    favourites?: boolean | Idea$favouritesArgs<ExtArgs>
     accessList?: boolean | Idea$accessListArgs<ExtArgs>
     _count?: boolean | IdeaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["idea"]>
@@ -11594,7 +12724,7 @@ export namespace Prisma {
     votes?: boolean | Idea$votesArgs<ExtArgs>
     comments?: boolean | Idea$commentsArgs<ExtArgs>
     payments?: boolean | Idea$paymentsArgs<ExtArgs>
-    favorites?: boolean | Idea$favoritesArgs<ExtArgs>
+    favourites?: boolean | Idea$favouritesArgs<ExtArgs>
     accessList?: boolean | Idea$accessListArgs<ExtArgs>
     _count?: boolean | IdeaCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -11615,7 +12745,7 @@ export namespace Prisma {
       votes: Prisma.$VotePayload<ExtArgs>[]
       comments: Prisma.$CommentPayload<ExtArgs>[]
       payments: Prisma.$PaymentPayload<ExtArgs>[]
-      favorites: Prisma.$FavoritePayload<ExtArgs>[]
+      favourites: Prisma.$FavouritePayload<ExtArgs>[]
       accessList: Prisma.$AccessPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -12039,7 +13169,7 @@ export namespace Prisma {
     votes<T extends Idea$votesArgs<ExtArgs> = {}>(args?: Subset<T, Idea$votesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     comments<T extends Idea$commentsArgs<ExtArgs> = {}>(args?: Subset<T, Idea$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     payments<T extends Idea$paymentsArgs<ExtArgs> = {}>(args?: Subset<T, Idea$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    favorites<T extends Idea$favoritesArgs<ExtArgs> = {}>(args?: Subset<T, Idea$favoritesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    favourites<T extends Idea$favouritesArgs<ExtArgs> = {}>(args?: Subset<T, Idea$favouritesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavouritePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     accessList<T extends Idea$accessListArgs<ExtArgs> = {}>(args?: Subset<T, Idea$accessListArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccessPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -12564,27 +13694,27 @@ export namespace Prisma {
   }
 
   /**
-   * Idea.favorites
+   * Idea.favourites
    */
-  export type Idea$favoritesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Idea$favouritesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Favorite
+     * Select specific fields to fetch from the Favourite
      */
-    select?: FavoriteSelect<ExtArgs> | null
+    select?: FavouriteSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Favorite
+     * Omit specific fields from the Favourite
      */
-    omit?: FavoriteOmit<ExtArgs> | null
+    omit?: FavouriteOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FavoriteInclude<ExtArgs> | null
-    where?: FavoriteWhereInput
-    orderBy?: FavoriteOrderByWithRelationInput | FavoriteOrderByWithRelationInput[]
-    cursor?: FavoriteWhereUniqueInput
+    include?: FavouriteInclude<ExtArgs> | null
+    where?: FavouriteWhereInput
+    orderBy?: FavouriteOrderByWithRelationInput | FavouriteOrderByWithRelationInput[]
+    cursor?: FavouriteWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: FavoriteScalarFieldEnum | FavoriteScalarFieldEnum[]
+    distinct?: FavouriteScalarFieldEnum | FavouriteScalarFieldEnum[]
   }
 
   /**
@@ -16001,13 +17131,27 @@ export namespace Prisma {
   export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
 
 
-  export const FavoriteScalarFieldEnum: {
+  export const ContactMessageScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    email: 'email',
+    subject: 'subject',
+    message: 'message',
+    isRead: 'isRead',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ContactMessageScalarFieldEnum = (typeof ContactMessageScalarFieldEnum)[keyof typeof ContactMessageScalarFieldEnum]
+
+
+  export const FavouriteScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
     ideaId: 'ideaId'
   };
 
-  export type FavoriteScalarFieldEnum = (typeof FavoriteScalarFieldEnum)[keyof typeof FavoriteScalarFieldEnum]
+  export type FavouriteScalarFieldEnum = (typeof FavouriteScalarFieldEnum)[keyof typeof FavouriteScalarFieldEnum]
 
 
   export const IdeaScalarFieldEnum: {
@@ -16337,7 +17481,7 @@ export namespace Prisma {
     votes?: VoteListRelationFilter
     comments?: CommentListRelationFilter
     payments?: PaymentListRelationFilter
-    favorites?: FavoriteListRelationFilter
+    favourites?: FavouriteListRelationFilter
     accessList?: AccessListRelationFilter
     blogs?: BlogListRelationFilter
     sessions?: SessionListRelationFilter
@@ -16359,7 +17503,7 @@ export namespace Prisma {
     votes?: VoteOrderByRelationAggregateInput
     comments?: CommentOrderByRelationAggregateInput
     payments?: PaymentOrderByRelationAggregateInput
-    favorites?: FavoriteOrderByRelationAggregateInput
+    favourites?: FavouriteOrderByRelationAggregateInput
     accessList?: AccessOrderByRelationAggregateInput
     blogs?: BlogOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
@@ -16384,7 +17528,7 @@ export namespace Prisma {
     votes?: VoteListRelationFilter
     comments?: CommentListRelationFilter
     payments?: PaymentListRelationFilter
-    favorites?: FavoriteListRelationFilter
+    favourites?: FavouriteListRelationFilter
     accessList?: AccessListRelationFilter
     blogs?: BlogListRelationFilter
     sessions?: SessionListRelationFilter
@@ -16766,18 +17910,85 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableWithAggregatesFilter<"Comment"> | Date | string | null
   }
 
-  export type FavoriteWhereInput = {
-    AND?: FavoriteWhereInput | FavoriteWhereInput[]
-    OR?: FavoriteWhereInput[]
-    NOT?: FavoriteWhereInput | FavoriteWhereInput[]
-    id?: StringFilter<"Favorite"> | string
-    userId?: StringFilter<"Favorite"> | string
-    ideaId?: StringFilter<"Favorite"> | string
+  export type ContactMessageWhereInput = {
+    AND?: ContactMessageWhereInput | ContactMessageWhereInput[]
+    OR?: ContactMessageWhereInput[]
+    NOT?: ContactMessageWhereInput | ContactMessageWhereInput[]
+    id?: StringFilter<"ContactMessage"> | string
+    name?: StringFilter<"ContactMessage"> | string
+    email?: StringFilter<"ContactMessage"> | string
+    subject?: StringFilter<"ContactMessage"> | string
+    message?: StringFilter<"ContactMessage"> | string
+    isRead?: BoolFilter<"ContactMessage"> | boolean
+    createdAt?: DateTimeFilter<"ContactMessage"> | Date | string
+    updatedAt?: DateTimeFilter<"ContactMessage"> | Date | string
+  }
+
+  export type ContactMessageOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    subject?: SortOrder
+    message?: SortOrder
+    isRead?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactMessageWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ContactMessageWhereInput | ContactMessageWhereInput[]
+    OR?: ContactMessageWhereInput[]
+    NOT?: ContactMessageWhereInput | ContactMessageWhereInput[]
+    name?: StringFilter<"ContactMessage"> | string
+    email?: StringFilter<"ContactMessage"> | string
+    subject?: StringFilter<"ContactMessage"> | string
+    message?: StringFilter<"ContactMessage"> | string
+    isRead?: BoolFilter<"ContactMessage"> | boolean
+    createdAt?: DateTimeFilter<"ContactMessage"> | Date | string
+    updatedAt?: DateTimeFilter<"ContactMessage"> | Date | string
+  }, "id">
+
+  export type ContactMessageOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    subject?: SortOrder
+    message?: SortOrder
+    isRead?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ContactMessageCountOrderByAggregateInput
+    _max?: ContactMessageMaxOrderByAggregateInput
+    _min?: ContactMessageMinOrderByAggregateInput
+  }
+
+  export type ContactMessageScalarWhereWithAggregatesInput = {
+    AND?: ContactMessageScalarWhereWithAggregatesInput | ContactMessageScalarWhereWithAggregatesInput[]
+    OR?: ContactMessageScalarWhereWithAggregatesInput[]
+    NOT?: ContactMessageScalarWhereWithAggregatesInput | ContactMessageScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ContactMessage"> | string
+    name?: StringWithAggregatesFilter<"ContactMessage"> | string
+    email?: StringWithAggregatesFilter<"ContactMessage"> | string
+    subject?: StringWithAggregatesFilter<"ContactMessage"> | string
+    message?: StringWithAggregatesFilter<"ContactMessage"> | string
+    isRead?: BoolWithAggregatesFilter<"ContactMessage"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"ContactMessage"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ContactMessage"> | Date | string
+  }
+
+  export type FavouriteWhereInput = {
+    AND?: FavouriteWhereInput | FavouriteWhereInput[]
+    OR?: FavouriteWhereInput[]
+    NOT?: FavouriteWhereInput | FavouriteWhereInput[]
+    id?: StringFilter<"Favourite"> | string
+    userId?: StringFilter<"Favourite"> | string
+    ideaId?: StringFilter<"Favourite"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     idea?: XOR<IdeaScalarRelationFilter, IdeaWhereInput>
   }
 
-  export type FavoriteOrderByWithRelationInput = {
+  export type FavouriteOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
     ideaId?: SortOrder
@@ -16785,34 +17996,34 @@ export namespace Prisma {
     idea?: IdeaOrderByWithRelationInput
   }
 
-  export type FavoriteWhereUniqueInput = Prisma.AtLeast<{
+  export type FavouriteWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    userId_ideaId?: FavoriteUserIdIdeaIdCompoundUniqueInput
-    AND?: FavoriteWhereInput | FavoriteWhereInput[]
-    OR?: FavoriteWhereInput[]
-    NOT?: FavoriteWhereInput | FavoriteWhereInput[]
-    userId?: StringFilter<"Favorite"> | string
-    ideaId?: StringFilter<"Favorite"> | string
+    userId_ideaId?: FavouriteUserIdIdeaIdCompoundUniqueInput
+    AND?: FavouriteWhereInput | FavouriteWhereInput[]
+    OR?: FavouriteWhereInput[]
+    NOT?: FavouriteWhereInput | FavouriteWhereInput[]
+    userId?: StringFilter<"Favourite"> | string
+    ideaId?: StringFilter<"Favourite"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     idea?: XOR<IdeaScalarRelationFilter, IdeaWhereInput>
   }, "id" | "userId_ideaId">
 
-  export type FavoriteOrderByWithAggregationInput = {
+  export type FavouriteOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
     ideaId?: SortOrder
-    _count?: FavoriteCountOrderByAggregateInput
-    _max?: FavoriteMaxOrderByAggregateInput
-    _min?: FavoriteMinOrderByAggregateInput
+    _count?: FavouriteCountOrderByAggregateInput
+    _max?: FavouriteMaxOrderByAggregateInput
+    _min?: FavouriteMinOrderByAggregateInput
   }
 
-  export type FavoriteScalarWhereWithAggregatesInput = {
-    AND?: FavoriteScalarWhereWithAggregatesInput | FavoriteScalarWhereWithAggregatesInput[]
-    OR?: FavoriteScalarWhereWithAggregatesInput[]
-    NOT?: FavoriteScalarWhereWithAggregatesInput | FavoriteScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Favorite"> | string
-    userId?: StringWithAggregatesFilter<"Favorite"> | string
-    ideaId?: StringWithAggregatesFilter<"Favorite"> | string
+  export type FavouriteScalarWhereWithAggregatesInput = {
+    AND?: FavouriteScalarWhereWithAggregatesInput | FavouriteScalarWhereWithAggregatesInput[]
+    OR?: FavouriteScalarWhereWithAggregatesInput[]
+    NOT?: FavouriteScalarWhereWithAggregatesInput | FavouriteScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Favourite"> | string
+    userId?: StringWithAggregatesFilter<"Favourite"> | string
+    ideaId?: StringWithAggregatesFilter<"Favourite"> | string
   }
 
   export type IdeaWhereInput = {
@@ -16845,7 +18056,7 @@ export namespace Prisma {
     votes?: VoteListRelationFilter
     comments?: CommentListRelationFilter
     payments?: PaymentListRelationFilter
-    favorites?: FavoriteListRelationFilter
+    favourites?: FavouriteListRelationFilter
     accessList?: AccessListRelationFilter
   }
 
@@ -16876,7 +18087,7 @@ export namespace Prisma {
     votes?: VoteOrderByRelationAggregateInput
     comments?: CommentOrderByRelationAggregateInput
     payments?: PaymentOrderByRelationAggregateInput
-    favorites?: FavoriteOrderByRelationAggregateInput
+    favourites?: FavouriteOrderByRelationAggregateInput
     accessList?: AccessOrderByRelationAggregateInput
   }
 
@@ -16910,7 +18121,7 @@ export namespace Prisma {
     votes?: VoteListRelationFilter
     comments?: CommentListRelationFilter
     payments?: PaymentListRelationFilter
-    favorites?: FavoriteListRelationFilter
+    favourites?: FavouriteListRelationFilter
     accessList?: AccessListRelationFilter
   }, "id">
 
@@ -17246,7 +18457,7 @@ export namespace Prisma {
     votes?: VoteCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
     payments?: PaymentCreateNestedManyWithoutUserInput
-    favorites?: FavoriteCreateNestedManyWithoutUserInput
+    favourites?: FavouriteCreateNestedManyWithoutUserInput
     accessList?: AccessCreateNestedManyWithoutUserInput
     blogs?: BlogCreateNestedManyWithoutAuthorInput
     sessions?: SessionCreateNestedManyWithoutUserInput
@@ -17268,7 +18479,7 @@ export namespace Prisma {
     votes?: VoteUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     payments?: PaymentUncheckedCreateNestedManyWithoutUserInput
-    favorites?: FavoriteUncheckedCreateNestedManyWithoutUserInput
+    favourites?: FavouriteUncheckedCreateNestedManyWithoutUserInput
     accessList?: AccessUncheckedCreateNestedManyWithoutUserInput
     blogs?: BlogUncheckedCreateNestedManyWithoutAuthorInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
@@ -17290,7 +18501,7 @@ export namespace Prisma {
     votes?: VoteUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
     payments?: PaymentUpdateManyWithoutUserNestedInput
-    favorites?: FavoriteUpdateManyWithoutUserNestedInput
+    favourites?: FavouriteUpdateManyWithoutUserNestedInput
     accessList?: AccessUpdateManyWithoutUserNestedInput
     blogs?: BlogUpdateManyWithoutAuthorNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
@@ -17312,7 +18523,7 @@ export namespace Prisma {
     votes?: VoteUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutUserNestedInput
-    favorites?: FavoriteUncheckedUpdateManyWithoutUserNestedInput
+    favourites?: FavouriteUncheckedUpdateManyWithoutUserNestedInput
     accessList?: AccessUncheckedUpdateManyWithoutUserNestedInput
     blogs?: BlogUncheckedUpdateManyWithoutAuthorNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -17723,41 +18934,118 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type FavoriteCreateInput = {
+  export type ContactMessageCreateInput = {
     id?: string
-    user: UserCreateNestedOneWithoutFavoritesInput
-    idea: IdeaCreateNestedOneWithoutFavoritesInput
+    name: string
+    email: string
+    subject: string
+    message: string
+    isRead?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type FavoriteUncheckedCreateInput = {
+  export type ContactMessageUncheckedCreateInput = {
+    id?: string
+    name: string
+    email: string
+    subject: string
+    message: string
+    isRead?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContactMessageUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactMessageUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactMessageCreateManyInput = {
+    id?: string
+    name: string
+    email: string
+    subject: string
+    message: string
+    isRead?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContactMessageUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactMessageUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FavouriteCreateInput = {
+    id?: string
+    user: UserCreateNestedOneWithoutFavouritesInput
+    idea: IdeaCreateNestedOneWithoutFavouritesInput
+  }
+
+  export type FavouriteUncheckedCreateInput = {
     id?: string
     userId: string
     ideaId: string
   }
 
-  export type FavoriteUpdateInput = {
+  export type FavouriteUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user?: UserUpdateOneRequiredWithoutFavoritesNestedInput
-    idea?: IdeaUpdateOneRequiredWithoutFavoritesNestedInput
+    user?: UserUpdateOneRequiredWithoutFavouritesNestedInput
+    idea?: IdeaUpdateOneRequiredWithoutFavouritesNestedInput
   }
 
-  export type FavoriteUncheckedUpdateInput = {
+  export type FavouriteUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     ideaId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type FavoriteCreateManyInput = {
+  export type FavouriteCreateManyInput = {
     id?: string
     userId: string
     ideaId: string
   }
 
-  export type FavoriteUpdateManyMutationInput = {
+  export type FavouriteUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
   }
 
-  export type FavoriteUncheckedUpdateManyInput = {
+  export type FavouriteUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     ideaId?: StringFieldUpdateOperationsInput | string
@@ -17788,7 +19076,7 @@ export namespace Prisma {
     votes?: VoteCreateNestedManyWithoutIdeaInput
     comments?: CommentCreateNestedManyWithoutIdeaInput
     payments?: PaymentCreateNestedManyWithoutIdeaInput
-    favorites?: FavoriteCreateNestedManyWithoutIdeaInput
+    favourites?: FavouriteCreateNestedManyWithoutIdeaInput
     accessList?: AccessCreateNestedManyWithoutIdeaInput
   }
 
@@ -17817,7 +19105,7 @@ export namespace Prisma {
     votes?: VoteUncheckedCreateNestedManyWithoutIdeaInput
     comments?: CommentUncheckedCreateNestedManyWithoutIdeaInput
     payments?: PaymentUncheckedCreateNestedManyWithoutIdeaInput
-    favorites?: FavoriteUncheckedCreateNestedManyWithoutIdeaInput
+    favourites?: FavouriteUncheckedCreateNestedManyWithoutIdeaInput
     accessList?: AccessUncheckedCreateNestedManyWithoutIdeaInput
   }
 
@@ -17846,7 +19134,7 @@ export namespace Prisma {
     votes?: VoteUpdateManyWithoutIdeaNestedInput
     comments?: CommentUpdateManyWithoutIdeaNestedInput
     payments?: PaymentUpdateManyWithoutIdeaNestedInput
-    favorites?: FavoriteUpdateManyWithoutIdeaNestedInput
+    favourites?: FavouriteUpdateManyWithoutIdeaNestedInput
     accessList?: AccessUpdateManyWithoutIdeaNestedInput
   }
 
@@ -17875,7 +19163,7 @@ export namespace Prisma {
     votes?: VoteUncheckedUpdateManyWithoutIdeaNestedInput
     comments?: CommentUncheckedUpdateManyWithoutIdeaNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutIdeaNestedInput
-    favorites?: FavoriteUncheckedUpdateManyWithoutIdeaNestedInput
+    favourites?: FavouriteUncheckedUpdateManyWithoutIdeaNestedInput
     accessList?: AccessUncheckedUpdateManyWithoutIdeaNestedInput
   }
 
@@ -18311,10 +19599,10 @@ export namespace Prisma {
     none?: PaymentWhereInput
   }
 
-  export type FavoriteListRelationFilter = {
-    every?: FavoriteWhereInput
-    some?: FavoriteWhereInput
-    none?: FavoriteWhereInput
+  export type FavouriteListRelationFilter = {
+    every?: FavouriteWhereInput
+    some?: FavouriteWhereInput
+    none?: FavouriteWhereInput
   }
 
   export type AccessListRelationFilter = {
@@ -18356,7 +19644,7 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type FavoriteOrderByRelationAggregateInput = {
+  export type FavouriteOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -18637,24 +19925,57 @@ export namespace Prisma {
     deletedAt?: SortOrder
   }
 
-  export type FavoriteUserIdIdeaIdCompoundUniqueInput = {
+  export type ContactMessageCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    subject?: SortOrder
+    message?: SortOrder
+    isRead?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactMessageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    subject?: SortOrder
+    message?: SortOrder
+    isRead?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactMessageMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    subject?: SortOrder
+    message?: SortOrder
+    isRead?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FavouriteUserIdIdeaIdCompoundUniqueInput = {
     userId: string
     ideaId: string
   }
 
-  export type FavoriteCountOrderByAggregateInput = {
+  export type FavouriteCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     ideaId?: SortOrder
   }
 
-  export type FavoriteMaxOrderByAggregateInput = {
+  export type FavouriteMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     ideaId?: SortOrder
   }
 
-  export type FavoriteMinOrderByAggregateInput = {
+  export type FavouriteMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     ideaId?: SortOrder
@@ -19139,11 +20460,11 @@ export namespace Prisma {
     connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
   }
 
-  export type FavoriteCreateNestedManyWithoutUserInput = {
-    create?: XOR<FavoriteCreateWithoutUserInput, FavoriteUncheckedCreateWithoutUserInput> | FavoriteCreateWithoutUserInput[] | FavoriteUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: FavoriteCreateOrConnectWithoutUserInput | FavoriteCreateOrConnectWithoutUserInput[]
-    createMany?: FavoriteCreateManyUserInputEnvelope
-    connect?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
+  export type FavouriteCreateNestedManyWithoutUserInput = {
+    create?: XOR<FavouriteCreateWithoutUserInput, FavouriteUncheckedCreateWithoutUserInput> | FavouriteCreateWithoutUserInput[] | FavouriteUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FavouriteCreateOrConnectWithoutUserInput | FavouriteCreateOrConnectWithoutUserInput[]
+    createMany?: FavouriteCreateManyUserInputEnvelope
+    connect?: FavouriteWhereUniqueInput | FavouriteWhereUniqueInput[]
   }
 
   export type AccessCreateNestedManyWithoutUserInput = {
@@ -19201,11 +20522,11 @@ export namespace Prisma {
     connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
   }
 
-  export type FavoriteUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<FavoriteCreateWithoutUserInput, FavoriteUncheckedCreateWithoutUserInput> | FavoriteCreateWithoutUserInput[] | FavoriteUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: FavoriteCreateOrConnectWithoutUserInput | FavoriteCreateOrConnectWithoutUserInput[]
-    createMany?: FavoriteCreateManyUserInputEnvelope
-    connect?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
+  export type FavouriteUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<FavouriteCreateWithoutUserInput, FavouriteUncheckedCreateWithoutUserInput> | FavouriteCreateWithoutUserInput[] | FavouriteUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FavouriteCreateOrConnectWithoutUserInput | FavouriteCreateOrConnectWithoutUserInput[]
+    createMany?: FavouriteCreateManyUserInputEnvelope
+    connect?: FavouriteWhereUniqueInput | FavouriteWhereUniqueInput[]
   }
 
   export type AccessUncheckedCreateNestedManyWithoutUserInput = {
@@ -19307,18 +20628,18 @@ export namespace Prisma {
     deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
   }
 
-  export type FavoriteUpdateManyWithoutUserNestedInput = {
-    create?: XOR<FavoriteCreateWithoutUserInput, FavoriteUncheckedCreateWithoutUserInput> | FavoriteCreateWithoutUserInput[] | FavoriteUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: FavoriteCreateOrConnectWithoutUserInput | FavoriteCreateOrConnectWithoutUserInput[]
-    upsert?: FavoriteUpsertWithWhereUniqueWithoutUserInput | FavoriteUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: FavoriteCreateManyUserInputEnvelope
-    set?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
-    disconnect?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
-    delete?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
-    connect?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
-    update?: FavoriteUpdateWithWhereUniqueWithoutUserInput | FavoriteUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: FavoriteUpdateManyWithWhereWithoutUserInput | FavoriteUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: FavoriteScalarWhereInput | FavoriteScalarWhereInput[]
+  export type FavouriteUpdateManyWithoutUserNestedInput = {
+    create?: XOR<FavouriteCreateWithoutUserInput, FavouriteUncheckedCreateWithoutUserInput> | FavouriteCreateWithoutUserInput[] | FavouriteUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FavouriteCreateOrConnectWithoutUserInput | FavouriteCreateOrConnectWithoutUserInput[]
+    upsert?: FavouriteUpsertWithWhereUniqueWithoutUserInput | FavouriteUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: FavouriteCreateManyUserInputEnvelope
+    set?: FavouriteWhereUniqueInput | FavouriteWhereUniqueInput[]
+    disconnect?: FavouriteWhereUniqueInput | FavouriteWhereUniqueInput[]
+    delete?: FavouriteWhereUniqueInput | FavouriteWhereUniqueInput[]
+    connect?: FavouriteWhereUniqueInput | FavouriteWhereUniqueInput[]
+    update?: FavouriteUpdateWithWhereUniqueWithoutUserInput | FavouriteUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: FavouriteUpdateManyWithWhereWithoutUserInput | FavouriteUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: FavouriteScalarWhereInput | FavouriteScalarWhereInput[]
   }
 
   export type AccessUpdateManyWithoutUserNestedInput = {
@@ -19429,18 +20750,18 @@ export namespace Prisma {
     deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
   }
 
-  export type FavoriteUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<FavoriteCreateWithoutUserInput, FavoriteUncheckedCreateWithoutUserInput> | FavoriteCreateWithoutUserInput[] | FavoriteUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: FavoriteCreateOrConnectWithoutUserInput | FavoriteCreateOrConnectWithoutUserInput[]
-    upsert?: FavoriteUpsertWithWhereUniqueWithoutUserInput | FavoriteUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: FavoriteCreateManyUserInputEnvelope
-    set?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
-    disconnect?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
-    delete?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
-    connect?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
-    update?: FavoriteUpdateWithWhereUniqueWithoutUserInput | FavoriteUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: FavoriteUpdateManyWithWhereWithoutUserInput | FavoriteUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: FavoriteScalarWhereInput | FavoriteScalarWhereInput[]
+  export type FavouriteUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<FavouriteCreateWithoutUserInput, FavouriteUncheckedCreateWithoutUserInput> | FavouriteCreateWithoutUserInput[] | FavouriteUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FavouriteCreateOrConnectWithoutUserInput | FavouriteCreateOrConnectWithoutUserInput[]
+    upsert?: FavouriteUpsertWithWhereUniqueWithoutUserInput | FavouriteUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: FavouriteCreateManyUserInputEnvelope
+    set?: FavouriteWhereUniqueInput | FavouriteWhereUniqueInput[]
+    disconnect?: FavouriteWhereUniqueInput | FavouriteWhereUniqueInput[]
+    delete?: FavouriteWhereUniqueInput | FavouriteWhereUniqueInput[]
+    connect?: FavouriteWhereUniqueInput | FavouriteWhereUniqueInput[]
+    update?: FavouriteUpdateWithWhereUniqueWithoutUserInput | FavouriteUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: FavouriteUpdateManyWithWhereWithoutUserInput | FavouriteUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: FavouriteScalarWhereInput | FavouriteScalarWhereInput[]
   }
 
   export type AccessUncheckedUpdateManyWithoutUserNestedInput = {
@@ -19659,32 +20980,32 @@ export namespace Prisma {
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutFavoritesInput = {
-    create?: XOR<UserCreateWithoutFavoritesInput, UserUncheckedCreateWithoutFavoritesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutFavoritesInput
+  export type UserCreateNestedOneWithoutFavouritesInput = {
+    create?: XOR<UserCreateWithoutFavouritesInput, UserUncheckedCreateWithoutFavouritesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFavouritesInput
     connect?: UserWhereUniqueInput
   }
 
-  export type IdeaCreateNestedOneWithoutFavoritesInput = {
-    create?: XOR<IdeaCreateWithoutFavoritesInput, IdeaUncheckedCreateWithoutFavoritesInput>
-    connectOrCreate?: IdeaCreateOrConnectWithoutFavoritesInput
+  export type IdeaCreateNestedOneWithoutFavouritesInput = {
+    create?: XOR<IdeaCreateWithoutFavouritesInput, IdeaUncheckedCreateWithoutFavouritesInput>
+    connectOrCreate?: IdeaCreateOrConnectWithoutFavouritesInput
     connect?: IdeaWhereUniqueInput
   }
 
-  export type UserUpdateOneRequiredWithoutFavoritesNestedInput = {
-    create?: XOR<UserCreateWithoutFavoritesInput, UserUncheckedCreateWithoutFavoritesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutFavoritesInput
-    upsert?: UserUpsertWithoutFavoritesInput
+  export type UserUpdateOneRequiredWithoutFavouritesNestedInput = {
+    create?: XOR<UserCreateWithoutFavouritesInput, UserUncheckedCreateWithoutFavouritesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFavouritesInput
+    upsert?: UserUpsertWithoutFavouritesInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFavoritesInput, UserUpdateWithoutFavoritesInput>, UserUncheckedUpdateWithoutFavoritesInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFavouritesInput, UserUpdateWithoutFavouritesInput>, UserUncheckedUpdateWithoutFavouritesInput>
   }
 
-  export type IdeaUpdateOneRequiredWithoutFavoritesNestedInput = {
-    create?: XOR<IdeaCreateWithoutFavoritesInput, IdeaUncheckedCreateWithoutFavoritesInput>
-    connectOrCreate?: IdeaCreateOrConnectWithoutFavoritesInput
-    upsert?: IdeaUpsertWithoutFavoritesInput
+  export type IdeaUpdateOneRequiredWithoutFavouritesNestedInput = {
+    create?: XOR<IdeaCreateWithoutFavouritesInput, IdeaUncheckedCreateWithoutFavouritesInput>
+    connectOrCreate?: IdeaCreateOrConnectWithoutFavouritesInput
+    upsert?: IdeaUpsertWithoutFavouritesInput
     connect?: IdeaWhereUniqueInput
-    update?: XOR<XOR<IdeaUpdateToOneWithWhereWithoutFavoritesInput, IdeaUpdateWithoutFavoritesInput>, IdeaUncheckedUpdateWithoutFavoritesInput>
+    update?: XOR<XOR<IdeaUpdateToOneWithWhereWithoutFavouritesInput, IdeaUpdateWithoutFavouritesInput>, IdeaUncheckedUpdateWithoutFavouritesInput>
   }
 
   export type IdeaCreateattachmentsInput = {
@@ -19724,11 +21045,11 @@ export namespace Prisma {
     connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
   }
 
-  export type FavoriteCreateNestedManyWithoutIdeaInput = {
-    create?: XOR<FavoriteCreateWithoutIdeaInput, FavoriteUncheckedCreateWithoutIdeaInput> | FavoriteCreateWithoutIdeaInput[] | FavoriteUncheckedCreateWithoutIdeaInput[]
-    connectOrCreate?: FavoriteCreateOrConnectWithoutIdeaInput | FavoriteCreateOrConnectWithoutIdeaInput[]
-    createMany?: FavoriteCreateManyIdeaInputEnvelope
-    connect?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
+  export type FavouriteCreateNestedManyWithoutIdeaInput = {
+    create?: XOR<FavouriteCreateWithoutIdeaInput, FavouriteUncheckedCreateWithoutIdeaInput> | FavouriteCreateWithoutIdeaInput[] | FavouriteUncheckedCreateWithoutIdeaInput[]
+    connectOrCreate?: FavouriteCreateOrConnectWithoutIdeaInput | FavouriteCreateOrConnectWithoutIdeaInput[]
+    createMany?: FavouriteCreateManyIdeaInputEnvelope
+    connect?: FavouriteWhereUniqueInput | FavouriteWhereUniqueInput[]
   }
 
   export type AccessCreateNestedManyWithoutIdeaInput = {
@@ -19759,11 +21080,11 @@ export namespace Prisma {
     connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
   }
 
-  export type FavoriteUncheckedCreateNestedManyWithoutIdeaInput = {
-    create?: XOR<FavoriteCreateWithoutIdeaInput, FavoriteUncheckedCreateWithoutIdeaInput> | FavoriteCreateWithoutIdeaInput[] | FavoriteUncheckedCreateWithoutIdeaInput[]
-    connectOrCreate?: FavoriteCreateOrConnectWithoutIdeaInput | FavoriteCreateOrConnectWithoutIdeaInput[]
-    createMany?: FavoriteCreateManyIdeaInputEnvelope
-    connect?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
+  export type FavouriteUncheckedCreateNestedManyWithoutIdeaInput = {
+    create?: XOR<FavouriteCreateWithoutIdeaInput, FavouriteUncheckedCreateWithoutIdeaInput> | FavouriteCreateWithoutIdeaInput[] | FavouriteUncheckedCreateWithoutIdeaInput[]
+    connectOrCreate?: FavouriteCreateOrConnectWithoutIdeaInput | FavouriteCreateOrConnectWithoutIdeaInput[]
+    createMany?: FavouriteCreateManyIdeaInputEnvelope
+    connect?: FavouriteWhereUniqueInput | FavouriteWhereUniqueInput[]
   }
 
   export type AccessUncheckedCreateNestedManyWithoutIdeaInput = {
@@ -19856,18 +21177,18 @@ export namespace Prisma {
     deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
   }
 
-  export type FavoriteUpdateManyWithoutIdeaNestedInput = {
-    create?: XOR<FavoriteCreateWithoutIdeaInput, FavoriteUncheckedCreateWithoutIdeaInput> | FavoriteCreateWithoutIdeaInput[] | FavoriteUncheckedCreateWithoutIdeaInput[]
-    connectOrCreate?: FavoriteCreateOrConnectWithoutIdeaInput | FavoriteCreateOrConnectWithoutIdeaInput[]
-    upsert?: FavoriteUpsertWithWhereUniqueWithoutIdeaInput | FavoriteUpsertWithWhereUniqueWithoutIdeaInput[]
-    createMany?: FavoriteCreateManyIdeaInputEnvelope
-    set?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
-    disconnect?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
-    delete?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
-    connect?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
-    update?: FavoriteUpdateWithWhereUniqueWithoutIdeaInput | FavoriteUpdateWithWhereUniqueWithoutIdeaInput[]
-    updateMany?: FavoriteUpdateManyWithWhereWithoutIdeaInput | FavoriteUpdateManyWithWhereWithoutIdeaInput[]
-    deleteMany?: FavoriteScalarWhereInput | FavoriteScalarWhereInput[]
+  export type FavouriteUpdateManyWithoutIdeaNestedInput = {
+    create?: XOR<FavouriteCreateWithoutIdeaInput, FavouriteUncheckedCreateWithoutIdeaInput> | FavouriteCreateWithoutIdeaInput[] | FavouriteUncheckedCreateWithoutIdeaInput[]
+    connectOrCreate?: FavouriteCreateOrConnectWithoutIdeaInput | FavouriteCreateOrConnectWithoutIdeaInput[]
+    upsert?: FavouriteUpsertWithWhereUniqueWithoutIdeaInput | FavouriteUpsertWithWhereUniqueWithoutIdeaInput[]
+    createMany?: FavouriteCreateManyIdeaInputEnvelope
+    set?: FavouriteWhereUniqueInput | FavouriteWhereUniqueInput[]
+    disconnect?: FavouriteWhereUniqueInput | FavouriteWhereUniqueInput[]
+    delete?: FavouriteWhereUniqueInput | FavouriteWhereUniqueInput[]
+    connect?: FavouriteWhereUniqueInput | FavouriteWhereUniqueInput[]
+    update?: FavouriteUpdateWithWhereUniqueWithoutIdeaInput | FavouriteUpdateWithWhereUniqueWithoutIdeaInput[]
+    updateMany?: FavouriteUpdateManyWithWhereWithoutIdeaInput | FavouriteUpdateManyWithWhereWithoutIdeaInput[]
+    deleteMany?: FavouriteScalarWhereInput | FavouriteScalarWhereInput[]
   }
 
   export type AccessUpdateManyWithoutIdeaNestedInput = {
@@ -19926,18 +21247,18 @@ export namespace Prisma {
     deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
   }
 
-  export type FavoriteUncheckedUpdateManyWithoutIdeaNestedInput = {
-    create?: XOR<FavoriteCreateWithoutIdeaInput, FavoriteUncheckedCreateWithoutIdeaInput> | FavoriteCreateWithoutIdeaInput[] | FavoriteUncheckedCreateWithoutIdeaInput[]
-    connectOrCreate?: FavoriteCreateOrConnectWithoutIdeaInput | FavoriteCreateOrConnectWithoutIdeaInput[]
-    upsert?: FavoriteUpsertWithWhereUniqueWithoutIdeaInput | FavoriteUpsertWithWhereUniqueWithoutIdeaInput[]
-    createMany?: FavoriteCreateManyIdeaInputEnvelope
-    set?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
-    disconnect?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
-    delete?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
-    connect?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
-    update?: FavoriteUpdateWithWhereUniqueWithoutIdeaInput | FavoriteUpdateWithWhereUniqueWithoutIdeaInput[]
-    updateMany?: FavoriteUpdateManyWithWhereWithoutIdeaInput | FavoriteUpdateManyWithWhereWithoutIdeaInput[]
-    deleteMany?: FavoriteScalarWhereInput | FavoriteScalarWhereInput[]
+  export type FavouriteUncheckedUpdateManyWithoutIdeaNestedInput = {
+    create?: XOR<FavouriteCreateWithoutIdeaInput, FavouriteUncheckedCreateWithoutIdeaInput> | FavouriteCreateWithoutIdeaInput[] | FavouriteUncheckedCreateWithoutIdeaInput[]
+    connectOrCreate?: FavouriteCreateOrConnectWithoutIdeaInput | FavouriteCreateOrConnectWithoutIdeaInput[]
+    upsert?: FavouriteUpsertWithWhereUniqueWithoutIdeaInput | FavouriteUpsertWithWhereUniqueWithoutIdeaInput[]
+    createMany?: FavouriteCreateManyIdeaInputEnvelope
+    set?: FavouriteWhereUniqueInput | FavouriteWhereUniqueInput[]
+    disconnect?: FavouriteWhereUniqueInput | FavouriteWhereUniqueInput[]
+    delete?: FavouriteWhereUniqueInput | FavouriteWhereUniqueInput[]
+    connect?: FavouriteWhereUniqueInput | FavouriteWhereUniqueInput[]
+    update?: FavouriteUpdateWithWhereUniqueWithoutIdeaInput | FavouriteUpdateWithWhereUniqueWithoutIdeaInput[]
+    updateMany?: FavouriteUpdateManyWithWhereWithoutIdeaInput | FavouriteUpdateManyWithWhereWithoutIdeaInput[]
+    deleteMany?: FavouriteScalarWhereInput | FavouriteScalarWhereInput[]
   }
 
   export type AccessUncheckedUpdateManyWithoutIdeaNestedInput = {
@@ -20375,7 +21696,7 @@ export namespace Prisma {
     votes?: VoteCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
     payments?: PaymentCreateNestedManyWithoutUserInput
-    favorites?: FavoriteCreateNestedManyWithoutUserInput
+    favourites?: FavouriteCreateNestedManyWithoutUserInput
     blogs?: BlogCreateNestedManyWithoutAuthorInput
     sessions?: SessionCreateNestedManyWithoutUserInput
   }
@@ -20396,7 +21717,7 @@ export namespace Prisma {
     votes?: VoteUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     payments?: PaymentUncheckedCreateNestedManyWithoutUserInput
-    favorites?: FavoriteUncheckedCreateNestedManyWithoutUserInput
+    favourites?: FavouriteUncheckedCreateNestedManyWithoutUserInput
     blogs?: BlogUncheckedCreateNestedManyWithoutAuthorInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
@@ -20431,7 +21752,7 @@ export namespace Prisma {
     votes?: VoteCreateNestedManyWithoutIdeaInput
     comments?: CommentCreateNestedManyWithoutIdeaInput
     payments?: PaymentCreateNestedManyWithoutIdeaInput
-    favorites?: FavoriteCreateNestedManyWithoutIdeaInput
+    favourites?: FavouriteCreateNestedManyWithoutIdeaInput
   }
 
   export type IdeaUncheckedCreateWithoutAccessListInput = {
@@ -20459,7 +21780,7 @@ export namespace Prisma {
     votes?: VoteUncheckedCreateNestedManyWithoutIdeaInput
     comments?: CommentUncheckedCreateNestedManyWithoutIdeaInput
     payments?: PaymentUncheckedCreateNestedManyWithoutIdeaInput
-    favorites?: FavoriteUncheckedCreateNestedManyWithoutIdeaInput
+    favourites?: FavouriteUncheckedCreateNestedManyWithoutIdeaInput
   }
 
   export type IdeaCreateOrConnectWithoutAccessListInput = {
@@ -20494,7 +21815,7 @@ export namespace Prisma {
     votes?: VoteUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
     payments?: PaymentUpdateManyWithoutUserNestedInput
-    favorites?: FavoriteUpdateManyWithoutUserNestedInput
+    favourites?: FavouriteUpdateManyWithoutUserNestedInput
     blogs?: BlogUpdateManyWithoutAuthorNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
   }
@@ -20515,7 +21836,7 @@ export namespace Prisma {
     votes?: VoteUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutUserNestedInput
-    favorites?: FavoriteUncheckedUpdateManyWithoutUserNestedInput
+    favourites?: FavouriteUncheckedUpdateManyWithoutUserNestedInput
     blogs?: BlogUncheckedUpdateManyWithoutAuthorNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -20556,7 +21877,7 @@ export namespace Prisma {
     votes?: VoteUpdateManyWithoutIdeaNestedInput
     comments?: CommentUpdateManyWithoutIdeaNestedInput
     payments?: PaymentUpdateManyWithoutIdeaNestedInput
-    favorites?: FavoriteUpdateManyWithoutIdeaNestedInput
+    favourites?: FavouriteUpdateManyWithoutIdeaNestedInput
   }
 
   export type IdeaUncheckedUpdateWithoutAccessListInput = {
@@ -20584,7 +21905,7 @@ export namespace Prisma {
     votes?: VoteUncheckedUpdateManyWithoutIdeaNestedInput
     comments?: CommentUncheckedUpdateManyWithoutIdeaNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutIdeaNestedInput
-    favorites?: FavoriteUncheckedUpdateManyWithoutIdeaNestedInput
+    favourites?: FavouriteUncheckedUpdateManyWithoutIdeaNestedInput
   }
 
   export type ProfileCreateWithoutUserInput = {
@@ -20630,7 +21951,7 @@ export namespace Prisma {
     votes?: VoteCreateNestedManyWithoutIdeaInput
     comments?: CommentCreateNestedManyWithoutIdeaInput
     payments?: PaymentCreateNestedManyWithoutIdeaInput
-    favorites?: FavoriteCreateNestedManyWithoutIdeaInput
+    favourites?: FavouriteCreateNestedManyWithoutIdeaInput
     accessList?: AccessCreateNestedManyWithoutIdeaInput
   }
 
@@ -20658,7 +21979,7 @@ export namespace Prisma {
     votes?: VoteUncheckedCreateNestedManyWithoutIdeaInput
     comments?: CommentUncheckedCreateNestedManyWithoutIdeaInput
     payments?: PaymentUncheckedCreateNestedManyWithoutIdeaInput
-    favorites?: FavoriteUncheckedCreateNestedManyWithoutIdeaInput
+    favourites?: FavouriteUncheckedCreateNestedManyWithoutIdeaInput
     accessList?: AccessUncheckedCreateNestedManyWithoutIdeaInput
   }
 
@@ -20768,23 +22089,23 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type FavoriteCreateWithoutUserInput = {
+  export type FavouriteCreateWithoutUserInput = {
     id?: string
-    idea: IdeaCreateNestedOneWithoutFavoritesInput
+    idea: IdeaCreateNestedOneWithoutFavouritesInput
   }
 
-  export type FavoriteUncheckedCreateWithoutUserInput = {
+  export type FavouriteUncheckedCreateWithoutUserInput = {
     id?: string
     ideaId: string
   }
 
-  export type FavoriteCreateOrConnectWithoutUserInput = {
-    where: FavoriteWhereUniqueInput
-    create: XOR<FavoriteCreateWithoutUserInput, FavoriteUncheckedCreateWithoutUserInput>
+  export type FavouriteCreateOrConnectWithoutUserInput = {
+    where: FavouriteWhereUniqueInput
+    create: XOR<FavouriteCreateWithoutUserInput, FavouriteUncheckedCreateWithoutUserInput>
   }
 
-  export type FavoriteCreateManyUserInputEnvelope = {
-    data: FavoriteCreateManyUserInput | FavoriteCreateManyUserInput[]
+  export type FavouriteCreateManyUserInputEnvelope = {
+    data: FavouriteCreateManyUserInput | FavouriteCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -21032,29 +22353,29 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableFilter<"Payment"> | Date | string | null
   }
 
-  export type FavoriteUpsertWithWhereUniqueWithoutUserInput = {
-    where: FavoriteWhereUniqueInput
-    update: XOR<FavoriteUpdateWithoutUserInput, FavoriteUncheckedUpdateWithoutUserInput>
-    create: XOR<FavoriteCreateWithoutUserInput, FavoriteUncheckedCreateWithoutUserInput>
+  export type FavouriteUpsertWithWhereUniqueWithoutUserInput = {
+    where: FavouriteWhereUniqueInput
+    update: XOR<FavouriteUpdateWithoutUserInput, FavouriteUncheckedUpdateWithoutUserInput>
+    create: XOR<FavouriteCreateWithoutUserInput, FavouriteUncheckedCreateWithoutUserInput>
   }
 
-  export type FavoriteUpdateWithWhereUniqueWithoutUserInput = {
-    where: FavoriteWhereUniqueInput
-    data: XOR<FavoriteUpdateWithoutUserInput, FavoriteUncheckedUpdateWithoutUserInput>
+  export type FavouriteUpdateWithWhereUniqueWithoutUserInput = {
+    where: FavouriteWhereUniqueInput
+    data: XOR<FavouriteUpdateWithoutUserInput, FavouriteUncheckedUpdateWithoutUserInput>
   }
 
-  export type FavoriteUpdateManyWithWhereWithoutUserInput = {
-    where: FavoriteScalarWhereInput
-    data: XOR<FavoriteUpdateManyMutationInput, FavoriteUncheckedUpdateManyWithoutUserInput>
+  export type FavouriteUpdateManyWithWhereWithoutUserInput = {
+    where: FavouriteScalarWhereInput
+    data: XOR<FavouriteUpdateManyMutationInput, FavouriteUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type FavoriteScalarWhereInput = {
-    AND?: FavoriteScalarWhereInput | FavoriteScalarWhereInput[]
-    OR?: FavoriteScalarWhereInput[]
-    NOT?: FavoriteScalarWhereInput | FavoriteScalarWhereInput[]
-    id?: StringFilter<"Favorite"> | string
-    userId?: StringFilter<"Favorite"> | string
-    ideaId?: StringFilter<"Favorite"> | string
+  export type FavouriteScalarWhereInput = {
+    AND?: FavouriteScalarWhereInput | FavouriteScalarWhereInput[]
+    OR?: FavouriteScalarWhereInput[]
+    NOT?: FavouriteScalarWhereInput | FavouriteScalarWhereInput[]
+    id?: StringFilter<"Favourite"> | string
+    userId?: StringFilter<"Favourite"> | string
+    ideaId?: StringFilter<"Favourite"> | string
   }
 
   export type AccessUpsertWithWhereUniqueWithoutUserInput = {
@@ -21159,7 +22480,7 @@ export namespace Prisma {
     votes?: VoteCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
     payments?: PaymentCreateNestedManyWithoutUserInput
-    favorites?: FavoriteCreateNestedManyWithoutUserInput
+    favourites?: FavouriteCreateNestedManyWithoutUserInput
     accessList?: AccessCreateNestedManyWithoutUserInput
     blogs?: BlogCreateNestedManyWithoutAuthorInput
     sessions?: SessionCreateNestedManyWithoutUserInput
@@ -21180,7 +22501,7 @@ export namespace Prisma {
     votes?: VoteUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     payments?: PaymentUncheckedCreateNestedManyWithoutUserInput
-    favorites?: FavoriteUncheckedCreateNestedManyWithoutUserInput
+    favourites?: FavouriteUncheckedCreateNestedManyWithoutUserInput
     accessList?: AccessUncheckedCreateNestedManyWithoutUserInput
     blogs?: BlogUncheckedCreateNestedManyWithoutAuthorInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
@@ -21217,7 +22538,7 @@ export namespace Prisma {
     votes?: VoteUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
     payments?: PaymentUpdateManyWithoutUserNestedInput
-    favorites?: FavoriteUpdateManyWithoutUserNestedInput
+    favourites?: FavouriteUpdateManyWithoutUserNestedInput
     accessList?: AccessUpdateManyWithoutUserNestedInput
     blogs?: BlogUpdateManyWithoutAuthorNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
@@ -21238,7 +22559,7 @@ export namespace Prisma {
     votes?: VoteUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutUserNestedInput
-    favorites?: FavoriteUncheckedUpdateManyWithoutUserNestedInput
+    favourites?: FavouriteUncheckedUpdateManyWithoutUserNestedInput
     accessList?: AccessUncheckedUpdateManyWithoutUserNestedInput
     blogs?: BlogUncheckedUpdateManyWithoutAuthorNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -21260,7 +22581,7 @@ export namespace Prisma {
     votes?: VoteCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
     payments?: PaymentCreateNestedManyWithoutUserInput
-    favorites?: FavoriteCreateNestedManyWithoutUserInput
+    favourites?: FavouriteCreateNestedManyWithoutUserInput
     accessList?: AccessCreateNestedManyWithoutUserInput
     blogs?: BlogCreateNestedManyWithoutAuthorInput
   }
@@ -21281,7 +22602,7 @@ export namespace Prisma {
     votes?: VoteUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     payments?: PaymentUncheckedCreateNestedManyWithoutUserInput
-    favorites?: FavoriteUncheckedCreateNestedManyWithoutUserInput
+    favourites?: FavouriteUncheckedCreateNestedManyWithoutUserInput
     accessList?: AccessUncheckedCreateNestedManyWithoutUserInput
     blogs?: BlogUncheckedCreateNestedManyWithoutAuthorInput
   }
@@ -21318,7 +22639,7 @@ export namespace Prisma {
     votes?: VoteUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
     payments?: PaymentUpdateManyWithoutUserNestedInput
-    favorites?: FavoriteUpdateManyWithoutUserNestedInput
+    favourites?: FavouriteUpdateManyWithoutUserNestedInput
     accessList?: AccessUpdateManyWithoutUserNestedInput
     blogs?: BlogUpdateManyWithoutAuthorNestedInput
   }
@@ -21339,7 +22660,7 @@ export namespace Prisma {
     votes?: VoteUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutUserNestedInput
-    favorites?: FavoriteUncheckedUpdateManyWithoutUserNestedInput
+    favourites?: FavouriteUncheckedUpdateManyWithoutUserNestedInput
     accessList?: AccessUncheckedUpdateManyWithoutUserNestedInput
     blogs?: BlogUncheckedUpdateManyWithoutAuthorNestedInput
   }
@@ -21360,7 +22681,7 @@ export namespace Prisma {
     votes?: VoteCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
     payments?: PaymentCreateNestedManyWithoutUserInput
-    favorites?: FavoriteCreateNestedManyWithoutUserInput
+    favourites?: FavouriteCreateNestedManyWithoutUserInput
     accessList?: AccessCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
   }
@@ -21381,7 +22702,7 @@ export namespace Prisma {
     votes?: VoteUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     payments?: PaymentUncheckedCreateNestedManyWithoutUserInput
-    favorites?: FavoriteUncheckedCreateNestedManyWithoutUserInput
+    favourites?: FavouriteUncheckedCreateNestedManyWithoutUserInput
     accessList?: AccessUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
@@ -21418,7 +22739,7 @@ export namespace Prisma {
     votes?: VoteUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
     payments?: PaymentUpdateManyWithoutUserNestedInput
-    favorites?: FavoriteUpdateManyWithoutUserNestedInput
+    favourites?: FavouriteUpdateManyWithoutUserNestedInput
     accessList?: AccessUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
   }
@@ -21439,7 +22760,7 @@ export namespace Prisma {
     votes?: VoteUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutUserNestedInput
-    favorites?: FavoriteUncheckedUpdateManyWithoutUserNestedInput
+    favourites?: FavouriteUncheckedUpdateManyWithoutUserNestedInput
     accessList?: AccessUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -21468,7 +22789,7 @@ export namespace Prisma {
     votes?: VoteCreateNestedManyWithoutIdeaInput
     comments?: CommentCreateNestedManyWithoutIdeaInput
     payments?: PaymentCreateNestedManyWithoutIdeaInput
-    favorites?: FavoriteCreateNestedManyWithoutIdeaInput
+    favourites?: FavouriteCreateNestedManyWithoutIdeaInput
     accessList?: AccessCreateNestedManyWithoutIdeaInput
   }
 
@@ -21496,7 +22817,7 @@ export namespace Prisma {
     votes?: VoteUncheckedCreateNestedManyWithoutIdeaInput
     comments?: CommentUncheckedCreateNestedManyWithoutIdeaInput
     payments?: PaymentUncheckedCreateNestedManyWithoutIdeaInput
-    favorites?: FavoriteUncheckedCreateNestedManyWithoutIdeaInput
+    favourites?: FavouriteUncheckedCreateNestedManyWithoutIdeaInput
     accessList?: AccessUncheckedCreateNestedManyWithoutIdeaInput
   }
 
@@ -21541,7 +22862,7 @@ export namespace Prisma {
     ideas?: IdeaCreateNestedManyWithoutAuthorInput
     votes?: VoteCreateNestedManyWithoutUserInput
     payments?: PaymentCreateNestedManyWithoutUserInput
-    favorites?: FavoriteCreateNestedManyWithoutUserInput
+    favourites?: FavouriteCreateNestedManyWithoutUserInput
     accessList?: AccessCreateNestedManyWithoutUserInput
     blogs?: BlogCreateNestedManyWithoutAuthorInput
     sessions?: SessionCreateNestedManyWithoutUserInput
@@ -21562,7 +22883,7 @@ export namespace Prisma {
     ideas?: IdeaUncheckedCreateNestedManyWithoutAuthorInput
     votes?: VoteUncheckedCreateNestedManyWithoutUserInput
     payments?: PaymentUncheckedCreateNestedManyWithoutUserInput
-    favorites?: FavoriteUncheckedCreateNestedManyWithoutUserInput
+    favourites?: FavouriteUncheckedCreateNestedManyWithoutUserInput
     accessList?: AccessUncheckedCreateNestedManyWithoutUserInput
     blogs?: BlogUncheckedCreateNestedManyWithoutAuthorInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
@@ -21597,7 +22918,7 @@ export namespace Prisma {
     category: CategoryCreateNestedOneWithoutIdeasInput
     votes?: VoteCreateNestedManyWithoutIdeaInput
     payments?: PaymentCreateNestedManyWithoutIdeaInput
-    favorites?: FavoriteCreateNestedManyWithoutIdeaInput
+    favourites?: FavouriteCreateNestedManyWithoutIdeaInput
     accessList?: AccessCreateNestedManyWithoutIdeaInput
   }
 
@@ -21625,7 +22946,7 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     votes?: VoteUncheckedCreateNestedManyWithoutIdeaInput
     payments?: PaymentUncheckedCreateNestedManyWithoutIdeaInput
-    favorites?: FavoriteUncheckedCreateNestedManyWithoutIdeaInput
+    favourites?: FavouriteUncheckedCreateNestedManyWithoutIdeaInput
     accessList?: AccessUncheckedCreateNestedManyWithoutIdeaInput
   }
 
@@ -21723,7 +23044,7 @@ export namespace Prisma {
     ideas?: IdeaUpdateManyWithoutAuthorNestedInput
     votes?: VoteUpdateManyWithoutUserNestedInput
     payments?: PaymentUpdateManyWithoutUserNestedInput
-    favorites?: FavoriteUpdateManyWithoutUserNestedInput
+    favourites?: FavouriteUpdateManyWithoutUserNestedInput
     accessList?: AccessUpdateManyWithoutUserNestedInput
     blogs?: BlogUpdateManyWithoutAuthorNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
@@ -21744,7 +23065,7 @@ export namespace Prisma {
     ideas?: IdeaUncheckedUpdateManyWithoutAuthorNestedInput
     votes?: VoteUncheckedUpdateManyWithoutUserNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutUserNestedInput
-    favorites?: FavoriteUncheckedUpdateManyWithoutUserNestedInput
+    favourites?: FavouriteUncheckedUpdateManyWithoutUserNestedInput
     accessList?: AccessUncheckedUpdateManyWithoutUserNestedInput
     blogs?: BlogUncheckedUpdateManyWithoutAuthorNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -21785,7 +23106,7 @@ export namespace Prisma {
     category?: CategoryUpdateOneRequiredWithoutIdeasNestedInput
     votes?: VoteUpdateManyWithoutIdeaNestedInput
     payments?: PaymentUpdateManyWithoutIdeaNestedInput
-    favorites?: FavoriteUpdateManyWithoutIdeaNestedInput
+    favourites?: FavouriteUpdateManyWithoutIdeaNestedInput
     accessList?: AccessUpdateManyWithoutIdeaNestedInput
   }
 
@@ -21813,7 +23134,7 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     votes?: VoteUncheckedUpdateManyWithoutIdeaNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutIdeaNestedInput
-    favorites?: FavoriteUncheckedUpdateManyWithoutIdeaNestedInput
+    favourites?: FavouriteUncheckedUpdateManyWithoutIdeaNestedInput
     accessList?: AccessUncheckedUpdateManyWithoutIdeaNestedInput
   }
 
@@ -21868,7 +23189,7 @@ export namespace Prisma {
     data: XOR<CommentUpdateManyMutationInput, CommentUncheckedUpdateManyWithoutParentInput>
   }
 
-  export type UserCreateWithoutFavoritesInput = {
+  export type UserCreateWithoutFavouritesInput = {
     id?: string
     name: string
     email: string
@@ -21889,7 +23210,7 @@ export namespace Prisma {
     sessions?: SessionCreateNestedManyWithoutUserInput
   }
 
-  export type UserUncheckedCreateWithoutFavoritesInput = {
+  export type UserUncheckedCreateWithoutFavouritesInput = {
     id?: string
     name: string
     email: string
@@ -21910,12 +23231,12 @@ export namespace Prisma {
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
 
-  export type UserCreateOrConnectWithoutFavoritesInput = {
+  export type UserCreateOrConnectWithoutFavouritesInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutFavoritesInput, UserUncheckedCreateWithoutFavoritesInput>
+    create: XOR<UserCreateWithoutFavouritesInput, UserUncheckedCreateWithoutFavouritesInput>
   }
 
-  export type IdeaCreateWithoutFavoritesInput = {
+  export type IdeaCreateWithoutFavouritesInput = {
     id?: string
     title: string
     problemStatement: string
@@ -21943,7 +23264,7 @@ export namespace Prisma {
     accessList?: AccessCreateNestedManyWithoutIdeaInput
   }
 
-  export type IdeaUncheckedCreateWithoutFavoritesInput = {
+  export type IdeaUncheckedCreateWithoutFavouritesInput = {
     id?: string
     title: string
     problemStatement: string
@@ -21971,23 +23292,23 @@ export namespace Prisma {
     accessList?: AccessUncheckedCreateNestedManyWithoutIdeaInput
   }
 
-  export type IdeaCreateOrConnectWithoutFavoritesInput = {
+  export type IdeaCreateOrConnectWithoutFavouritesInput = {
     where: IdeaWhereUniqueInput
-    create: XOR<IdeaCreateWithoutFavoritesInput, IdeaUncheckedCreateWithoutFavoritesInput>
+    create: XOR<IdeaCreateWithoutFavouritesInput, IdeaUncheckedCreateWithoutFavouritesInput>
   }
 
-  export type UserUpsertWithoutFavoritesInput = {
-    update: XOR<UserUpdateWithoutFavoritesInput, UserUncheckedUpdateWithoutFavoritesInput>
-    create: XOR<UserCreateWithoutFavoritesInput, UserUncheckedCreateWithoutFavoritesInput>
+  export type UserUpsertWithoutFavouritesInput = {
+    update: XOR<UserUpdateWithoutFavouritesInput, UserUncheckedUpdateWithoutFavouritesInput>
+    create: XOR<UserCreateWithoutFavouritesInput, UserUncheckedCreateWithoutFavouritesInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutFavoritesInput = {
+  export type UserUpdateToOneWithWhereWithoutFavouritesInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutFavoritesInput, UserUncheckedUpdateWithoutFavoritesInput>
+    data: XOR<UserUpdateWithoutFavouritesInput, UserUncheckedUpdateWithoutFavouritesInput>
   }
 
-  export type UserUpdateWithoutFavoritesInput = {
+  export type UserUpdateWithoutFavouritesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -22008,7 +23329,7 @@ export namespace Prisma {
     sessions?: SessionUpdateManyWithoutUserNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutFavoritesInput = {
+  export type UserUncheckedUpdateWithoutFavouritesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -22029,18 +23350,18 @@ export namespace Prisma {
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type IdeaUpsertWithoutFavoritesInput = {
-    update: XOR<IdeaUpdateWithoutFavoritesInput, IdeaUncheckedUpdateWithoutFavoritesInput>
-    create: XOR<IdeaCreateWithoutFavoritesInput, IdeaUncheckedCreateWithoutFavoritesInput>
+  export type IdeaUpsertWithoutFavouritesInput = {
+    update: XOR<IdeaUpdateWithoutFavouritesInput, IdeaUncheckedUpdateWithoutFavouritesInput>
+    create: XOR<IdeaCreateWithoutFavouritesInput, IdeaUncheckedCreateWithoutFavouritesInput>
     where?: IdeaWhereInput
   }
 
-  export type IdeaUpdateToOneWithWhereWithoutFavoritesInput = {
+  export type IdeaUpdateToOneWithWhereWithoutFavouritesInput = {
     where?: IdeaWhereInput
-    data: XOR<IdeaUpdateWithoutFavoritesInput, IdeaUncheckedUpdateWithoutFavoritesInput>
+    data: XOR<IdeaUpdateWithoutFavouritesInput, IdeaUncheckedUpdateWithoutFavouritesInput>
   }
 
-  export type IdeaUpdateWithoutFavoritesInput = {
+  export type IdeaUpdateWithoutFavouritesInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     problemStatement?: StringFieldUpdateOperationsInput | string
@@ -22068,7 +23389,7 @@ export namespace Prisma {
     accessList?: AccessUpdateManyWithoutIdeaNestedInput
   }
 
-  export type IdeaUncheckedUpdateWithoutFavoritesInput = {
+  export type IdeaUncheckedUpdateWithoutFavouritesInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     problemStatement?: StringFieldUpdateOperationsInput | string
@@ -22111,7 +23432,7 @@ export namespace Prisma {
     votes?: VoteCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
     payments?: PaymentCreateNestedManyWithoutUserInput
-    favorites?: FavoriteCreateNestedManyWithoutUserInput
+    favourites?: FavouriteCreateNestedManyWithoutUserInput
     accessList?: AccessCreateNestedManyWithoutUserInput
     blogs?: BlogCreateNestedManyWithoutAuthorInput
     sessions?: SessionCreateNestedManyWithoutUserInput
@@ -22132,7 +23453,7 @@ export namespace Prisma {
     votes?: VoteUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     payments?: PaymentUncheckedCreateNestedManyWithoutUserInput
-    favorites?: FavoriteUncheckedCreateNestedManyWithoutUserInput
+    favourites?: FavouriteUncheckedCreateNestedManyWithoutUserInput
     accessList?: AccessUncheckedCreateNestedManyWithoutUserInput
     blogs?: BlogUncheckedCreateNestedManyWithoutAuthorInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
@@ -22264,23 +23585,23 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type FavoriteCreateWithoutIdeaInput = {
+  export type FavouriteCreateWithoutIdeaInput = {
     id?: string
-    user: UserCreateNestedOneWithoutFavoritesInput
+    user: UserCreateNestedOneWithoutFavouritesInput
   }
 
-  export type FavoriteUncheckedCreateWithoutIdeaInput = {
+  export type FavouriteUncheckedCreateWithoutIdeaInput = {
     id?: string
     userId: string
   }
 
-  export type FavoriteCreateOrConnectWithoutIdeaInput = {
-    where: FavoriteWhereUniqueInput
-    create: XOR<FavoriteCreateWithoutIdeaInput, FavoriteUncheckedCreateWithoutIdeaInput>
+  export type FavouriteCreateOrConnectWithoutIdeaInput = {
+    where: FavouriteWhereUniqueInput
+    create: XOR<FavouriteCreateWithoutIdeaInput, FavouriteUncheckedCreateWithoutIdeaInput>
   }
 
-  export type FavoriteCreateManyIdeaInputEnvelope = {
-    data: FavoriteCreateManyIdeaInput | FavoriteCreateManyIdeaInput[]
+  export type FavouriteCreateManyIdeaInputEnvelope = {
+    data: FavouriteCreateManyIdeaInput | FavouriteCreateManyIdeaInput[]
     skipDuplicates?: boolean
   }
 
@@ -22334,7 +23655,7 @@ export namespace Prisma {
     votes?: VoteUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
     payments?: PaymentUpdateManyWithoutUserNestedInput
-    favorites?: FavoriteUpdateManyWithoutUserNestedInput
+    favourites?: FavouriteUpdateManyWithoutUserNestedInput
     accessList?: AccessUpdateManyWithoutUserNestedInput
     blogs?: BlogUpdateManyWithoutAuthorNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
@@ -22355,7 +23676,7 @@ export namespace Prisma {
     votes?: VoteUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutUserNestedInput
-    favorites?: FavoriteUncheckedUpdateManyWithoutUserNestedInput
+    favourites?: FavouriteUncheckedUpdateManyWithoutUserNestedInput
     accessList?: AccessUncheckedUpdateManyWithoutUserNestedInput
     blogs?: BlogUncheckedUpdateManyWithoutAuthorNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -22440,20 +23761,20 @@ export namespace Prisma {
     data: XOR<PaymentUpdateManyMutationInput, PaymentUncheckedUpdateManyWithoutIdeaInput>
   }
 
-  export type FavoriteUpsertWithWhereUniqueWithoutIdeaInput = {
-    where: FavoriteWhereUniqueInput
-    update: XOR<FavoriteUpdateWithoutIdeaInput, FavoriteUncheckedUpdateWithoutIdeaInput>
-    create: XOR<FavoriteCreateWithoutIdeaInput, FavoriteUncheckedCreateWithoutIdeaInput>
+  export type FavouriteUpsertWithWhereUniqueWithoutIdeaInput = {
+    where: FavouriteWhereUniqueInput
+    update: XOR<FavouriteUpdateWithoutIdeaInput, FavouriteUncheckedUpdateWithoutIdeaInput>
+    create: XOR<FavouriteCreateWithoutIdeaInput, FavouriteUncheckedCreateWithoutIdeaInput>
   }
 
-  export type FavoriteUpdateWithWhereUniqueWithoutIdeaInput = {
-    where: FavoriteWhereUniqueInput
-    data: XOR<FavoriteUpdateWithoutIdeaInput, FavoriteUncheckedUpdateWithoutIdeaInput>
+  export type FavouriteUpdateWithWhereUniqueWithoutIdeaInput = {
+    where: FavouriteWhereUniqueInput
+    data: XOR<FavouriteUpdateWithoutIdeaInput, FavouriteUncheckedUpdateWithoutIdeaInput>
   }
 
-  export type FavoriteUpdateManyWithWhereWithoutIdeaInput = {
-    where: FavoriteScalarWhereInput
-    data: XOR<FavoriteUpdateManyMutationInput, FavoriteUncheckedUpdateManyWithoutIdeaInput>
+  export type FavouriteUpdateManyWithWhereWithoutIdeaInput = {
+    where: FavouriteScalarWhereInput
+    data: XOR<FavouriteUpdateManyMutationInput, FavouriteUncheckedUpdateManyWithoutIdeaInput>
   }
 
   export type AccessUpsertWithWhereUniqueWithoutIdeaInput = {
@@ -22487,7 +23808,7 @@ export namespace Prisma {
     ideas?: IdeaCreateNestedManyWithoutAuthorInput
     votes?: VoteCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
-    favorites?: FavoriteCreateNestedManyWithoutUserInput
+    favourites?: FavouriteCreateNestedManyWithoutUserInput
     accessList?: AccessCreateNestedManyWithoutUserInput
     blogs?: BlogCreateNestedManyWithoutAuthorInput
     sessions?: SessionCreateNestedManyWithoutUserInput
@@ -22508,7 +23829,7 @@ export namespace Prisma {
     ideas?: IdeaUncheckedCreateNestedManyWithoutAuthorInput
     votes?: VoteUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
-    favorites?: FavoriteUncheckedCreateNestedManyWithoutUserInput
+    favourites?: FavouriteUncheckedCreateNestedManyWithoutUserInput
     accessList?: AccessUncheckedCreateNestedManyWithoutUserInput
     blogs?: BlogUncheckedCreateNestedManyWithoutAuthorInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
@@ -22543,7 +23864,7 @@ export namespace Prisma {
     category: CategoryCreateNestedOneWithoutIdeasInput
     votes?: VoteCreateNestedManyWithoutIdeaInput
     comments?: CommentCreateNestedManyWithoutIdeaInput
-    favorites?: FavoriteCreateNestedManyWithoutIdeaInput
+    favourites?: FavouriteCreateNestedManyWithoutIdeaInput
     accessList?: AccessCreateNestedManyWithoutIdeaInput
   }
 
@@ -22571,7 +23892,7 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     votes?: VoteUncheckedCreateNestedManyWithoutIdeaInput
     comments?: CommentUncheckedCreateNestedManyWithoutIdeaInput
-    favorites?: FavoriteUncheckedCreateNestedManyWithoutIdeaInput
+    favourites?: FavouriteUncheckedCreateNestedManyWithoutIdeaInput
     accessList?: AccessUncheckedCreateNestedManyWithoutIdeaInput
   }
 
@@ -22606,7 +23927,7 @@ export namespace Prisma {
     ideas?: IdeaUpdateManyWithoutAuthorNestedInput
     votes?: VoteUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
-    favorites?: FavoriteUpdateManyWithoutUserNestedInput
+    favourites?: FavouriteUpdateManyWithoutUserNestedInput
     accessList?: AccessUpdateManyWithoutUserNestedInput
     blogs?: BlogUpdateManyWithoutAuthorNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
@@ -22627,7 +23948,7 @@ export namespace Prisma {
     ideas?: IdeaUncheckedUpdateManyWithoutAuthorNestedInput
     votes?: VoteUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
-    favorites?: FavoriteUncheckedUpdateManyWithoutUserNestedInput
+    favourites?: FavouriteUncheckedUpdateManyWithoutUserNestedInput
     accessList?: AccessUncheckedUpdateManyWithoutUserNestedInput
     blogs?: BlogUncheckedUpdateManyWithoutAuthorNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -22668,7 +23989,7 @@ export namespace Prisma {
     category?: CategoryUpdateOneRequiredWithoutIdeasNestedInput
     votes?: VoteUpdateManyWithoutIdeaNestedInput
     comments?: CommentUpdateManyWithoutIdeaNestedInput
-    favorites?: FavoriteUpdateManyWithoutIdeaNestedInput
+    favourites?: FavouriteUpdateManyWithoutIdeaNestedInput
     accessList?: AccessUpdateManyWithoutIdeaNestedInput
   }
 
@@ -22696,7 +24017,7 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     votes?: VoteUncheckedUpdateManyWithoutIdeaNestedInput
     comments?: CommentUncheckedUpdateManyWithoutIdeaNestedInput
-    favorites?: FavoriteUncheckedUpdateManyWithoutIdeaNestedInput
+    favourites?: FavouriteUncheckedUpdateManyWithoutIdeaNestedInput
     accessList?: AccessUncheckedUpdateManyWithoutIdeaNestedInput
   }
 
@@ -22715,7 +24036,7 @@ export namespace Prisma {
     ideas?: IdeaCreateNestedManyWithoutAuthorInput
     comments?: CommentCreateNestedManyWithoutUserInput
     payments?: PaymentCreateNestedManyWithoutUserInput
-    favorites?: FavoriteCreateNestedManyWithoutUserInput
+    favourites?: FavouriteCreateNestedManyWithoutUserInput
     accessList?: AccessCreateNestedManyWithoutUserInput
     blogs?: BlogCreateNestedManyWithoutAuthorInput
     sessions?: SessionCreateNestedManyWithoutUserInput
@@ -22736,7 +24057,7 @@ export namespace Prisma {
     ideas?: IdeaUncheckedCreateNestedManyWithoutAuthorInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     payments?: PaymentUncheckedCreateNestedManyWithoutUserInput
-    favorites?: FavoriteUncheckedCreateNestedManyWithoutUserInput
+    favourites?: FavouriteUncheckedCreateNestedManyWithoutUserInput
     accessList?: AccessUncheckedCreateNestedManyWithoutUserInput
     blogs?: BlogUncheckedCreateNestedManyWithoutAuthorInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
@@ -22771,7 +24092,7 @@ export namespace Prisma {
     category: CategoryCreateNestedOneWithoutIdeasInput
     comments?: CommentCreateNestedManyWithoutIdeaInput
     payments?: PaymentCreateNestedManyWithoutIdeaInput
-    favorites?: FavoriteCreateNestedManyWithoutIdeaInput
+    favourites?: FavouriteCreateNestedManyWithoutIdeaInput
     accessList?: AccessCreateNestedManyWithoutIdeaInput
   }
 
@@ -22799,7 +24120,7 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     comments?: CommentUncheckedCreateNestedManyWithoutIdeaInput
     payments?: PaymentUncheckedCreateNestedManyWithoutIdeaInput
-    favorites?: FavoriteUncheckedCreateNestedManyWithoutIdeaInput
+    favourites?: FavouriteUncheckedCreateNestedManyWithoutIdeaInput
     accessList?: AccessUncheckedCreateNestedManyWithoutIdeaInput
   }
 
@@ -22834,7 +24155,7 @@ export namespace Prisma {
     ideas?: IdeaUpdateManyWithoutAuthorNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
     payments?: PaymentUpdateManyWithoutUserNestedInput
-    favorites?: FavoriteUpdateManyWithoutUserNestedInput
+    favourites?: FavouriteUpdateManyWithoutUserNestedInput
     accessList?: AccessUpdateManyWithoutUserNestedInput
     blogs?: BlogUpdateManyWithoutAuthorNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
@@ -22855,7 +24176,7 @@ export namespace Prisma {
     ideas?: IdeaUncheckedUpdateManyWithoutAuthorNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutUserNestedInput
-    favorites?: FavoriteUncheckedUpdateManyWithoutUserNestedInput
+    favourites?: FavouriteUncheckedUpdateManyWithoutUserNestedInput
     accessList?: AccessUncheckedUpdateManyWithoutUserNestedInput
     blogs?: BlogUncheckedUpdateManyWithoutAuthorNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -22896,7 +24217,7 @@ export namespace Prisma {
     category?: CategoryUpdateOneRequiredWithoutIdeasNestedInput
     comments?: CommentUpdateManyWithoutIdeaNestedInput
     payments?: PaymentUpdateManyWithoutIdeaNestedInput
-    favorites?: FavoriteUpdateManyWithoutIdeaNestedInput
+    favourites?: FavouriteUpdateManyWithoutIdeaNestedInput
     accessList?: AccessUpdateManyWithoutIdeaNestedInput
   }
 
@@ -22924,7 +24245,7 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     comments?: CommentUncheckedUpdateManyWithoutIdeaNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutIdeaNestedInput
-    favorites?: FavoriteUncheckedUpdateManyWithoutIdeaNestedInput
+    favourites?: FavouriteUncheckedUpdateManyWithoutIdeaNestedInput
     accessList?: AccessUncheckedUpdateManyWithoutIdeaNestedInput
   }
 
@@ -22983,7 +24304,7 @@ export namespace Prisma {
     deletedAt?: Date | string | null
   }
 
-  export type FavoriteCreateManyUserInput = {
+  export type FavouriteCreateManyUserInput = {
     id?: string
     ideaId: string
   }
@@ -23039,7 +24360,7 @@ export namespace Prisma {
     votes?: VoteUpdateManyWithoutIdeaNestedInput
     comments?: CommentUpdateManyWithoutIdeaNestedInput
     payments?: PaymentUpdateManyWithoutIdeaNestedInput
-    favorites?: FavoriteUpdateManyWithoutIdeaNestedInput
+    favourites?: FavouriteUpdateManyWithoutIdeaNestedInput
     accessList?: AccessUpdateManyWithoutIdeaNestedInput
   }
 
@@ -23067,7 +24388,7 @@ export namespace Prisma {
     votes?: VoteUncheckedUpdateManyWithoutIdeaNestedInput
     comments?: CommentUncheckedUpdateManyWithoutIdeaNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutIdeaNestedInput
-    favorites?: FavoriteUncheckedUpdateManyWithoutIdeaNestedInput
+    favourites?: FavouriteUncheckedUpdateManyWithoutIdeaNestedInput
     accessList?: AccessUncheckedUpdateManyWithoutIdeaNestedInput
   }
 
@@ -23192,17 +24513,17 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type FavoriteUpdateWithoutUserInput = {
+  export type FavouriteUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    idea?: IdeaUpdateOneRequiredWithoutFavoritesNestedInput
+    idea?: IdeaUpdateOneRequiredWithoutFavouritesNestedInput
   }
 
-  export type FavoriteUncheckedUpdateWithoutUserInput = {
+  export type FavouriteUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     ideaId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type FavoriteUncheckedUpdateManyWithoutUserInput = {
+  export type FavouriteUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     ideaId?: StringFieldUpdateOperationsInput | string
   }
@@ -23335,7 +24656,7 @@ export namespace Prisma {
     votes?: VoteUpdateManyWithoutIdeaNestedInput
     comments?: CommentUpdateManyWithoutIdeaNestedInput
     payments?: PaymentUpdateManyWithoutIdeaNestedInput
-    favorites?: FavoriteUpdateManyWithoutIdeaNestedInput
+    favourites?: FavouriteUpdateManyWithoutIdeaNestedInput
     accessList?: AccessUpdateManyWithoutIdeaNestedInput
   }
 
@@ -23363,7 +24684,7 @@ export namespace Prisma {
     votes?: VoteUncheckedUpdateManyWithoutIdeaNestedInput
     comments?: CommentUncheckedUpdateManyWithoutIdeaNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutIdeaNestedInput
-    favorites?: FavoriteUncheckedUpdateManyWithoutIdeaNestedInput
+    favourites?: FavouriteUncheckedUpdateManyWithoutIdeaNestedInput
     accessList?: AccessUncheckedUpdateManyWithoutIdeaNestedInput
   }
 
@@ -23468,7 +24789,7 @@ export namespace Prisma {
     deletedAt?: Date | string | null
   }
 
-  export type FavoriteCreateManyIdeaInput = {
+  export type FavouriteCreateManyIdeaInput = {
     id?: string
     userId: string
   }
@@ -23578,17 +24899,17 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type FavoriteUpdateWithoutIdeaInput = {
+  export type FavouriteUpdateWithoutIdeaInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user?: UserUpdateOneRequiredWithoutFavoritesNestedInput
+    user?: UserUpdateOneRequiredWithoutFavouritesNestedInput
   }
 
-  export type FavoriteUncheckedUpdateWithoutIdeaInput = {
+  export type FavouriteUncheckedUpdateWithoutIdeaInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type FavoriteUncheckedUpdateManyWithoutIdeaInput = {
+  export type FavouriteUncheckedUpdateManyWithoutIdeaInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
   }

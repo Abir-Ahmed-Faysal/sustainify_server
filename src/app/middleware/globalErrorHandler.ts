@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextFunction, Request, Response } from "express";
 import { envVars } from "../config/env";
@@ -15,8 +16,11 @@ import AppError from "../errorHelpers/AppError";
 // } from "../errorHelpers/handlePrismaError";
 
 export const globalErrorHandler = async (err: any, req: Request, res: Response, _: NextFunction) => {
-    if (envVars.NODE_ENV === "development") {
-        console.log("Error from Global Error Handler", err);
+    // Only log unexpected errors - don't spam logs with expected auth/validation failures
+    const isExpectedError = err instanceof AppError && err.statusCode === 401;
+    
+    if (envVars.NODE_ENV === "development" && !isExpectedError) {
+        console.log("❌ Error from Global Error Handler", err);
     }
 
     let errorSources: TErrorSources[] = []

@@ -7,7 +7,7 @@ import AppError from "../../errorHelpers/AppError";
 import { StatusCodes } from "http-status-codes";
 import { formatToLocalTime } from "../../utilities/dateTime";
 
-const getAllUsers = async (query: IQueryParams) => {
+const getAllUsers = async (query: IQueryParams) => { 
     const userModel = prisma.user as any;
     
     const userQueryBuilder = new QueryBuilder(userModel, query, {
@@ -18,9 +18,9 @@ const getAllUsers = async (query: IQueryParams) => {
     const result = await userQueryBuilder
         .search()
         .filter()
+        .where({ isDeleted: false })
         .sort()
         .paginate()
-        .where({ isDeleted: false })
         .include({
             profile: true
         })
@@ -152,7 +152,7 @@ const toggleUserStatus = async (
     payload: { isActive: boolean }
 ) => {
     const user = await prisma.user.findUnique({
-        where: { id, isDeleted: false },
+        where: { id },
     });
 
     if (!user) {
@@ -163,21 +163,61 @@ const toggleUserStatus = async (
         throw new AppError(StatusCodes.FORBIDDEN, "Cannot deactivate an ADMIN account");
     }
 
-    const result = await prisma.user.update({
-        where: { id },
-        data: { isActive: payload.isActive },
+  const result = await prisma.$transaction(async (tx) => {
+    const updatedUser = await tx.user.update({
+      where: { id },
+      data: {
+        isActive: payload.isActive,
+        isDeleted: !payload.isActive,
+        deletedAt: !payload.isActive ? new Date() : null,
+      },
     });
 
-    return {
-        id: result.id,
-        name: result.name,
-        email: result.email,
-        isActive: result.isActive,
-    };
+    // ✅ Sync the user's ideas status
+    // When a user is deactivated/deleted, their ideas should also be soft-deleted
+    await tx.idea.updateMany({
+      where: { authorId: id },
+      data: {
+        isDeleted: !payload.isActive,
+        deletedAt: !payload.isActive ? new Date() : null,
+      },
+    });
+
+    return updatedUser;
+  });
+
+  return {
+    id: result.id,
+    name: result.name,
+    email: result.email,
+    isActive: result.isActive,
+  };
+};
+
+const getPublicUsers = async () => {
+    const users = await prisma.user.findMany({
+        where: { 
+            isDeleted: false,
+            isActive: true 
+        },
+        take: 100,
+        select: {
+            id: true,
+            name: true,
+            profile: {
+                select: {
+                    avatar: true
+                }
+            }
+        },
+    });
+
+    return users;
 };
 
 export const userService = {
     getAllUsers,
+    getPublicUsers,
     getUserById,
     updateMyProfile,
     deleteMyAccount,

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { ideaController } from "./idea.controller";
+import { accessController } from "../access/access.controller";
 import { checkAuth } from "../../middleware/checkAuth";
 import { checkOptionalAuth } from "../../middleware/checkOptionalAuth";
 import { Role } from "../../../generated/prisma";
@@ -11,8 +12,12 @@ const router = Router();
 // Public: get all ideas
 router.get("/", checkOptionalAuth, ideaController.getAllIdeas);
 
+// ✅ NEW: Admin only - get ALL ideas (including all statuses except drafts)
+router.get("/admin/all", checkAuth(Role.ADMIN), ideaController.getAdminAllIdeas);
+
 router.get("/my-ideas", checkAuth(Role.ADMIN, Role.MEMBER), ideaController.getMyIdeas);
 
+router.get("/my-purchased-ideas", checkAuth(Role.ADMIN, Role.MEMBER), accessController.getMyPaidPursuedIdeas);
 
 router.get("/my-Idea/:id", checkAuth(Role.ADMIN, Role.MEMBER), ideaController.getMyIdeaById);
 
@@ -35,11 +40,11 @@ router.patch(
     ideaController.updateIdea
 );
 
-router.patch('/status/:id',checkAuth(Role.ADMIN,Role.MEMBER),ideaController.updateIdeaStatus)
+router.patch('/status/:id', checkAuth(Role.ADMIN, Role.MEMBER), validateRequest(ideaValidation.updateIdeaStatus), ideaController.updateIdeaStatus)
 
-router.patch('/status/admin/:id',checkAuth(Role.ADMIN),ideaController.updateIdeaStatus)
+router.patch('/status/admin/:id', checkAuth(Role.ADMIN), validateRequest(ideaValidation.updateIdeaStatusByAdmin), ideaController.updateIdeaStatusByAdmin)
 
-router.patch('/toggle-isFeatured/:id', checkAuth(Role.ADMIN), ideaController.toggleIsFeatured)
+router.patch('/toggle-isFeatured/:id', checkAuth(Role.ADMIN), validateRequest(ideaValidation.toggleIsFeatured), ideaController.toggleIsFeatured)
 
 // Users and Admin can delete ideas
 router.delete(

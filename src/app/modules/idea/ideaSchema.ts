@@ -94,4 +94,7 @@ export type IIdeaCreate = z.infer<typeof createIdeaZodSchema>;
 export const ideaValidation = {
   createIdeaZodSchema,
   updateIdeaZodSchema,
+  updateIdeaStatus,
+  toggleIsFeatured,
+  updateIdeaStatusByAdmin,
 };

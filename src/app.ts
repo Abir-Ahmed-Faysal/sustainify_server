@@ -12,9 +12,16 @@ const app: Application = express();
 
 app.set("query parser", (str: string) => qs.parse(str))
 
+// Stripe webhook endpoint (raw body required for signature verification)
 app.post('/webhook', express.raw({
     type: "application/json"
-}),paymentController.stripeWebhook)
+}), paymentController.stripeWebhook)
+
+
+// Also expose webhook under API prefix for production setups using /api/v1/payment/webhook
+app.post('/api/v1/payment/webhook', express.raw({
+    type: "application/json"
+}), paymentController.stripeWebhook)    
 
 const corsOrigins = process.env.NODE_ENV === 'production' 
   ? [process.env.FRONTEND_URL || 'https://sustainify-frontend.vercel.app']

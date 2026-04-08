@@ -1,4 +1,4 @@
-model Favorite {
+model Favourite {
   id      String @id @default(uuid())
   userId  String
   ideaId  String
@@ -7,7 +7,7 @@ model Favorite {
   idea    Idea   @relation(fields: [ideaId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@unique([userId, ideaId])
-  @@index([userId], name: "idx_favorite_userId")
-  @@index([ideaId], name: "idx_favorite_ideaId")
-  @@map("favorites")
+  @@index([userId], name: "idx_favourite_userId")
+  @@index([ideaId], name: "idx_favourite_ideaId")
+  @@map("favourite")
 }

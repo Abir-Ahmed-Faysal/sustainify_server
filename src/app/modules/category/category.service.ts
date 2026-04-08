@@ -76,10 +76,30 @@ const deleteCategory = async (id: string) => {
         throw new AppError(StatusCodes.NOT_FOUND, "Category not found");
     }
 
-    const result = await prisma.category.delete({
-        where: { id },
+  // ✅ Use transaction to safely handle category deletion
+  return await prisma.$transaction(async (tx) => {
+    // Check if there are active ideas in this category
+    const activeIdeaCount = await tx.idea.count({
+      where: { 
+        categoryId: id,
+        isDeleted: false 
+      },
     });
+
+    if (activeIdeaCount > 0) {
+      throw new AppError(
+        StatusCodes.CONFLICT,
+        `Cannot delete category: ${activeIdeaCount} active ideas belong to it. Please re-categorize or delete the ideas first.`
+      );
+    }
+
+    // Perform the deletion
+    const result = await tx.category.delete({
+      where: { id },
+    });
+    
     return result;
+  });
 };
 
 

@@ -253,7 +253,7 @@ sort(): this {
     const order =
       sortOrders[index] === "asc" || sortOrders[index] === "desc"
         ? sortOrders[index]
-        : "asc"; // safe fallback
+        : (sortOrders[0] === "asc" || sortOrders[0] === "desc" ? sortOrders[0] : "desc"); // Use first sort order as fallback, or desc
 
     // 🔹 Nested support (same as your existing logic)
     if (field.includes(".")) {

@@ -51,7 +51,7 @@ const getAllIdeas = async (query: IQueryParams) => {
 
   const ideaQueryBuilder = new QueryBuilder(ideaModel, query, {
     searchableFields: ["title", "problemStatement", "description", "author.name"],
-    filterableFields: ["categoryId", "isPaid", "status", "authorId", "isFeatured", "category.name"],
+    filterableFields: ["categoryId", "isPaid", "status", "authorId", "isFeatured", "category.name", "totalUpVotes", "price"],
   });
 
   const result = await ideaQueryBuilder
@@ -105,7 +105,10 @@ const getAllIdeas = async (query: IQueryParams) => {
     positiveRatio: idea.positiveRatio,
     totalUpVotes: idea.totalUpVotes,
     totalDownVotes: idea.totalDownVotes,
-    author: idea.author,
+    author: {
+      ...idea.author,
+      profile: idea.author.profile ?? undefined,
+    },
     category: idea.category,
     attachments: idea.attachments,
     _count: idea._count
@@ -113,6 +116,92 @@ const getAllIdeas = async (query: IQueryParams) => {
 
   return result;
 };
+
+// ✅ NEW: Admin endpoint - returns ALL ideas (excluding drafts and deleted items)
+const getAdminAllIdeas = async (query: IQueryParams) => {
+  const ideaModel = prisma.idea as any; // Cast for QueryBuilder compatibility
+
+  // Transform categoryName to category.name for nested filtering
+  if (query.categoryName) {
+    query["category.name"] = query.categoryName;
+    delete query.categoryName;
+  }
+
+  // Set professional default sorting if not provided
+  if (!query.sortBy) {
+    query.sortBy = "createdAt";
+    query.sortOrder = "desc";
+  }
+
+  const ideaQueryBuilder = new QueryBuilder(ideaModel, query, {
+    searchableFields: ["title", "problemStatement", "description", "author.name"],
+    filterableFields: ["categoryId", "isPaid", "status", "authorId", "isFeatured", "category.name", "totalUpVotes", "price"],
+  });
+
+  const result = await ideaQueryBuilder
+    .search()
+    .filter()
+    .sort()
+    .paginate()
+    .where({ isDeleted: false, status: { not: IdeaStatus.DRAFT } })
+    .include({
+      category: {
+        select: {
+          id: true,
+          name: true,
+          image: true,
+        }
+      },
+      author: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          profile: {
+            select: {
+              avatar: true,
+            }
+          }
+        }
+      },
+      _count: {
+        select: {
+          comments: true,
+          votes: true,
+        }
+      }
+    })
+    .execute();
+
+  // Securely project fields to hide sensitive data in list view
+  result.data = result.data.map((idea: any) => ({
+    id: idea.id,
+    title: idea.title,
+    problemStatement: idea.problemStatement,
+    description: idea.description,
+    image: idea.image,
+    isPaid: idea.isPaid,
+    price: idea.price,
+    status: idea.status,
+    isFeatured: idea.isFeatured,
+    createdAt: formatToLocalTime(idea.createdAt),
+    positiveRatio: idea.positiveRatio,
+    totalUpVotes: idea.totalUpVotes,
+    totalDownVotes: idea.totalDownVotes,
+    author: {
+      ...idea.author,
+      profile: idea.author.profile ?? undefined,
+    },
+    category: idea.category,
+    attachments: idea.attachments,
+    _count: idea._count
+  }));
+
+  return result;
+};
+
+
 const getMyIdeas = async (query: IQueryParams, user: IUserRequest) => {
   const ideaModel = prisma.idea as any; // Cast for QueryBuilder compatibility
 
@@ -130,7 +219,7 @@ const getMyIdeas = async (query: IQueryParams, user: IUserRequest) => {
 
   const ideaQueryBuilder = new QueryBuilder(ideaModel, query, {
     searchableFields: ["title", "problemStatement", "description"],
-    filterableFields: ["categoryId", "isPaid", "status", "authorId", "isFeatured", "category.name"],
+    filterableFields: ["categoryId", "isPaid", "status", "authorId", "isFeatured", "category.name", "totalUpVotes", "price"],
   });
 
   const result = await ideaQueryBuilder
@@ -184,7 +273,10 @@ const getMyIdeas = async (query: IQueryParams, user: IUserRequest) => {
     positiveRatio: idea.positiveRatio,
     totalUpVotes: idea.totalUpVotes,
     totalDownVotes: idea.totalDownVotes,
-    author: idea.author,
+    author: {
+      ...idea.author,
+      profile: idea.author.profile ?? undefined,
+    },
     category: idea.category,
     attachments: idea.attachments,
     _count: idea._count
@@ -195,15 +287,60 @@ const getMyIdeas = async (query: IQueryParams, user: IUserRequest) => {
 
 
 const getMyIdeaById = async (id: string, user: IUserRequest) => {
+  const idea = await prisma.idea.findFirst({
+    where: { authorId: user.id, id, isDeleted: false },
+    include: {
+      author: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          profile: {
+            select: {
+              avatar: true,
+            },
+          },
+        },
+      },
+      category: {
+        select: {
+          id: true,
+          name: true,
+          image: true,
+        },
+      },
+      _count: {
+        select: {
+          comments: true,
+          votes: true,
+        },
+      },
+    },
+  });
 
-  const idea = await prisma.idea.findUnique({
-    where: { authorId: user.id, id, isDeleted: false }
-  })
   if (!idea) {
-    throw new AppError(StatusCodes.NOT_FOUND, "idea not found")
+    throw new AppError(StatusCodes.NOT_FOUND, "idea not found");
   }
-  return idea
-}
+
+  const formattedIdea = {
+    ...idea,
+    author: idea.author
+      ? {
+          ...idea.author,
+          profile: idea.author.profile ?? undefined,
+        }
+      : undefined,
+    createdAt: formatToLocalTime(idea.createdAt),
+    updatedAt: formatToLocalTime(idea.updatedAt),
+  };
+
+  return {
+    ...formattedIdea,
+    unlock: true,
+    comment: true,
+  };
+};
 
 
 const changeStatus = async (
@@ -212,11 +349,11 @@ const changeStatus = async (
   status: IdeaStatus
 ) => {
 
-  // only allow UNDER_REVIEW
-  if (status !== IdeaStatus.UNDER_REVIEW) {
+  // Allow members to switch between DRAFT and UNDER_REVIEW
+  if (status !== IdeaStatus.UNDER_REVIEW && status !== IdeaStatus.DRAFT) {
     throw new AppError(
       StatusCodes.FORBIDDEN,
-      "You can only send idea for review"
+      "Members can only set status to DRAFT or UNDER_REVIEW"
     );
   }
 
@@ -231,6 +368,13 @@ const changeStatus = async (
       status: true,
     },
   });
+
+  if (findIdea.status === IdeaStatus.APPROVED) {
+    throw new AppError(
+      StatusCodes.FORBIDDEN,
+      "Cannot change status of approved ideas"
+    );
+  }
 
   if (findIdea.status === status) {
     throw new AppError(
@@ -249,7 +393,8 @@ const changeStatus = async (
 const changeStatusByAdmin = async (
   id: string,
   user: IUserRequest,
-  status: IdeaStatus
+  status: IdeaStatus,
+  feedback?: string
 ) => {
 
   if (user.role !== Role.ADMIN) {
@@ -261,11 +406,12 @@ const changeStatusByAdmin = async (
 
   if (
     status !== IdeaStatus.APPROVED &&
-    status !== IdeaStatus.REJECTED
+    status !== IdeaStatus.REJECTED &&
+    status !== IdeaStatus.UNDER_REVIEW
   ) {
     throw new AppError(
       StatusCodes.BAD_REQUEST,
-      "Admin can only approve or reject ideas"
+      "Admin can only approve, reject or review ideas"
     );
   }
 
@@ -287,17 +433,31 @@ const changeStatusByAdmin = async (
     );
   }
 
-  return prisma.idea.update({
-    where: { id },
-    data: { status },
+  return await prisma.$transaction(async (tx) => {
+    const updatedIdea = await tx.idea.update({
+      where: { id },
+      data: { status, feedback: feedback || null },
+    });
+
+    // ✅ If the idea is no longer APPROVED, remove all social interactions
+    if (status !== IdeaStatus.APPROVED) {
+      await tx.favourite.deleteMany({
+        where: { ideaId: id },
+      });
+      await tx.comment.deleteMany({
+        where: { ideaId: id },
+      });
+    }
+
+    return updatedIdea;
   });
 };
 
 
 export const getIdeaById = async (id: string, user?: IUserRequest) => {
-  // Fetch idea with author, category, and counts
-  const idea = await prisma.idea.findUnique({
-    where: { id, isDeleted: false, status: IdeaStatus.APPROVED },
+  // Fetch idea with author, category, and counts (remove status filter - check permissions below)
+  const idea = await prisma.idea.findFirst({
+    where: { id, isDeleted: false },
     include: {
       comments: {
         include: {
@@ -342,6 +502,16 @@ export const getIdeaById = async (id: string, user?: IUserRequest) => {
     throw new AppError(StatusCodes.NOT_FOUND, "Idea not found");
   }
 
+  // ✅ Permission check: Public users can only see APPROVED ideas
+  // Admins and authors can see any status
+  const isAdmin = user?.role === Role.ADMIN;
+  const isAuthor = user && user.id === idea.authorId;
+  const isApproved = idea.status === IdeaStatus.APPROVED;
+
+  if (!isAdmin && !isAuthor && !isApproved) {
+    throw new AppError(StatusCodes.NOT_FOUND, "Idea not found");
+  }
+
   // Normalize idea to match IIdea interface
   const formatIdea = (item: typeof idea & { author: { profile: { avatar: string | null } | null } }) => ({
     ...item,
@@ -354,12 +524,12 @@ export const getIdeaById = async (id: string, user?: IUserRequest) => {
   });
 
   // 1. Admins see full content
-  if (user?.role === Role.ADMIN) {
+  if (isAdmin) {
     return { ...formatIdea(idea), unlock: true, comment: true };
   }
 
   // 2. Authors see full content (their own idea)
-  if (user && user.id === idea.authorId) {
+  if (isAuthor) {
     return { ...formatIdea(idea), unlock: true, comment: true };
   }
 
@@ -417,7 +587,7 @@ export const getIdeaById = async (id: string, user?: IUserRequest) => {
 
 const updateIdea = async (id: string, user: IUserRequest, payload: IIdeaUpdate) => {
 
-  const idea = await prisma.idea.findUnique({
+  const idea = await prisma.idea.findFirst({
     where: { id, isDeleted: false },
   });
 
@@ -428,6 +598,15 @@ const updateIdea = async (id: string, user: IUserRequest, payload: IIdeaUpdate) 
   // Only the author or an ADMIN can update the idea
   if (idea.authorId !== user.id && user.role !== Role.ADMIN) {
     throw new AppError(StatusCodes.FORBIDDEN, "You are not authorized to update this idea");
+  }
+
+  // ⚠️  Members can only edit unpublished and non-rejected ideas (UNDER_REVIEW or DRAFT)
+  // Admins can edit any non-deleted idea
+  if (user.role !== Role.ADMIN && (idea.status === IdeaStatus.APPROVED || idea.status === IdeaStatus.REJECTED)) {
+    throw new AppError(
+      StatusCodes.FORBIDDEN,
+      `Cannot edit ${idea.status.toLowerCase()} ideas.`
+    );
   }
 
   const result = await prisma.idea.update({
@@ -453,16 +632,35 @@ const deleteIdea = async (id: string, user: IUserRequest) => {
     throw new AppError(StatusCodes.FORBIDDEN, "You are not authorized to delete this idea");
   }
 
-  // Soft delete the idea
-  const result = await prisma.idea.update({
-    where: { id },
-    data: {
-      isDeleted: true,
-      deletedAt: new Date(),
-    },
-  });
+  // ⚠️  Members can only delete unpublished and non-rejected ideas (UNDER_REVIEW or DRAFT)
+  // Admins can delete any idea
+  if (user.role !== Role.ADMIN && (idea.status === IdeaStatus.APPROVED || idea.status === IdeaStatus.REJECTED)) {
+    throw new AppError(
+      StatusCodes.FORBIDDEN,
+      `Cannot delete ${idea.status.toLowerCase()} ideas.`
+    );
+  }
 
-  return result;
+  // ✅ Use transaction to handle soft delete and activity cleanup
+  return await prisma.$transaction(async (tx) => {
+    const result = await tx.idea.update({
+      where: { id },
+      data: {
+        isDeleted: true,
+        deletedAt: new Date(),
+      },
+    });
+
+    // Clear all associated social data
+    await tx.favourite.deleteMany({
+      where: { ideaId: id },
+    });
+    await tx.comment.deleteMany({
+      where: { ideaId: id },
+    });
+
+    return result;
+  });
 };
 
 
@@ -514,6 +712,7 @@ export const ideaService = {
   changeStatus,
   createIdea,
   getAllIdeas,
+  getAdminAllIdeas,
   getIdeaById,
   updateIdea,
   deleteIdea,

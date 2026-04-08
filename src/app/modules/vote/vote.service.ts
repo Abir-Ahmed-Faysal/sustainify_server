@@ -4,7 +4,6 @@ import AppError from "../../errorHelpers/AppError";
 import { StatusCodes } from "http-status-codes";
 import { IUserRequest } from "../../interfaces/user.interface";
 import { IVote } from "./vote.interface";
-import { QueryBuilder } from "../../utilities/QueryBuilder";
 
 const toggleVote = async (user: IUserRequest, payload: IVote) => {
   const { ideaId, type } = payload;
@@ -25,7 +24,26 @@ const toggleVote = async (user: IUserRequest, payload: IVote) => {
     );
   }
 
-  // 2. Check for an existing vote by the user
+  // 2. For paid ideas, check if user has access (is author or has paid)
+  if (idea.isPaid && idea.authorId !== user.id) {
+    const accessRecord = await prisma.access.findUnique({
+      where: {
+        userId_ideaId: {
+          userId: user.id,
+          ideaId: ideaId,
+        },
+      },
+    });
+
+    if (!accessRecord) {
+      throw new AppError(
+        StatusCodes.FORBIDDEN,
+        "You don't have access to this paid idea. Please purchase access first."
+      );
+    }
+  }
+
+  // 3. Check for an existing vote by the user
   const existingVote = await prisma.vote.findUnique({
     where: {
       userId_ideaId: {
@@ -79,10 +97,10 @@ const toggleVote = async (user: IUserRequest, payload: IVote) => {
     const newDownVotes = Math.max(0, idea.totalDownVotes + downVoteChange);
     const totalVotes = newUpVotes + newDownVotes;
 
-    // Calculate positive ratio
-    const positiveRatio = totalVotes > 0 ? Math.ceil((newUpVotes / totalVotes) * 100) : 0;
+    // Calculate positive ratio (use Math.round for proper rounding: 80.4% → 80, 80.5% → 81)
+    const positiveRatio = totalVotes > 0 ? Math.round((newUpVotes / totalVotes) * 100) : 0;
 
-    // Check if it should be featured (ratio over 80)
+    // Check if it should be featured (ratio over 80%)
     const isFeatured = positiveRatio > 80;
 
     // Update Idea model

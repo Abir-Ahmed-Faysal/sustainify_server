@@ -6,7 +6,8 @@ import { StatusCodes } from "http-status-codes";
 
 const updateUserRole = catchAsync(async (req: Request, res: Response) => {
     const id = req.params.id as string;
-    const result = await adminService.updateUserRole(id, req.body);
+    const currentUser = req.user as any;
+    const result = await adminService.updateUserRole(id, req.body, currentUser.id);
 
     return sendResponse(res, {
         statusCode: StatusCodes.OK,
@@ -18,7 +19,8 @@ const updateUserRole = catchAsync(async (req: Request, res: Response) => {
 
 const toggleUserStatus = catchAsync(async (req: Request, res: Response) => {
     const id = req.params.id as string;
-    const result = await adminService.toggleUserStatus(id);
+    const currentUser = req.user as any;
+    const result = await adminService.toggleUserStatus(id, currentUser.id);
 
     return sendResponse(res, {
         statusCode: StatusCodes.OK,
@@ -30,7 +32,8 @@ const toggleUserStatus = catchAsync(async (req: Request, res: Response) => {
 
 const deleteUser = catchAsync(async (req: Request, res: Response) => {
     const id = req.params.id as string;
-    const result = await adminService.deleteUser(id);
+    const currentUser = req.user as any;
+    const result = await adminService.deleteUser(id, currentUser.id);
 
     return sendResponse(res, {
         statusCode: StatusCodes.OK,

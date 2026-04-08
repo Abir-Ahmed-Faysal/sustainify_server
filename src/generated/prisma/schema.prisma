@@ -32,7 +32,7 @@ model User {
   votes      Vote[]
   comments   Comment[]
   payments   Payment[]
-  favorites  Favorite[]
+  favourites Favourite[]
   accessList Access[]
   blogs      Blog[]
 
@@ -131,7 +131,23 @@ model Comment {
   @@map("comments")
 }
 
-model Favorite {
+model ContactMessage {
+  id      String  @id @default(uuid())
+  name    String
+  email   String
+  subject String
+  message String  @db.Text
+  isRead  Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email], name: "idx_contact_email")
+  @@index([isRead], name: "idx_contact_isRead")
+  @@map("contact_messages")
+}
+
+model Favourite {
   id     String @id @default(uuid())
   userId String
   ideaId String
@@ -140,9 +156,9 @@ model Favorite {
   idea Idea @relation(fields: [ideaId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@unique([userId, ideaId])
-  @@index([userId], name: "idx_favorite_userId")
-  @@index([ideaId], name: "idx_favorite_ideaId")
-  @@map("favorites")
+  @@index([userId], name: "idx_favourite_userId")
+  @@index([ideaId], name: "idx_favourite_ideaId")
+  @@map("favourite")
 }
 
 enum IdeaStatus {
@@ -180,7 +196,7 @@ model Idea {
   votes      Vote[]
   comments   Comment[]
   payments   Payment[]
-  favorites  Favorite[]
+  favourites Favourite[]
   accessList Access[]
 
   createdAt DateTime  @default(now())

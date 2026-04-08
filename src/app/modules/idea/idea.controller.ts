@@ -34,6 +34,19 @@ const getAllIdeas = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+// ✅ NEW: Admin endpoint - returns ALL ideas excluding drafts
+const getAdminAllIdeas = catchAsync(async (req: Request, res: Response) => {
+    const query = req.query as Record<string, string>;
+    const result = await ideaService.getAdminAllIdeas(query);
+
+    return sendResponse(res, {
+        statusCode: StatusCodes.OK,
+        success: true,
+        message: "All ideas retrieved successfully (Admin)",
+        meta: result.meta,
+        data: result.data,
+    });
+});
 
 const getMyIdeas = catchAsync(async (req: Request, res: Response) => {
     const query = req.query as Record<string, string>;
@@ -113,14 +126,13 @@ const deleteIdea = catchAsync(async (req: Request, res: Response) => {
 const updateIdeaStatus = catchAsync(async (req: Request, res: Response) => {
     const id = req.params.id as string;
     const user = req.user as IUserRequest;
-    const status = req.body
-
+    const { status } = req.body;
     const result = await ideaService.changeStatus(id, user, status);
 
     return sendResponse(res, {
         statusCode: StatusCodes.OK,
         success: true,
-        message: "Idea deleted successfully",
+        message: "Idea status updated successfully",
         data: result,
     });
 });
@@ -152,14 +164,14 @@ const toggleIsFeatured = catchAsync(async (req: Request, res: Response) => {
 const updateIdeaStatusByAdmin = catchAsync(async (req: Request, res: Response) => {
     const id = req.params.id as string;
     const user = req.user as IUserRequest;
-    const status = req.body
+    const { status, feedback } = req.body;
 
-    const result = await ideaService.changeStatus(id, user, status);
+    const result = await ideaService.changeStatusByAdmin(id, user, status, feedback);
 
     return sendResponse(res, {
         statusCode: StatusCodes.OK,
         success: true,
-        message: "Idea deleted successfully",
+        message: "Idea status updated successfully",
         data: result,
     });
 });
@@ -169,6 +181,7 @@ const updateIdeaStatusByAdmin = catchAsync(async (req: Request, res: Response) =
 export const ideaController = {
     createIdea,
     getAllIdeas,
+    getAdminAllIdeas,
     getIdeaById,
     updateIdea,
     deleteIdea,

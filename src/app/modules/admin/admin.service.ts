@@ -5,8 +5,13 @@ import { Role } from "../../../generated/prisma";
 
 const updateUserRole = async (
     targetUserId: string,
-    payload: { role: Role }
+    payload: { role: Role },
+    currentAdminId: string
 ) => {
+    if (targetUserId === currentAdminId) {
+        throw new AppError(StatusCodes.BAD_REQUEST, "Admins cannot change their own role");
+    }
+
     const user = await prisma.user.findUnique({
         where: { id: targetUserId, isDeleted: false },
     });
@@ -39,7 +44,11 @@ const updateUserRole = async (
     return updatedUser;
 };
 
-const toggleUserStatus = async (targetUserId: string) => {
+const toggleUserStatus = async (targetUserId: string, currentAdminId: string) => {
+    if (targetUserId === currentAdminId) {
+        throw new AppError(StatusCodes.BAD_REQUEST, "Admins cannot change their own active status");
+    }
+
     const user = await prisma.user.findUnique({
         where: { id: targetUserId, isDeleted: false },
     });
@@ -65,7 +74,11 @@ const toggleUserStatus = async (targetUserId: string) => {
     return updatedUser;
 };
 
-const deleteUser = async (targetUserId: string) => {
+const deleteUser = async (targetUserId: string, currentAdminId: string) => {
+    if (targetUserId === currentAdminId) {
+        throw new AppError(StatusCodes.BAD_REQUEST, "Admins cannot delete their own account");
+    }
+
     const user = await prisma.user.findUnique({
         where: { id: targetUserId, isDeleted: false },
     });

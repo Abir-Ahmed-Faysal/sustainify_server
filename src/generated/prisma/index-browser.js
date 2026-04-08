@@ -193,7 +193,18 @@ exports.Prisma.CommentScalarFieldEnum = {
   deletedAt: 'deletedAt'
 };
 
-exports.Prisma.FavoriteScalarFieldEnum = {
+exports.Prisma.ContactMessageScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  subject: 'subject',
+  message: 'message',
+  isRead: 'isRead',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.FavouriteScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   ideaId: 'ideaId'
@@ -309,7 +320,8 @@ exports.Prisma.ModelName = {
   Blog: 'Blog',
   Category: 'Category',
   Comment: 'Comment',
-  Favorite: 'Favorite',
+  ContactMessage: 'ContactMessage',
+  Favourite: 'Favourite',
   Idea: 'Idea',
   Newsletter: 'Newsletter',
   Payment: 'Payment',
