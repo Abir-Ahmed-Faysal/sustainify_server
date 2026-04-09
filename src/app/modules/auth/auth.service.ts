@@ -131,6 +131,7 @@ const getMe = async (user: IUserRequest) => {
             role: true,
             isActive: true,
             isDeleted: true,
+            themePreference: true,
             createdAt: true,
             updatedAt: true,
             profile: true,

@@ -9,4 +9,5 @@ export interface IProfileUpdate {
     avatar?: string;
     bio?: string;
     address?: string;
+    themePreference?: string;
 }

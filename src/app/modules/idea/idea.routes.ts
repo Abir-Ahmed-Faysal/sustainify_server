@@ -15,6 +15,12 @@ router.get("/", checkOptionalAuth, ideaController.getAllIdeas);
 // ✅ NEW: Admin only - get ALL ideas (including all statuses except drafts)
 router.get("/admin/all", checkAuth(Role.ADMIN), ideaController.getAdminAllIdeas);
 
+// ✅ NEW: AI Search - public endpoint with ranking
+router.get("/search/suggestions", checkOptionalAuth, ideaController.searchIdeas);
+
+// ✅ NEW: AI Recommendations - authenticated or public (popular ideas)
+router.get("/recommendations/personalized", checkOptionalAuth, ideaController.getRecommendations);
+
 router.get("/my-ideas", checkAuth(Role.ADMIN, Role.MEMBER), ideaController.getMyIdeas);
 
 router.get("/my-purchased-ideas", checkAuth(Role.ADMIN, Role.MEMBER), accessController.getMyPaidPursuedIdeas);

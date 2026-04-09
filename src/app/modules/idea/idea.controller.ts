@@ -176,6 +176,32 @@ const updateIdeaStatusByAdmin = catchAsync(async (req: Request, res: Response) =
     });
 });
 
+// AI Search - returns relevant ideas based on query with ranking
+const searchIdeas = catchAsync(async (req: Request, res: Response) => {
+    const query = req.query as Record<string, string>;
+    const result = await ideaService.searchIdeas(query);
+
+    return sendResponse(res, {
+        statusCode: StatusCodes.OK,
+        success: true,
+        message: "Search results retrieved successfully",
+        data: result,
+    });
+});
+
+// AI Recommendations - returns personalized ideas based on user interests
+const getRecommendations = catchAsync(async (req: Request, res: Response) => {
+    const user = req.user as IUserRequest | undefined;
+    const result = await ideaService.getRecommendations(user);
+
+    return sendResponse(res, {
+        statusCode: StatusCodes.OK,
+        success: true,
+        message: "Personalized recommendations retrieved successfully",
+        data: result,
+    });
+});
+
 
 
 export const ideaController = {
@@ -189,5 +215,7 @@ export const ideaController = {
     getMyIdeaById,
     updateIdeaStatus,
     updateIdeaStatusByAdmin,
-    toggleIsFeatured
+    toggleIsFeatured,
+    searchIdeas,
+    getRecommendations
 };

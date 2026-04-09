@@ -10,6 +10,7 @@ model User {
   password String
   role     Role    @default(MEMBER)
   isActive Boolean @default(true)
+  themePreference String @default("light")
 
   profile    Profile?
   ideas      Idea[]

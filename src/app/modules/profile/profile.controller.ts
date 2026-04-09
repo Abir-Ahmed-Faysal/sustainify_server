@@ -21,9 +21,22 @@ const updateProfile = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+const updateTheme = catchAsync(async (req: Request, res: Response) => {
+    const user = req.user as IUserRequest;
+    const { themePreference } = req.body;
+    
+    const result = await profileService.updateTheme(user, themePreference);
 
+    return sendResponse(res, {
+        statusCode: StatusCodes.OK,
+        success: true,
+        message: "Theme preference updated successfully",
+        data: result,
+    });
+});
 
 export const profileController = {
    
     updateProfile,
+    updateTheme,
 };

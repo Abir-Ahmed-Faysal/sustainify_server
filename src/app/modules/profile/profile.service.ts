@@ -45,24 +45,30 @@ const updateProfile = async (user: IUserRequest, payload: IProfileUpdate) => {
         );
     }
 
-    // ✅ 4. Separate name from other profile fields
-    const { name, ...profileData } = filteredPayload as IProfileUpdate;
+    // ✅ 4. Separate name & theme from other profile fields
+    const { name, themePreference, ...profileData } = filteredPayload as IProfileUpdate;
 
     // ✅ 5. Use transaction to update both User and Profile if needed
     const result = await prisma.$transaction(async (tx) => {
-        // Update user name if provided
-        if (name) {
+        // Update user name and/or theme if provided
+        const userData: any = {};
+        if (name) userData.name = name;
+        if (themePreference) userData.themePreference = themePreference;
+
+        if (Object.keys(userData).length > 0) {
             await tx.user.update({
                 where: { id: user.id },
-                data: { name },
+                data: userData,
             });
         }
 
         // Update profile with other fields
-        await tx.profile.update({
-            where: { userId: user.id },
-            data: profileData
-        });
+        if (Object.keys(profileData).length > 0) {
+            await tx.profile.update({
+                where: { userId: user.id },
+                data: profileData
+            });
+        }
 
         // Return updated user with profile relation matching /auth/me
         const updatedUser = await tx.user.findUnique({
@@ -74,6 +80,7 @@ const updateProfile = async (user: IUserRequest, payload: IProfileUpdate) => {
                 role: true,
                 isActive: true,
                 isDeleted: true,
+                themePreference: true,
                 createdAt: true,
                 updatedAt: true,
                 profile: true,
@@ -90,9 +97,44 @@ const updateProfile = async (user: IUserRequest, payload: IProfileUpdate) => {
     return result;
 };
 
+const updateTheme = async (user: IUserRequest, themePreference: string) => {
+    // Validate theme value
+    if (!["light", "dark"].includes(themePreference)) {
+        throw new AppError(
+            StatusCodes.BAD_REQUEST,
+            "Theme must be 'light' or 'dark'"
+        );
+    }
+
+    // Update user theme preference
+    const updatedUser = await prisma.user.update({
+        where: { id: user.id },
+        data: { themePreference },
+        select: {
+            id: true,
+            name: true,
+            email: true,
+            role: true,
+            isActive: true,
+            isDeleted: true,
+            themePreference: true,
+            createdAt: true,
+            updatedAt: true,
+            profile: true,
+        }
+    });
+
+    if (!updatedUser) {
+        throw new AppError(StatusCodes.NOT_FOUND, "User not found");
+    }
+
+    return updatedUser;
+};
+
 
 export const profileService = {
 
     updateProfile,
+    updateTheme,
 
 };

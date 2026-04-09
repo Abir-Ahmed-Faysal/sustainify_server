@@ -16,4 +16,12 @@ router.patch(
     profileController.updateProfile
 );
 
+// Authenticated: update theme preference
+router.patch(
+    "/theme",
+    checkAuth(),
+    validateRequest(profileValidation.updateThemeZodSchema),
+    profileController.updateTheme
+);
+
 export const profileRoutes = router;
