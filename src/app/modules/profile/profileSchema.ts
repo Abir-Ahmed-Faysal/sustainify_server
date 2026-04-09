@@ -13,7 +13,7 @@ const updateProfileZodSchema = z.object({
 const updateThemeZodSchema = z.object({
     body: z.object({
         themePreference: z.enum(["light", "dark"], {
-            errorMap: () => ({ message: "Theme must be 'light' or 'dark'" }),
+            message: "Theme must be 'light' or 'dark'",
         }),
     }),
 });

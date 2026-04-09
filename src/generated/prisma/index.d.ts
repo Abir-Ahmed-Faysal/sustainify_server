@@ -3323,6 +3323,7 @@ export namespace Prisma {
     password: string | null
     role: $Enums.Role | null
     isActive: boolean | null
+    themePreference: string | null
     createdAt: Date | null
     updatedAt: Date | null
     isDeleted: boolean | null
@@ -3336,6 +3337,7 @@ export namespace Prisma {
     password: string | null
     role: $Enums.Role | null
     isActive: boolean | null
+    themePreference: string | null
     createdAt: Date | null
     updatedAt: Date | null
     isDeleted: boolean | null
@@ -3349,6 +3351,7 @@ export namespace Prisma {
     password: number
     role: number
     isActive: number
+    themePreference: number
     createdAt: number
     updatedAt: number
     isDeleted: number
@@ -3364,6 +3367,7 @@ export namespace Prisma {
     password?: true
     role?: true
     isActive?: true
+    themePreference?: true
     createdAt?: true
     updatedAt?: true
     isDeleted?: true
@@ -3377,6 +3381,7 @@ export namespace Prisma {
     password?: true
     role?: true
     isActive?: true
+    themePreference?: true
     createdAt?: true
     updatedAt?: true
     isDeleted?: true
@@ -3390,6 +3395,7 @@ export namespace Prisma {
     password?: true
     role?: true
     isActive?: true
+    themePreference?: true
     createdAt?: true
     updatedAt?: true
     isDeleted?: true
@@ -3476,6 +3482,7 @@ export namespace Prisma {
     password: string
     role: $Enums.Role
     isActive: boolean
+    themePreference: string
     createdAt: Date
     updatedAt: Date
     isDeleted: boolean
@@ -3506,6 +3513,7 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     isActive?: boolean
+    themePreference?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     isDeleted?: boolean
@@ -3529,6 +3537,7 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     isActive?: boolean
+    themePreference?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     isDeleted?: boolean
@@ -3542,6 +3551,7 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     isActive?: boolean
+    themePreference?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     isDeleted?: boolean
@@ -3555,13 +3565,14 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     isActive?: boolean
+    themePreference?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     isDeleted?: boolean
     deletedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "role" | "isActive" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "role" | "isActive" | "themePreference" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     profile?: boolean | User$profileArgs<ExtArgs>
     ideas?: boolean | User$ideasArgs<ExtArgs>
@@ -3597,6 +3608,7 @@ export namespace Prisma {
       password: string
       role: $Enums.Role
       isActive: boolean
+      themePreference: string
       createdAt: Date
       updatedAt: Date
       isDeleted: boolean
@@ -4039,6 +4051,7 @@ export namespace Prisma {
     readonly password: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'Role'>
     readonly isActive: FieldRef<"User", 'Boolean'>
+    readonly themePreference: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
     readonly isDeleted: FieldRef<"User", 'Boolean'>
@@ -17055,6 +17068,7 @@ export namespace Prisma {
     password: 'password',
     role: 'role',
     isActive: 'isActive',
+    themePreference: 'themePreference',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     isDeleted: 'isDeleted',
@@ -17472,6 +17486,7 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     role?: EnumRoleFilter<"User"> | $Enums.Role
     isActive?: BoolFilter<"User"> | boolean
+    themePreference?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     isDeleted?: BoolFilter<"User"> | boolean
@@ -17494,6 +17509,7 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     isActive?: SortOrder
+    themePreference?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeleted?: SortOrder
@@ -17519,6 +17535,7 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     role?: EnumRoleFilter<"User"> | $Enums.Role
     isActive?: BoolFilter<"User"> | boolean
+    themePreference?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     isDeleted?: BoolFilter<"User"> | boolean
@@ -17541,6 +17558,7 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     isActive?: SortOrder
+    themePreference?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeleted?: SortOrder
@@ -17560,6 +17578,7 @@ export namespace Prisma {
     password?: StringWithAggregatesFilter<"User"> | string
     role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
     isActive?: BoolWithAggregatesFilter<"User"> | boolean
+    themePreference?: StringWithAggregatesFilter<"User"> | string
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     isDeleted?: BoolWithAggregatesFilter<"User"> | boolean
@@ -18448,6 +18467,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     isActive?: boolean
+    themePreference?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -18470,6 +18490,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     isActive?: boolean
+    themePreference?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -18492,6 +18513,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    themePreference?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -18514,6 +18536,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    themePreference?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -18536,6 +18559,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     isActive?: boolean
+    themePreference?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -18549,6 +18573,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    themePreference?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -18562,6 +18587,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    themePreference?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -19667,6 +19693,7 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     isActive?: SortOrder
+    themePreference?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeleted?: SortOrder
@@ -19680,6 +19707,7 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     isActive?: SortOrder
+    themePreference?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeleted?: SortOrder
@@ -19693,6 +19721,7 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     isActive?: SortOrder
+    themePreference?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeleted?: SortOrder
@@ -21687,6 +21716,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     isActive?: boolean
+    themePreference?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -21708,6 +21738,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     isActive?: boolean
+    themePreference?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -21806,6 +21837,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    themePreference?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -21827,6 +21859,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    themePreference?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -22472,6 +22505,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     isActive?: boolean
+    themePreference?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -22493,6 +22527,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     isActive?: boolean
+    themePreference?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -22530,6 +22565,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    themePreference?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -22551,6 +22587,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    themePreference?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -22572,6 +22609,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     isActive?: boolean
+    themePreference?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -22593,6 +22631,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     isActive?: boolean
+    themePreference?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -22630,6 +22669,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    themePreference?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -22651,6 +22691,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    themePreference?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -22672,6 +22713,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     isActive?: boolean
+    themePreference?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -22693,6 +22735,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     isActive?: boolean
+    themePreference?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -22730,6 +22773,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    themePreference?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -22751,6 +22795,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    themePreference?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -22854,6 +22899,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     isActive?: boolean
+    themePreference?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -22875,6 +22921,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     isActive?: boolean
+    themePreference?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -23036,6 +23083,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    themePreference?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -23057,6 +23105,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    themePreference?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -23196,6 +23245,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     isActive?: boolean
+    themePreference?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -23217,6 +23267,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     isActive?: boolean
+    themePreference?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -23315,6 +23366,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    themePreference?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -23336,6 +23388,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    themePreference?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -23424,6 +23477,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     isActive?: boolean
+    themePreference?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -23445,6 +23499,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     isActive?: boolean
+    themePreference?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -23647,6 +23702,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    themePreference?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -23668,6 +23724,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    themePreference?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -23800,6 +23857,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     isActive?: boolean
+    themePreference?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -23821,6 +23879,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     isActive?: boolean
+    themePreference?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -23919,6 +23978,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    themePreference?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -23940,6 +24000,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    themePreference?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -24028,6 +24089,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     isActive?: boolean
+    themePreference?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -24049,6 +24111,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     isActive?: boolean
+    themePreference?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -24147,6 +24210,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    themePreference?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -24168,6 +24232,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    themePreference?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean

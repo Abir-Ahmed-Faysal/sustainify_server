@@ -774,7 +774,7 @@ const getRecommendations = async (user: IUserRequest | undefined) => {
 
   // Get user's voting history to identify interests
   const userVotes = await prisma.vote.findMany({
-    where: { userId: user.id, isUpvote: true },
+    where: { userId: user.id, type: "UP" },
     include: { idea: { select: { categoryId: true } } },
     take: 50,
   });
