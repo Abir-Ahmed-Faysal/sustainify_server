@@ -15,6 +15,7 @@ import { accessRoutes } from "../modules/access/access.routes";
 import { statsRoutes } from "../modules/stats/stats.routes";
 import { blogRoutes } from "../modules/blog/blog.routes";
 import contactRouter from "../modules/contact/contact.routes";
+import { chatbotRoutes } from "../modules/chatbot/chatbot.routes";
 
 const router = Router()
 
@@ -34,8 +35,6 @@ router.use('/access', accessRoutes)
 router.use("/stats",statsRoutes)
 router.use("/blogs", blogRoutes);
 router.use("/contact", contactRouter);
-
-
-
+router.use("/chatbot", chatbotRoutes);
 
 export const indexRoutes = router

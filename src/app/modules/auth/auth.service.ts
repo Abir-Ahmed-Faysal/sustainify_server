@@ -46,7 +46,7 @@ const register = async (payload: RegisterInput) => {
 
         const tokenPayload = {
             id: user.id,
-            nama: user.name,
+            name: user.name,
             email: user.email,
             role: user.role,
             isActive: user.isActive,
@@ -82,8 +82,8 @@ const login = async (payload: LoginInput) => {
         if (!isMatch) throw new Error("Invalid password");
 
         const tokenPayload = {
-           id: user.id,
-            nama: user.name,
+            id: user.id,
+            name: user.name,
             email: user.email,
             role: user.role,
             isActive: user.isActive,

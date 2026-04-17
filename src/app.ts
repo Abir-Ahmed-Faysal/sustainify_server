@@ -6,6 +6,7 @@ import { notFound } from "./app/middleware/notFound";
 import { indexRoutes } from "./app/routes/index.js";
 import { paymentController } from "./app/modules/payment/payment.controller";
 import qs from "qs";
+import { requestLogger } from "./app/middleware/requestLogger";
 
 
 const app: Application = express();
@@ -37,7 +38,7 @@ app.use(cors({
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+app.use(requestLogger)
 // Routes
 app.use("/api/v1", indexRoutes)
 
